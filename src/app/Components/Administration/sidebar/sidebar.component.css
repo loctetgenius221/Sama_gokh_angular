@@ -1,0 +1,84 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Montserrat;
+}
+  
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    background-color: #2C6B59;
+}
+
+  
+#sidebar ul {
+    padding-left: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    list-style: none; /* Enlève les puces */
+}
+  
+#sidebar ul li {
+    margin-bottom: 20px; /* Espace entre les éléments */
+    margin-left: 30px;
+}
+  
+#sidebar ul li a {
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+}
+  
+#sidebar ul li a i {
+    font-size: 1.5em; /* Ajuste la taille des icônes */
+    margin-right: 15px; /* Espace entre l'icône et le texte */
+}
+  
+#sidebar ul li a span {
+    display: inline;
+}
+  
+#menu-toggle {
+    cursor: pointer;
+}
+  
+#sidebar.collapsed {
+    min-width: 80px;
+    max-width: 80px;
+}
+  
+
+  
+#sidebar.collapsed ul li a i {
+    margin-right: 0;
+}
+  
+#sidebar.collapsed ul li a span {
+    display: none;
+}
+  
+.flex-grow-1 {
+    transition: all 0.3s;
+}
+  
+#sidebar.collapsed ~ .flex-grow-1 {
+    margin-left: 80px;
+}
+strong{
+    color: #2C6B59;
+}
+input{
+    border-radius: 50px;
+    background-color: #F4E3D2;
+    color: #4A4A4A;
+    border: #F4E3D2;
+}
