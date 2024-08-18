@@ -1,0 +1,59 @@
+.container-custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+label{
+    margin-right: 10px;
+    font-weight: 200;
+    font-size: 16px;
+    color: #2C6B59;
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0.5px solid #2C6B59;
+}
+.foot{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btn-secondary{
+    background-color: transparent;
+    color: #2C6B59;
+    width: 250px;
+}
+.btn-secondary:hover{
+    background-color: transparent;
+    color: #2C6B59;
+    width: 250px;
+}
+.btn-primary{
+    background-color: #2C6B59;
+    color: white;
+    width: 250px;
+    border: none;
+}
+.btn-primary:hover{
+    background-color: #2C6B59;
+    color: white;
+    width: 250px;
+    border: none;
+}
