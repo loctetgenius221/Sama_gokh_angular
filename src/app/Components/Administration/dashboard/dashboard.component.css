@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.widget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.card-body{
+    gap: 30px;
+}
+.carte1{
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: black;
+}
+.carte2{
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    color: black;
+}
+.icon-container {
+    font-size: 2.5rem;
+    color: #2C6B59;
+    margin-bottom: 10px;
+}
+.circle-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #2C6B59;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-weight: bold;
+}
+th{
+    background-color: #2C6B59;
+    color: white;
+    font-size: 26px;
+    text-align: center;
+}
+.col-droite{
+    background-color: #F4E3D2;
+}
