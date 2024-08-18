@@ -11,6 +11,7 @@
 thead th{
     background-color: #2C6B59;
     color: white;
+    border-radius: 10px;
 }
 .btn-edit{
     color: #2C6B59;
