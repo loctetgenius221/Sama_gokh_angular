@@ -1,19 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DashboardComponent],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-    // Variable d'état pour contrôler la visibilité de la sidebar
-    isCollapsed = false;
+  // Variable d'état pour contrôler la visibilité de la sidebar
+  isCollapsed = false;
 
-    // Méthode pour basculer l'état de la sidebar
-    toggleSidebar() {
-      this.isCollapsed = !this.isCollapsed;
-    }
+  // Méthode pour basculer l'état de la sidebar
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

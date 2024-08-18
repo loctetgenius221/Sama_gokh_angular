@@ -4,8 +4,10 @@ body {
     padding: 0;
     height: 100vh;
     font-family: Montserrat;
+    display: flex;
+    flex-direction: column;
 }
-  
+
 #sidebar {
     min-width: 250px;
     max-width: 250px;
@@ -14,21 +16,24 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #2C6B59;
+    position: fixed; /* Rendre le sidebar fixe */
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
-  
 #sidebar ul {
     padding-left: 0;
     margin-top: auto;
     margin-bottom: auto;
     list-style: none; /* Enlève les puces */
 }
-  
+
 #sidebar ul li {
     margin-bottom: 20px; /* Espace entre les éléments */
     margin-left: 30px;
 }
-  
+
 #sidebar ul li a {
     font-size: 1.1em;
     display: flex;
@@ -37,48 +42,71 @@ body {
     color: white;
     text-decoration: none;
 }
-  
+
 #sidebar ul li a i {
     font-size: 1.5em; /* Ajuste la taille des icônes */
     margin-right: 15px; /* Espace entre l'icône et le texte */
 }
-  
+
 #sidebar ul li a span {
     display: inline;
 }
-  
+
 #menu-toggle {
     cursor: pointer;
 }
-  
+
 #sidebar.collapsed {
     min-width: 80px;
     max-width: 80px;
 }
-  
 
-  
 #sidebar.collapsed ul li a i {
     margin-right: 0;
 }
-  
+
 #sidebar.collapsed ul li a span {
     display: none;
 }
-  
+
 .flex-grow-1 {
     transition: all 0.3s;
+    margin-left: 250px; /* Ajoute une marge gauche pour le contenu principal */
 }
-  
+
 #sidebar.collapsed ~ .flex-grow-1 {
     margin-left: 80px;
 }
-strong{
-    color: #2C6B59;
+
+.navbar {
+    position: fixed; /* Rendre le top bar fixe */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Assure que la top bar est au-dessus du contenu */
+    background-color: white; /* Fond de la top bar */
+    border-bottom: 1px dashed #2C6B59;
+    transition: all 0.3s; /* Transition pour la largeur */
+}
+
+
+#sidebar.collapsed ~ .main-content {
+    margin-left: 80px; /* Ajuste la marge gauche pour le contenu principal */
+    width: calc(100% - 80px); /* Ajuste la largeur pour le contenu principal lorsque la sidebar est cachée */
+}
+
+.navbar.expanded {
+    margin-left: 250px; /* Ajuste la marge gauche pour le top bar lorsque la sidebar est visible */
+}
+
+.navbar.collapsed {
+    margin-left: 80px; /* Ajuste la marge gauche pour le top bar lorsque la sidebar est cachée */
 }
 input{
-    border-radius: 50px;
     background-color: #F4E3D2;
-    color: #4A4A4A;
-    border: #F4E3D2;
+    border-radius: 50px;
+}
+.main-content {
+    margin-left: 250px; /* Ajoute une marge gauche pour le contenu principal */
+    transition: margin-left 0.3s; /* Transition pour le changement de marge */
 }
