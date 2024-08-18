@@ -4,6 +4,8 @@ import { SidebarComponent } from './Components/Administration/sidebar/sidebar.co
 
 import { DashboardComponent } from './Components/Administration/dashboard/dashboard.component';
 
+import { CommuneComponent } from './Components/Administration/commune/commune.component';
+
 
 
 export const routes: Routes = [
@@ -17,6 +19,9 @@ export const routes: Routes = [
 
 //les routes pour les dashboards
 {path:"dashboard", component:DashboardComponent},
+
+//les routes pour les communes dans admin
+{path:"communes", component:CommuneComponent},
 ];
 
 

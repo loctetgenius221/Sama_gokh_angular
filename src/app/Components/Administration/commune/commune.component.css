@@ -1,0 +1,32 @@
+
+.btn-custom{
+    background-color: #2C6B59;
+    color: white;
+}
+
+.btn-custom:hover{
+    background-color: #2C6B59;
+    color: white;
+}
+thead th{
+    background-color: #2C6B59;
+    color: white;
+}
+.btn-edit{
+    color: #2C6B59;
+}
+.btn-delete{
+    color: red;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #F4E3D2 !important; /* Utilisation de !important pour forcer la couleur */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: white !important; /* Utilisation de !important pour forcer la couleur */
+}
+
+.btn-edit .material-symbols-outlined, .btn-delete .material-symbols-outlined {
+    font-size: 20px;
+    vertical-align: middle;
+}

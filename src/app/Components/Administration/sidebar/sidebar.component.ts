@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { CommuneComponent } from '../commune/commune.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, DashboardComponent],
+  imports: [CommonModule, DashboardComponent,CommuneComponent],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })

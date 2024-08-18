@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
     height: 100vh;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     display: flex;
     flex-direction: column;
 }
@@ -16,7 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #2C6B59;
-    position: fixed; /* Rendre le sidebar fixe */
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
@@ -26,11 +28,11 @@ body {
     padding-left: 0;
     margin-top: auto;
     margin-bottom: auto;
-    list-style: none; /* Enlève les puces */
+    list-style: none;
 }
 
 #sidebar ul li {
-    margin-bottom: 20px; /* Espace entre les éléments */
+    margin-bottom: 20px;
     margin-left: 30px;
 }
 
@@ -44,8 +46,8 @@ body {
 }
 
 #sidebar ul li a i {
-    font-size: 1.5em; /* Ajuste la taille des icônes */
-    margin-right: 15px; /* Espace entre l'icône et le texte */
+    font-size: 1.5em;
+    margin-right: 15px;
 }
 
 #sidebar ul li a span {
@@ -69,44 +71,46 @@ body {
     display: none;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 1px dashed #2C6B59;
+    transition: margin-left 0.3s;
+}
+
+.navbar.expanded {
+    margin-left: 250px;
+}
+
+.navbar.collapsed {
+    margin-left: 80px;
+}
+
+.main-content {
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+    width: calc(100% - 250px);
+}
+
+#sidebar.collapsed ~ .main-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+
+input {
+    background-color: #F4E3D2;
+    border-radius: 50px;
+}
+
 .flex-grow-1 {
     transition: all 0.3s;
-    margin-left: 250px; /* Ajoute une marge gauche pour le contenu principal */
+    margin-left: 250px;
 }
 
 #sidebar.collapsed ~ .flex-grow-1 {
     margin-left: 80px;
-}
-
-.navbar {
-    position: fixed; /* Rendre le top bar fixe */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; /* Assure que la top bar est au-dessus du contenu */
-    background-color: white; /* Fond de la top bar */
-    border-bottom: 1px dashed #2C6B59;
-    transition: all 0.3s; /* Transition pour la largeur */
-}
-
-
-#sidebar.collapsed ~ .main-content {
-    margin-left: 80px; /* Ajuste la marge gauche pour le contenu principal */
-    width: calc(100% - 80px); /* Ajuste la largeur pour le contenu principal lorsque la sidebar est cachée */
-}
-
-.navbar.expanded {
-    margin-left: 250px; /* Ajuste la marge gauche pour le top bar lorsque la sidebar est visible */
-}
-
-.navbar.collapsed {
-    margin-left: 80px; /* Ajuste la marge gauche pour le top bar lorsque la sidebar est cachée */
-}
-input{
-    background-color: #F4E3D2;
-    border-radius: 50px;
-}
-.main-content {
-    margin-left: 250px; /* Ajoute une marge gauche pour le contenu principal */
-    transition: margin-left 0.3s; /* Transition pour le changement de marge */
 }
