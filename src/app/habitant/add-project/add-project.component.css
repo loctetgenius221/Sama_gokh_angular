@@ -6,8 +6,9 @@ body {
 .sidebar {
   background-color: #2C6B59;
   color: white;
-  padding: 15px;
+  padding: 10px;
   height: 100vh; /* Full height */
+  width: 13%;
 }
 
 .sidebar h4 {

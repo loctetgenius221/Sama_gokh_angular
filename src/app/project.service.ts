@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://your-api-url.com/api';  // Remplacez par l'URL de votre API
+  private apiUrl = 'http://127.0.0.1:8000/api';  // Remplacez par l'URL de votre API
 
   // Méthode pour récupérer la liste des projets
   getAllProjects(): Observable<any> {
