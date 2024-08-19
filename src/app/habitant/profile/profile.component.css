@@ -1,0 +1,80 @@
+.profile-container {
+  padding: 20px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-header h2 {
+  font-size: 28px;
+  color: #2C6B59;
+}
+
+.profile-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #2C6B59;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.profile-contact, .profile-preferences {
+  margin-bottom: 20px;
+}
+
+.profile-contact h3, .profile-preferences h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #2C6B59;
+}
+
+.profile-contact p, .profile-preferences p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.profile-actions {
+  text-align: center;
+}
+
+.edit-profile-btn, .logout-btn {
+  background-color: #2C6B59;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  border: none;
+
+}
