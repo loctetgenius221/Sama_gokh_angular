@@ -2,18 +2,18 @@
   <div class="row">
     <!-- Sidebar -->
     <div class="col-md-3 sidebar">
-      <!-- <h4>Options</h4>
+      <h4>Options</h4>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Dashboard</a></li>
         <li><a href="#">Settings</a></li>
         <li><a href="#">Profile</a></li>
-      </ul> -->
+      </ul>
     </div>
     <!-- Main content -->
     <div class="col-md-9">
-      <div class="add-project-container">
-        <h2>Ajouter un Projet</h2>
+      <div class="edit-project-container">
+        <h2>Modifier un Projet</h2>
         <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-md-6">
@@ -53,9 +53,10 @@
               </div>
             </div>
           </div>
-          <button type="submit" [disabled]="projectForm.invalid" class="btn btn-primary">Soumettre</button>
+          <button type="submit" [disabled]="projectForm.invalid" class="btn btn-primary">Modifier</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+

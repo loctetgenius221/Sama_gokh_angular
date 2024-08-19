@@ -1,0 +1,47 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.sidebar {
+  background-color: #2C6B59;
+  color: white;
+  padding: 15px;
+  height: 100vh; /* Full height */
+}
+
+.sidebar h4 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.add-project-container {
+  padding: 15px;
+}
+
+.btn-primary {
+  background-color: #2C6B59;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1a4a41;
+}
