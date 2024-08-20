@@ -74,21 +74,7 @@
     cursor: not-allowed;
   }
   
-  /* Styles pour les images */
-  .people-img, .municipalite-img {
-    position: absolute;
-    bottom: 0; /* Positionne les images au bas du conteneur */
-    max-width: 30%; /* Ajustez la largeur selon vos besoins */
-    z-index: -1; /* Positionne les images derrière le formulaire */
-  }
-  
-  .people-img {
-    left: 0; /* Positionne l'image à gauche */
-  }
-  
-  .municipalite-img {
-    right: 0; /* Positionne l'image à droite */
-  }
+ 
   /* Conteneur pour le lien d'inscription */
 .link-container {
     margin-top: 20px;
@@ -123,8 +109,20 @@
       width: 300px; /* Ajustez selon vos besoins */
     }
   
-    .people-img, .municipalite-img {
-      max-width: 30%; /* Ajustez la largeur pour les grands écrans */
-    }
+   
+  .people-img {
+    position: absolute;
+    bottom: 0; /* Positionne les images au bas du conteneur */
+    width: 30%; /* Ajustez la largeur selon vos besoins */
+    left: 0;
+  }
+  
+  
+  .municipalite-img {
+    position: absolute;
+    bottom: -100px; /* Positionne les images au bas du conteneur */
+    width: 30%; /* Ajustez la largeur selon vos besoins */
+    right: 0; /* Positionne l'image à droite */
+  }
   }
   

@@ -159,7 +159,7 @@
   
   .municipalite-img {
     position: absolute;
-    bottom: -70px; /* Positionne les images au bas du conteneur */
+    bottom: -100px; /* Positionne les images au bas du conteneur */
     width: 30%; /* Ajustez la largeur selon vos besoins */
     right: 0; /* Positionne l'image à droite */
   }

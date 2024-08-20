@@ -1,3 +1,4 @@
+// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,5 +17,15 @@ export class AuthService {
 
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
+  }
+
+  logout(): Observable<any> {
+    // En supposant que vous ayez une API pour la déconnexion
+    return this.http.post(`${this.apiUrl}/logout`, {});
+  }
+
+  // Supprimer le token localement
+  clearSession(): void {
+    localStorage.removeItem('authToken');
   }
 }

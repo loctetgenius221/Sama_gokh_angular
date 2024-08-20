@@ -1,38 +1,27 @@
 import { Routes } from '@angular/router';
-
 import { SidebarComponent } from './Components/Administration/sidebar/sidebar.component';
-
 import { DashboardComponent } from './Components/Administration/dashboard/dashboard.component';
-
 import { CommuneComponent } from './Components/Administration/commune/commune.component';
 import { LoginComponent } from './Components/Auth/login/login.component';
 import { RegisterComponent } from './Components/Auth/register/register.component';
-
-
+import { FoumulaireComponent } from './Components/Administration/foumulaire/foumulaire.component';
+import { UtilisateursComponent } from './Components/Administration/utilisateurs/utilisateurs.component';
 
 export const routes: Routes = [
-
- 
-
-//les routes pour l'admin
-{path:"sidebar", component:SidebarComponent},
-
-{path:"", pathMatch:'full', redirectTo:'login'},
-
-//les routes pour les dashboards
-{path:"dashboard", component:DashboardComponent},
-
-//les routes pour les communes dans admin
-{path:"communes", component:CommuneComponent},
-
-//route pour la connection
-
+{ path: '', pathMatch: 'full', redirectTo: 'login' },
 { path: 'login', component: LoginComponent },
-
-//route pour l'inscription
-  { path: 'register', component: RegisterComponent },
-
- 
+{ path: 'register', component: RegisterComponent },
+{
+path: 'sidebar',
+component: SidebarComponent,
+children: [
+{ path: 'dashboard', component: DashboardComponent },
+{ path: 'communes', component: CommuneComponent },
+{ path: 'foumulaire', component: FoumulaireComponent },
+{ path: 'utilisateurs', component: UtilisateursComponent },
+{ path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+]
+}
 ];
 
 
