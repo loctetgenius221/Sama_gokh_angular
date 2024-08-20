@@ -25,17 +25,20 @@ export class SidebarComponent {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  logout() {
+  logout(event: Event) {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
     this.authService.logout().subscribe(
       () => {
         // Effacer les données de session après une déconnexion réussie
         this.authService.clearSession();
         // Rediriger vers la page de connexion
-        this.router.navigate(['/connexion']);
+        this.router.navigate(['/login']);
       },
       error => {
         console.error('Erreur lors de la déconnexion:', error);
       }
     );
   }
+  
+  
 }
