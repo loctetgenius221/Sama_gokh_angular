@@ -6,9 +6,9 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CommunesService {
+export class HabitantsService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/municipalites'; 
+  private apiUrl = 'http://127.0.0.1:8000/api/habitants'; 
 
   constructor(private http: HttpClient) { }
 
@@ -17,11 +17,12 @@ export class CommunesService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  getAllCommunes(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() }).pipe(
+  getAllhabitants(): Observable<{ status: boolean; message: string; data: any[] }> {
+    return this.http.get<{ status: boolean; message: string; data: any[] }>(this.apiUrl, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
+  
 
   private handleError(error: HttpErrorResponse) {
     console.error('Une erreur s\'est produite:', error);
