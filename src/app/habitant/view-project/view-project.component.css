@@ -1,0 +1,86 @@
+.project-details-container {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.project-status {
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.project-status.completed {
+  background-color: #2c6b59;
+}
+
+.project-status.pending {
+  background-color: #ffc107;
+}
+
+.project-status.in-progress {
+  background-color: #17a2b8;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-description {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.info-item {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #2c6b59;
+  color: #fff;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 50px;
+}
