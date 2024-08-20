@@ -3,22 +3,24 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../Services/auth/auth.service';
 import { CommunesService } from '../../../Services/communes.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [CommonModule,ReactiveFormsModule,RouterLink],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  currentStep: number = 1;
   municipalites: any[] = [];
 
   constructor(
     private fb: FormBuilder, 
     private authService: AuthService,
-    private communesService: CommunesService // Injection du service
+    private communesService: CommunesService
   ) {
     this.registerForm = this.fb.group({
       nom: ['', Validators.required],
@@ -38,7 +40,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Récupérer les municipalités lors de l'initialisation du composant
     this.communesService.getAllCommunes().subscribe({
       next: (data) => {
         this.municipalites = data;
@@ -57,36 +58,47 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
+  onPhotoChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.registerForm.patchValue({
+        photo: file
+      });
+    }
+  }
+  
+  nextStep() {
+    if (this.currentStep < 3) {
+      this.currentStep++;
+    }
+  }
+
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
+  }
 
   onRegister() {
     if (this.registerForm.valid) {
       const formData = new FormData();
       
-      // Ajouter tous les champs du formulaire au FormData
       Object.keys(this.registerForm.controls).forEach(key => {
         formData.append(key, this.registerForm.get(key)?.value);
       });
   
       this.authService.register(formData).subscribe({
         next: (response) => {
-          // Gérer la réponse de l'inscription
           console.log('Inscription réussie', response);
-          // Par exemple, rediriger l'utilisateur vers la page de connexion
-          // ou afficher un message de succès.
           alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
-          // this.router.navigate(['/login']); // Si vous utilisez un routeur
         },
         error: (error) => {
-          // Gérer l'erreur
           console.error('Erreur lors de l\'inscription', error);
-          // Afficher un message d'erreur à l'utilisateur
           alert('Une erreur est survenue lors de l\'inscription. Veuillez réessayer.');
         }
       });
     } else {
-      // Si le formulaire n'est pas valide, afficher un message d'erreur
       alert('Veuillez remplir tous les champs obligatoires.');
     }
   }
-  
 }

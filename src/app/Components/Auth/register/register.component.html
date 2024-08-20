@@ -1,93 +1,92 @@
-<form (ngSubmit)="onRegister()" [formGroup]="registerForm">
-    <!-- Champ Nom -->
-    <div class="form-group">
-      <label for="nom">Nom</label>
-      <input type="text" id="nom" formControlName="nom" class="form-control" required>
-    </div>
+<div class="register-container">
+  <img src="/assets/images/logosamagokhvert.svg" alt="Logo" class="logo-img" />
   
-    <!-- Champ Prénom -->
-    <div class="form-group">
-      <label for="prenom">Prénom</label>
-      <input type="text" id="prenom" formControlName="prenom" class="form-control" required>
+  <form (ngSubmit)="onRegister()" [formGroup]="registerForm" class="register-form">
+    <!-- Étape 1 : Informations Personnelles -->
+    <div *ngIf="currentStep === 1">
+      <div class="row">
+        <div class="form-group col-12 col-md-6">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" formControlName="nom" class="form-control" required />
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" formControlName="prenom" class="form-control" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="date_naiss">Date de naissance</label>
+        <input type="date" id="date_naiss" formControlName="date_naiss" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="sexe">Sexe</label>
+        <select id="sexe" formControlName="sexe" class="form-control" required>
+          <option value="M">Masculin</option>
+          <option value="F">Féminin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="photo">Photo de profil</label>
+        <input type="file" id="photo" (change)="onPhotoChange($event)" class="form-control" />
+      </div>
+      
+      <button type="button" class="btn-prev" (click)="nextStep()">Suivant</button>
     </div>
-  
-    <!-- Champ Email -->
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" class="form-control" required>
-    </div>
-  
-    <!-- Champ Mot de Passe -->
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" formControlName="password" class="form-control" required>
-    </div>
-  
-    <!-- Champ Téléphone -->
-    <div class="form-group">
-      <label for="telephone">Téléphone</label>
-      <input type="text" id="telephone" formControlName="telephone" class="form-control" required>
-    </div>
-  
-    <!-- Champ Adresse -->
-    <div class="form-group">
-      <label for="adresse">Adresse</label>
-      <input type="text" id="adresse" formControlName="adresse" class="form-control" required>
-    </div>
-  
-    <!-- Champ Sexe -->
-    <div class="form-group">
-      <label for="sexe">Sexe</label>
-      <select id="sexe" formControlName="sexe" class="form-control" required>
-        <option value="M">Masculin</option>
-        <option value="F">Féminin</option>
-      </select>
-    </div>
-  
-    <!-- Champ Date de Naissance -->
-    <div class="form-group">
-      <label for="date_naiss">Date de naissance</label>
-      <input type="date" id="date_naiss" formControlName="date_naiss" class="form-control" required>
-    </div>
-  
-    <!-- Champ Photo -->
-    <div class="form-group">
-      <label for="photo">Photo (optionnel)</label>
-      <input type="text" id="photo" formControlName="photo" class="form-control">
-    </div>
-  
-    <!-- Champ Profession -->
-    <div class="form-group">
-      <label for="profession">Profession</label>
-      <input type="text" id="profession" formControlName="profession" class="form-control" required>
-    </div>
-  
-    <!-- Champ Numéro d'identité -->
-    <div class="form-group">
-      <label for="numero_identite">Numéro d'identité</label>
-      <input type="text" id="numero_identite" formControlName="numero_identite" class="form-control" required>
-    </div>
-  
-    <!-- Champ Image de la CNI -->
-    <div class="form-group">
-      <label for="image_cni">Image de la CNI</label>
-      <input type="file" id="image_cni" (change)="onFileChange($event)" class="form-control" required>
-    </div>
-  
-    <!-- Champ Municipalité -->
-<!-- Champ Municipalité -->
-<div class="form-group">
-  <label for="municipalite_id">Municipalité</label>
-  <select id="municipalite_id" formControlName="municipalite_id" class="form-control" required>
-    <option *ngFor="let municipalite of municipalites" [value]="municipalite.id">
-      {{ municipalite.nom_commune }}
-    </option>
-  </select>
-</div>
 
+    <!-- Étape 2 : Informations de Contact -->
+    <div *ngIf="currentStep === 2">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" formControlName="password" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input type="text" id="telephone" formControlName="telephone" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input type="text" id="adresse" formControlName="adresse" class="form-control" required />
+      </div>
+      <button type="button" class="btn-prev" (click)="previousStep()">Précédent</button>
+      <button type="button" class="btn-next" (click)="nextStep()">Suivant</button>
+    </div>
 
-  
-    <!-- Bouton de soumission -->
-    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Inscription</button>
+    <!-- Étape 3 : Informations Professionnelles -->
+    <div *ngIf="currentStep === 3">
+      <div class="form-group">
+        <label for="profession">Profession</label>
+        <input type="text" id="profession" formControlName="profession" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="numero_identite">Numéro d'identité</label>
+        <input type="text" id="numero_identite" formControlName="numero_identite" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="image_cni">Image de la CNI</label>
+        <input type="file" id="image_cni" (change)="onFileChange($event)" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="municipalite_id">Municipalité</label>
+        <select id="municipalite_id" formControlName="municipalite_id" class="form-control" required>
+          <option *ngFor="let municipalite of municipalites" [value]="municipalite.id">
+            {{ municipalite.nom_commune }}
+          </option>
+        </select>
+      </div>
+      <button type="button" class="btn-prev" (click)="previousStep()">Précédent</button>
+      <button type="submit" class="btn-connect" [disabled]="!registerForm.valid">Inscription</button>
+    </div>
   </form>
-  
+
+  <!-- Lien vers la page de connexion -->
+  <div class="link-container">
+    <p>Déjà inscrit ? <a routerLink="/login" class="link-login">Connectez-vous ici</a></p>
+  </div>
+
+  <img src="/assets/images/habitants.png" alt="People illustration" class="people-img" />
+  <img src="/assets/images/gens-affaires-travail-equipe.png" alt="People illustration" class="municipalite-img" />
+</div>
