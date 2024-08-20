@@ -17,7 +17,7 @@ export const routes: Routes = [
 //les routes pour l'admin
 {path:"sidebar", component:SidebarComponent},
 
-{path:"", pathMatch:'full', redirectTo:'register'},
+{path:"", pathMatch:'full', redirectTo:'login'},
 
 //les routes pour les dashboards
 {path:"dashboard", component:DashboardComponent},

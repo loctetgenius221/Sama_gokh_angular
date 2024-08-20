@@ -74,6 +74,22 @@
     background-color: #ced4da;
     cursor: not-allowed;
   }
+  /* Conteneur pour le lien de connexion */
+.link-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Style du lien de connexion */
+  .link-login {
+    color: #2C6B59; /* Couleur du lien, ajustez selon vos besoins */
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .link-login:hover {
+    text-decoration: underline; /* Souligne le lien au survol */
+  }
   
   /* Styles pour les images */
   /* .people-img {
@@ -97,6 +113,7 @@
   /* Styles pour les écrans de taille moyenne (tablettes) */
   @media (min-width: 481px) {
     .logo-img {
+        margin-top: 70px;
       width: 200px; /* Ajustez selon le mockup */
     }
   

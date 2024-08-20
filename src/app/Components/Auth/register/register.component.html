@@ -81,15 +81,12 @@
       <button type="submit" class="btn-connect" [disabled]="!registerForm.valid">Inscription</button>
     </div>
   </form>
-  
-  <img
-  src="/assets/images/habitants.png"
-  alt="People illustration"
-  class="people-img"
-/>
-<img
-  src="/assets/images/gens-affaires-travail-equipe.png"
-  alt="People illustration"
-  class="municipalite-img"
-/>
+
+  <!-- Lien vers la page de connexion -->
+  <div class="link-container">
+    <p>Déjà inscrit ? <a routerLink="/login" class="link-login">Connectez-vous ici</a></p>
+  </div>
+
+  <img src="/assets/images/habitants.png" alt="People illustration" class="people-img" />
+  <img src="/assets/images/gens-affaires-travail-equipe.png" alt="People illustration" class="municipalite-img" />
 </div>

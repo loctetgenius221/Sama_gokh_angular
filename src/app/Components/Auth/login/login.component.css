@@ -1,0 +1,130 @@
+/* Conteneur principal */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f4f4f4; /* Couleur de fond douce */
+    position: relative; /* Nécessaire pour positionner les images absolument */
+    overflow: hidden;
+  }
+  
+  /* Style pour le logo */
+  .logo-img {
+    width: 250px; /* Ajustez selon vos besoins */
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  /* Style pour le formulaire de connexion */
+  .register-form {
+    width: 100%;
+    max-width: 500px; /* Ajustez selon vos besoins */
+    padding: 20px;
+    background-color: #ffffff; /* Couleur de fond du formulaire */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Groupes de formulaire */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px; /* Ajustez selon vos besoins */
+    color: #333;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    font-size: 16px; /* Ajustez selon vos besoins */
+    color: #333;
+  }
+  
+  .form-control::placeholder {
+    color: #ced4da;
+  }
+  
+  /* Styles pour les boutons */
+  .btn-connect {
+    background-color: #2C6B59; /* Ajustez selon vos besoins */
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px; /* Ajustez selon vos besoins */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Ajustez selon vos besoins */
+  }
+  
+  .btn-connect:hover {
+    background-color: #005a3c; /* Ajustez selon vos besoins */
+  }
+  
+  .btn-connect:disabled {
+    background-color: #ced4da;
+    cursor: not-allowed;
+  }
+  
+  /* Styles pour les images */
+  .people-img, .municipalite-img {
+    position: absolute;
+    bottom: 0; /* Positionne les images au bas du conteneur */
+    max-width: 30%; /* Ajustez la largeur selon vos besoins */
+    z-index: -1; /* Positionne les images derrière le formulaire */
+  }
+  
+  .people-img {
+    left: 0; /* Positionne l'image à gauche */
+  }
+  
+  .municipalite-img {
+    right: 0; /* Positionne l'image à droite */
+  }
+  /* Conteneur pour le lien d'inscription */
+.link-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Style du lien d'inscription */
+  .link-signup {
+    color: #2C6B59; /* Couleur du lien, ajustez selon vos besoins */
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .link-signup:hover {
+    text-decoration: underline; /* Souligne le lien au survol */
+  }
+  
+  /* Styles pour les écrans de taille moyenne (tablettes) */
+  @media (min-width: 481px) {
+    .logo-img {
+      width: 200px; /* Ajustez selon vos besoins */
+    }
+  
+    .people-img, .municipalite-img {
+      max-width: 40%; /* Ajustez la largeur pour les écrans plus grands */
+    }
+  }
+  
+  /* Styles pour les grands écrans (ordinateurs) */
+  @media (min-width: 769px) {
+    .logo-img {
+      width: 300px; /* Ajustez selon vos besoins */
+    }
+  
+    .people-img, .municipalite-img {
+      max-width: 30%; /* Ajustez la largeur pour les grands écrans */
+    }
+  }
+  
