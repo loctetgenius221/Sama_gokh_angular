@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,32 +12,37 @@ export class CommunesService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCommunes() {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('auth_token');
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
+  getAllCommunes(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  getCommuneById(id: number) {
-    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+  getCommuneById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  addCommune(commune: any) {
-    return this.http.post(this.apiUrl, commune).pipe(
+  addCommune(commune: any): Observable<any> {
+    return this.http.post(this.apiUrl, commune, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  updateCommune(id: number, commune: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, commune).pipe(
+  updateCommune(id: number, commune: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, commune, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  deleteCommune(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+  deleteCommune(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
