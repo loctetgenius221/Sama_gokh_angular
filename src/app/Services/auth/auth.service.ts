@@ -3,26 +3,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';  // Importer throwError
 import { catchError, map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api';  
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
-
 
   private authSubject = new BehaviorSubject<string | null>(this.getToken()); // Initialise avec le token existant
 
   constructor(private http: HttpClient) {}
 
-
   // Enregistrer un nouvel utilisateur
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
-
 
   // Connexion de l'utilisateur
   login(credentials: any): Observable<any> {
@@ -81,6 +75,5 @@ export class AuthService {
   private handleError(error: any): Observable<never> {
     console.error(error);
     return throwError(() => new Error('An error occurred'));
-
   }
 }
