@@ -57,7 +57,15 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
-
+  onPhotoChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.registerForm.patchValue({
+        photo: file
+      });
+    }
+  }
+  
   nextStep() {
     if (this.currentStep < 3) {
       this.currentStep++;
