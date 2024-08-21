@@ -46,12 +46,12 @@
         <div class="row d-flex align-items-center justify-content-around g-5">
             <!-- Colonne de gauche -->
             <div class="col-md-8">
-                <div class="d-flex align-items-center mb-3 ">
-                    <button class="btn  me-2 circle-number ">
-                        <i class="material-icons" style="font-size: 30px;">add</i>
-                    </button>
+                <div class="d-flex align-items-center mb-3">
+                    <a [routerLink]="['/sidebar/formulaire']" class="btn me-2 circle-number">
+                      <i class="material-icons" style="font-size: 30px;">add</i>
+                    </a>
                     <span><h5>Ajouter une commune</h5></span>
-                </div>
+                  </div>                  
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -59,40 +59,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Île-de-France</td>
-                            <td class="text-end">
-                                <span class="material-symbols-outlined">
-                                    eye_tracking
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Provence-Alpes-Côte d'Azur</td>
-                            <td class="text-end">
-                                <span class="material-symbols-outlined">
-                                    eye_tracking
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Auvergne-Rhône-Alpes</td>
-                            <td class="text-end">
-                                <span class="material-symbols-outlined">
-                                    eye_tracking
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Hauts-de-France</td>
-                            <td class="text-end">
-                                <span class="material-symbols-outlined">
-                                    eye_tracking
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Occitanie</td>
+                        <tr *ngFor="let region of regions">
+                            <td>{{ region }}</td>
                             <td class="text-end">
                                 <span class="material-symbols-outlined">
                                     eye_tracking
@@ -102,7 +70,7 @@
                     </tbody>
                 </table>                
             </div>
-
+            
             <!-- Colonne de droite -->
             <div class="col-md-4 col-droite">
                 <h6 class="mb-3 mt-3"><strong>Top 5: </strong> Communes avec le plus de projets réalisés </h6>
