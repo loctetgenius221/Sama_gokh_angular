@@ -1,19 +1,28 @@
-import { Component } from '@angular/core';
-import { CommunesService } from '../../../Services/communes.service';  // Vérifiez le chemin correct
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { CommunesService } from '../../../Services/communes.service';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-foumulaire',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, SidebarComponent],
   templateUrl: './foumulaire.component.html',
   styleUrls: ['./foumulaire.component.css']
 })
-export class FoumulaireComponent {
+export class FoumulaireComponent implements OnInit {
   communeForm: FormGroup;
+  isEditMode = false;
+  communeId: number | null = null;
 
-  constructor(private communesService: CommunesService, private fb: FormBuilder) {
+  constructor(
+    private communesService: CommunesService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.communeForm = this.fb.group({
       nom_commune: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -21,30 +30,65 @@ export class FoumulaireComponent {
       departement: ['', Validators.required],
       region: ['', Validators.required]
     });
-    
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.isEditMode = true;
+        this.communeId = +params['id'];
+        this.loadCommune(this.communeId);
+      }
+    });
+  }
+
+  loadCommune(id: number): void {
+    this.communesService.getCommuneById(id).subscribe(commune => {
+      this.communeForm.patchValue({
+        nom_commune: commune.nom_commune,
+        email: commune.email,
+        password: '', // Réinitialiser le mot de passe pour éviter d'afficher des informations sensibles
+        departement: commune.departement,
+        region: commune.region
+      });
+    });
   }
 
   onSubmit(): void {
     if (this.communeForm.valid) {
-      console.log('Formulaire valide:', this.communeForm.value); // Affiche les données du formulaire
-      this.communesService.addCommune(this.communeForm.value).subscribe(
-        (response) => {
-          console.log('Commune ajoutée avec succès:', response);
-          this.communeForm.reset(); // Réinitialiser le formulaire
-        },
-        (error) => {
-          console.error('Erreur lors de l\'ajout de la commune:', error);
-        }
-      );
+      const communeData = { ...this.communeForm.value };
+      // Exclure le mot de passe si vide
+      if (!communeData.password) {
+        delete communeData.password;
+      }
+
+      if (this.isEditMode && this.communeId !== null) {
+        this.communesService.updateCommune(this.communeId, communeData).subscribe(
+          response => {
+            console.log('Commune modifiée avec succès:', response);
+            this.router.navigate(['/liste-communes']);
+          },
+          error => {
+            console.error('Erreur lors de la modification de la commune:', error);
+          }
+        );
+      } else {
+        this.communesService.addCommune(communeData).subscribe(
+          response => {
+            console.log('Commune ajoutée avec succès:', response);
+            this.communeForm.reset();
+          },
+          error => {
+            console.error('Erreur lors de l\'ajout de la commune:', error);
+          }
+        );
+      }
     } else {
-      console.log('Formulaire invalide:', this.communeForm.errors); // Affiche les erreurs de validation du formulaire
+      console.log('Formulaire invalide:', this.communeForm.errors);
     }
   }
-  
 
   goBack(): void {
-    history.back();
-
-
+    this.router.navigate(['/sidebar/communes']);
   }
 }

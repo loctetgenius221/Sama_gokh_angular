@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <h2 class="text-center">Formulaire d’ajout de commune</h2>
+    <h2 class="text-center">{{ isEditMode ? 'Formulaire de modification de commune' : 'Formulaire d’ajout de commune' }}</h2>
   
     <div class="row container-custom">
       <!-- Image à gauche -->
@@ -47,7 +47,9 @@
           <div class="foot">
             <button type="button" class="btn btn-secondary mt-4" (click)="goBack()">RETOUR</button>
             <div class="button-container">
-              <button type="submit" class="btn btn-primary" [disabled]="!communeForm.valid">AJOUTER</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!communeForm.valid">
+                {{ isEditMode ? 'MODIFIER' : 'AJOUTER' }}
+              </button>
             </div>
           </div>
         </form>

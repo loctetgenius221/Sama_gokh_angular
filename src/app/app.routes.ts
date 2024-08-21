@@ -17,8 +17,9 @@ component: SidebarComponent,
 children: [
 { path: 'dashboard', component: DashboardComponent },
 { path: 'communes', component: CommuneComponent },
-{ path: 'formulaire', component: FoumulaireComponent },
 { path: 'utilisateurs', component: UtilisateursComponent },
+{ path: 'commune/add', component: FoumulaireComponent },
+  { path: 'commune/edit/:id', component: FoumulaireComponent },
 { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ]
 }

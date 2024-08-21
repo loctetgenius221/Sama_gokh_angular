@@ -13,7 +13,6 @@ export class CommunesService {
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('auth_token');
-    console.log('Token:', token);
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
@@ -23,8 +22,20 @@ export class CommunesService {
     );
   }
 
+  getCommuneById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   addCommune(commune: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, commune, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateCommune(id: number, commune: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, commune, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
@@ -37,5 +48,4 @@ export class CommunesService {
     }
     return throwError(() => new Error('Une erreur s\'est produite, veuillez réessayer plus tard.'));
   }
-  
 }

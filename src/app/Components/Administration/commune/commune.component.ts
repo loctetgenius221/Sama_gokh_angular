@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunesService } from '../../../Services/communes.service'; // Assurez-vous que le chemin est correct
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-commune',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './commune.component.html',
   styleUrls: ['./commune.component.css']
 })
