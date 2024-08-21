@@ -1,0 +1,37 @@
+<div class="project-container">
+    <div class="header">
+      <button class="filter-btn">Filtre <span class="iconify" data-icon="mdi:chevron-down"></span></button>
+    </div>
+  
+    <h2 class="project-title">Liste des habitants inscrits</h2>
+  
+    <table class="project-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Voir détails</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let habitant of habitants">
+          <td>{{ habitant.nom }}</td>
+          <td>{{ habitant.prenom }}</td>
+          <td>
+            <a href="mailto:{{ habitant.email }}" style="text-decoration: underline; color: #4A4A4A;">
+                {{ habitant.email }}
+            </a>
+          </td>
+          <td>
+            <a [routerLink]="['/habitant/detail/habitant', habitant.id]" routerLinkActive="active" style="text-decoration: underline; color: #4A4A4A; cursor: pointer;">Plus d'infos
+              </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <router-outlet></router-outlet>
+  </div>
+  
+  
+

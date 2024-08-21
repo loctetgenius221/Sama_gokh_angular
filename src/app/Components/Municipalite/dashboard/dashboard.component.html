@@ -1,0 +1,63 @@
+<div class="container mt-4">
+    <!-- Section En-tête avec statistiques -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="card-stat stat1">
+          <p>Département: Dakar</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-stat stat2">
+          <p>Région: Dakar</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-stat stat3">
+          <p>Nombre inscrits: 10.000 habitants</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Section Projets dernièrement mis en ligne -->
+    <div class="section-title">
+      <h3 class="h3_1">Projets dernièrement mis en ligne</h3>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-6" *ngFor="let projet of projets">
+        <div class="card-projet1">
+          <p><strong>{{ projet.nom }}</strong></p>
+          <p>Date début: {{ projet.date_debut }}</p>
+          <p>Date fin: {{ projet.date_fin }}</p>
+          <p>Budget: {{ projet.budget | currency: 'F CFA':'symbol':'1.2-2':'fr' }}</p>
+          <div class="icon">
+            <a [routerLink]="['/projet/detail/projet', projet.id]" class="icon-link">
+            <span class="iconify" data-icon="mdi:eye" data-inline="false"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Section Projets en attentes -->
+    <div class="section-title">
+      <h3 class="h3_2">Projets en attentes</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-6" *ngFor="let projet of projets_habitants">
+        <div class="card-projet2">
+          <p><strong>{{ projet.nom }}</strong></p>
+          <p>Proposé par: {{ projet.proprietaire }}</p>
+          <p>Profession: {{ projet.profession }}</p>
+          <div class="icon">
+            <a [routerLink]="['/habitant/detail/projet', projet.id]" class="icon-link">
+            <span class="iconify" data-icon="mdi:eye" data-inline="false"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+        <h3></h3>
+    </div>
+  </div>
+  

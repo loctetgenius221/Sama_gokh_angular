@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+      <div class="back-arrow">
+        <i [routerLink]="['/habitant/detail/habitant', habitant.id]" class="fa-solid fa-arrow-left"></i>
+      </div>
+      <div class="col-md-8">
+        <div class=" project-details">
+          <p> <strong>Projet:</strong> <span>{{projetDetails?.nom}}</span> </p>
+          <p> <strong>Statut:</strong> <span>{{projetDetails?.statut}}</span> </p>
+          <p> <strong>Date début:</strong> <span>{{projetDetails?.dateDebut}}</span> </p>
+          <p> <strong>Date fin:</strong> <span>{{projetDetails?.dateFin}}</span> </p>
+          <p> <strong>Budget:</strong> <span>{{projetDetails?.budget | currency : 'F CFA':'symbol':'1.2-2':'fr'}}</span> </p>
+          <p> <strong>Description:</strong> <span>{{projetDetails?.description}}</span> </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200" alt="Image du projet">
+        </div>
+      </div>
+    </div>
+  
+    <div class="actions">
+      <button class="approve-btn">Approuver</button>
+      <button class="disapprove-btn">Désapprouver</button>
+    </div>
+  </div>
+  

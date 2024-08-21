@@ -1,0 +1,53 @@
+.container {
+    width: 100%;
+    padding: 30px;
+    padding-top: 5px;
+    background-color: #ffffff;
+    font-family: Montserrat, sans-serif;
+  }
+  
+  h2 {
+    color: #4A4A4A;
+    font-weight: bold;
+    font-size: 30px;
+    padding-bottom: 15px;
+  }
+  
+  .form-label {
+    font-weight:400;
+    font-size: 18px;
+    color: #2C6B59;
+  }
+  .form-control {
+    border: 1px solid #2C6B59;
+  }
+  
+  .btn_submit {
+    background-color: #2C6B59;
+    padding: 10px 20px;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 150px;
+
+  }
+  
+  .btn_cancel {
+    padding: 10px 20px;
+    border: 1px solid #2C6B59;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 150px;
+    color: #2C6B59;
+    margin-left: 3%;
+  }
+  .btn{
+    margin-top: 30px;
+  }
+  
+  
