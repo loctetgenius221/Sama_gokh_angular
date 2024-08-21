@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';  // Importer throwError
-import { catchError, map } from 'rxjs/operators';
+import { Observable, BehaviorSubject, throwError, from } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api';  
 
   private authSubject = new BehaviorSubject<string | null>(this.getToken()); // Initialise avec le token existant
+  private refreshSubject = new BehaviorSubject<boolean>(false); // Subject pour gérer les rafraîchissements
 
   constructor(private http: HttpClient) {}
 
@@ -22,10 +23,7 @@ export class AuthService {
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
       map((response: any) => {
-        // Enregistre le token d'authentification dans le stockage local
-        localStorage.setItem('auth_token', response.access_token);
-        // Met à jour le sujet comportemental avec le nouveau token
-        this.authSubject.next(response.access_token);
+        this.storeToken(response.access_token);
         return response;
       }),
       catchError(this.handleError)
@@ -36,10 +34,9 @@ export class AuthService {
   logout(): Observable<any> {
     const token = this.getToken();
     if (!token) {
-      // Si aucun token n'est disponible, vous ne pouvez pas procéder à la déconnexion
       return throwError(() => new Error('No token available for logout.'));
     }
-  
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.apiUrl}/logout`, { headers }).pipe(
       map(() => {
@@ -51,8 +48,46 @@ export class AuthService {
 
   // Obtenir les détails de l'utilisateur connecté
   getUserDetails(): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.get(`${this.apiUrl}/user`, { headers });
+    return this.http.get(`${this.apiUrl}/user`, { headers: this.createAuthorizationHeader() }).pipe(
+      catchError((error) => {
+        if (error.status === 401) {
+          return this.refreshToken().pipe(
+            switchMap(() => this.http.get(`${this.apiUrl}/user`, { headers: this.createAuthorizationHeader() })),
+            catchError(this.handleError)
+          );
+        }
+        return throwError(() => error);
+      })
+    );
+  }
+
+  // Rafraîchir le token
+  private refreshToken(): Observable<any> {
+    const token = this.getToken();
+    if (!token) {
+      return throwError(() => new Error('No token available for refresh.'));
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiUrl}/refresh-token`, {}, { headers }).pipe(
+      map((response: any) => {
+        this.storeToken(response.access_token);
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  // Créer un en-tête d'autorisation
+  private createAuthorizationHeader(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
+  // Stocker le token dans le stockage local et mettre à jour le sujet comportemental
+  private storeToken(token: string): void {
+    localStorage.setItem('auth_token', token);
+    this.authSubject.next(token);
   }
 
   // Obtenir le token de l'utilisateur

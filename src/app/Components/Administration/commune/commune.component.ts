@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommunesService } from '../../../Services/communes.service'; // Assurez-vous que le chemin est correct
+import { Router } from '@angular/router'; // Importez Router
+import { CommunesService } from '../../../Services/communes.service'; // Assurez-vous du bon chemin
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -14,7 +15,7 @@ export class CommuneComponent implements OnInit {
   communes: any[] = [];
   totalCommunes: number = 0;
 
-  constructor(private communesService: CommunesService) {}
+  constructor(private communesService: CommunesService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCommunes();
@@ -46,5 +47,12 @@ export class CommuneComponent implements OnInit {
         }
       );
     }
+  }
+
+  navigateToAddCommune(): void {
+    this.router.navigate(['/sidebar/commune/add']);
+  }
+  showHabitants(communeId: number): void {
+    this.router.navigate(['/sidebar/commune/habitants', communeId]);
   }
 }

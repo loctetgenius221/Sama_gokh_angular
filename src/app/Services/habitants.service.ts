@@ -23,6 +23,11 @@ export class HabitantsService {
     );
   }
   
+  getHabitantsByCommune(communeId: number): Observable<{ status: boolean; message: string; data: any[] }> {
+    return this.http.get<{ status: boolean; message: string; data: any[] }>(`${this.apiUrl}?commune_id=${communeId}`, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     console.error('Une erreur s\'est produite:', error);
