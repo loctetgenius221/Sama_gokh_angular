@@ -15,6 +15,7 @@ export class CommunesService {
     const token = localStorage.getItem('auth_token');
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
+  
 
   getAllCommunes(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() }).pipe(
@@ -41,11 +42,20 @@ export class CommunesService {
   }
   
 
+  deleteCommune(id: number): Observable<any> {
+    console.log(`Envoi de la requête de suppression pour l'ID : ${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+
   private handleError(error: HttpErrorResponse) {
-    console.error('Une erreur s\'est produite:', error);
+    console.error('Une erreur s\'est produite:', error.message); // Ajoutez cette ligne pour plus d'infos
     if (error.error && error.error.errors) {
       console.error('Erreurs de validation:', error.error.errors);
     }
     return throwError(() => new Error('Une erreur s\'est produite, veuillez réessayer plus tard.'));
   }
+  
 }
