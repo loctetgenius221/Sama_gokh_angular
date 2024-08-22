@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Importez Router
-import { CommunesService } from '../../../Services/communes.service'; // Assurez-vous du bon chemin
+import { Router } from '@angular/router';
+import { CommunesService } from '../../../Services/communes.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-commune',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './commune.component.html',
   styleUrls: ['./commune.component.css']
 })
 export class CommuneComponent implements OnInit {
   communes: any[] = [];
+  filteredCommunes: any[] = [];
+  selectedFilter: string = '';  // Critère de filtrage sélectionné
+  filterValue: string = '';     // Valeur de filtrage saisie
   totalCommunes: number = 0;
 
   constructor(private communesService: CommunesService, private router: Router) {}
@@ -25,6 +29,7 @@ export class CommuneComponent implements OnInit {
     this.communesService.getAllCommunes().subscribe(
       (data) => {
         this.communes = data;
+        this.filteredCommunes = data;
         this.totalCommunes = data.length;
       },
       (error) => {
@@ -38,6 +43,7 @@ export class CommuneComponent implements OnInit {
       this.communesService.deleteCommune(id).subscribe(
         () => {
           this.communes = this.communes.filter(commune => commune.id !== id);
+          this.filteredCommunes = this.filteredCommunes.filter(commune => commune.id !== id);
           this.totalCommunes = this.communes.length;
           alert('Commune supprimée avec succès');
         },
@@ -52,7 +58,34 @@ export class CommuneComponent implements OnInit {
   navigateToAddCommune(): void {
     this.router.navigate(['/sidebar/commune/add']);
   }
+
   showHabitants(communeId: number): void {
     this.router.navigate(['/sidebar/utilisateurs', communeId]);
+  }
+
+  onFilterChange(): void {
+    this.filterValue = ''; // Réinitialisez la valeur du filtre lorsque le critère change
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    if (!this.selectedFilter || !this.filterValue) {
+      this.filteredCommunes = this.communes;
+      return;
+    }
+
+    this.filteredCommunes = this.communes.filter(commune => {
+      const value = commune[this.selectedFilter]?.toLowerCase();
+      return value ? value.includes(this.filterValue.toLowerCase()) : false;
+    });
+  }
+
+  getPlaceholder(): string {
+    switch (this.selectedFilter) {
+      case 'nom_commune': return 'Entrez le nom de la commune';
+      case 'region': return 'Entrez la région';
+      case 'departement': return 'Entrez le département';
+      default: return '';
+    }
   }
 }
