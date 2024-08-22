@@ -52,25 +52,50 @@
                     </a>
                     <span><h5>Ajouter une commune</h5></span>
                   </div>                  
-                <table class="table table-bordered">
+                  <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th colspan="2" style="background-color: #2C6B59; color: white;">Liste des régions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let region of regions">
-                          <td>{{ region }}</td>
-                          <td class="text-end">
-                            <button (click)="viewCommunesByRegion(region)" class="btn btn-icon">
-                                <span class="material-symbols-outlined">eye_tracking</span>
-                              </button>
-                              
-                          </td>                          
+                        <tr *ngFor="let region of paginatedRegions">
+                            <td><h6>{{ region }}</h6></td>
+                            <td class="text-end">
+                                <button (click)="viewCommunesByRegion(region)" class="btn btn-icon">
+                                    <span class="material-symbols-outlined">eye_tracking</span>
+                                </button>
+                            </td>                          
                         </tr>
-                      </tbody>
-                      
-                </table>                
+                    </tbody>
+                </table>
+                
+                <!-- Pagination controls -->
+                <div class="pagination-controls d-flex justify-content-end mt-3">
+                    <!-- Left Arrow -->
+                    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-icon">
+                        <span class="material-symbols-outlined">
+                            arrow_back_ios
+                            </span>
+                    </button>
+                
+                    <!-- Page Numbers -->
+                    <ng-container *ngFor="let page of getPages(); let i = index">
+                        <button (click)="goToPage(page)"
+                                [ngStyle]="{'border-color': currentPage === page ? '#2C6B59' : '#6c757d', 'color': currentPage === page ? '#2C6B59' : '#6c757d'}"
+                                class="btn mx-1">
+                            {{ page }}
+                        </button>
+                    </ng-container>
+                
+                    <!-- Right Arrow -->
+                    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-icon">
+                        <span class="material-symbols-outlined">
+                            arrow_forward_ios
+                            </span>
+                    </button>
+                </div>
+                                
             </div>
             
             <!-- Colonne de droite -->
