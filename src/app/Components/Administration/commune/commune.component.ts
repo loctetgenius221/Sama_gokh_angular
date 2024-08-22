@@ -53,6 +53,6 @@ export class CommuneComponent implements OnInit {
     this.router.navigate(['/sidebar/commune/add']);
   }
   showHabitants(communeId: number): void {
-    this.router.navigate(['/sidebar/commune/habitants', communeId]);
+    this.router.navigate(['/sidebar/utilisateurs', communeId]);
   }
 }

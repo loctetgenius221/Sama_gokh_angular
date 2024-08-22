@@ -18,10 +18,14 @@ export class CommunesService {
   
 
   getAllCommunes(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() }).pipe(
-      catchError(this.handleError)
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la requête:', error); // Déboguer l'erreur
+        return this.handleError(error);
+      })
     );
   }
+  
 
   getCommuneById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(

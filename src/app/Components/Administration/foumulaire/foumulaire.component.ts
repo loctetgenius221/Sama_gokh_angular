@@ -38,6 +38,10 @@ export class FoumulaireComponent implements OnInit {
         this.isEditMode = true;
         this.communeId = +params['id'];
         this.loadCommune(this.communeId);
+
+        // Rendre le champ 'password' optionnel en mode édition
+        this.communeForm.get('password')?.clearValidators();
+        this.communeForm.get('password')?.updateValueAndValidity();
       }
     });
   }
@@ -51,13 +55,16 @@ export class FoumulaireComponent implements OnInit {
         departement: commune.departement,
         region: commune.region
       });
+
+      // Recharger les validations pour garantir le fonctionnement correct du formulaire
+      this.communeForm.updateValueAndValidity();
     });
   }
 
   onSubmit(): void {
     if (this.communeForm.valid) {
       const communeData = { ...this.communeForm.value };
-      // Exclure le mot de passe si vide
+      // Exclure le mot de passe s'il est vide
       if (!communeData.password) {
         delete communeData.password;
       }
@@ -66,7 +73,7 @@ export class FoumulaireComponent implements OnInit {
         this.communesService.updateCommune(this.communeId, communeData).subscribe(
           response => {
             console.log('Commune modifiée avec succès:', response);
-            this.router.navigate(['/liste-communes']);
+            this.router.navigate(['/sidebar/communes']);
           },
           error => {
             console.error('Erreur lors de la modification de la commune:', error);

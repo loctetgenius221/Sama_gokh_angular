@@ -47,7 +47,7 @@
           <div class="foot">
             <button type="button" class="btn btn-secondary mt-4" (click)="goBack()">RETOUR</button>
             <div class="button-container">
-              <button type="submit" class="btn btn-primary" [disabled]="!communeForm.valid">
+              <button type="submit" class="btn btn-primary" [disabled]="!communeForm.valid || communeForm.pristine">
                 {{ isEditMode ? 'MODIFIER' : 'AJOUTER' }}
               </button>
             </div>
