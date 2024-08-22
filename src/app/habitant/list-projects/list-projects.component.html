@@ -1,0 +1,87 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Portail des Habitants</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile">Profile</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="banner">
+  <button class="submit-project-btn">Soumettre Projet</button>
+</div>
+
+<section class="projects-list">
+  <h2>Liste des Projets</h2>
+  <div class="underline"></div>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <label for="filter">Filtrer par:</label>
+    <select id="filter">
+      <option value="all">Tous</option>
+      <option value="en_cours">En cours</option>
+      <option value="termine">Terminé</option>
+      <option value="actif">Actif</option>
+    </select>
+  </div>
+
+  <!-- Project Cards -->
+  <div class="project-cards">
+    <div class="project-image-container">
+      <img src="assets/img/Rectangle_24.png" alt="Project Image" class="project-image">
+    </div>
+    <div class="project-card">
+      <div class="project-content">
+        <h3>Rénovation du Parc Central</h3>
+        <p>Le projet de rénovation du parc central vise à revitaliser et moderniser l'un des espaces verts les plus emblématiques de la commune...</p>
+        <button class="details-btn">Voir Détail</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-cards">
+    <div class="project-image-container">
+      <img src="assets/img/soutien_scolaire.jpg" alt="Project Image" class="project-image">
+    </div>
+    <div class="project-card">
+      <div class="project-content">
+        <h3>Programme de soutien scolaire</h3>
+        <p>Le programme de soutien scolaire est une initiative communautaire conçue pour améliorer les performances académiques des élèves...</p>
+        <button class="details-btn">Voir Détail</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-cards">
+    <div class="project-image-container">
+      <img src="https://i.pinimg.com/564x/98/38/ef/9838ef34efd1688ec39aa4fe1804b2b5.jpg" alt="Project Image" class="project-image">
+    </div>
+    <div class="project-card">
+      <div class="project-content">
+        <h3>Clinique mobile de santé</h3>
+        <p>Le projet de clinique mobile de santé est une initiative novatrice visant à offrir des services de santé de qualité aux populations rurales...</p>
+        <button class="details-btn">Voir Détail</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-cards">
+    <div class="project-image-container">
+      <img src="assets/img/construction.jpg" alt="Project Image" class="project-image">
+    </div>
+    <div class="project-card">
+      <div class="project-content">
+        <h3>Construction d'une nouvelle école</h3>
+        <p>Le projet de construction d'une nouvelle école vise à offrir un meilleur environnement éducatif aux enfants de la commune...</p>
+        <button class="details-btn">Voir Détail</button>
+      </div>
+    </div>
+  </div>
+</section>

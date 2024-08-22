@@ -5,7 +5,7 @@ body {
 /* Navbar */
 .navbar {
   background-color: #2C6B59;
-  color: #fff;
+  color: #F4E3D2;
   padding: 10px;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 .nav-link {
-  color: #fff;
+  color: #F4E3D2;
   text-decoration: none;
 }
 
@@ -44,7 +44,7 @@ body {
 .home-banner {
   position: relative;
   text-align: center;
-  color: white;
+  color: #F4E3D2;
   height: 60vh; /* Adjust the height as needed */
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@ body {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  
+
 }
 
 .objectives h2 {
