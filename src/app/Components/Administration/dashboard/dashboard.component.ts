@@ -4,6 +4,7 @@ import { CommunesService } from '../../../Services/communes.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +22,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private habitantsService: HabitantsService,
-    private communesService: CommunesService
+    private communesService: CommunesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -63,5 +65,9 @@ export class DashboardComponent implements OnInit {
         console.error('Erreur lors du chargement des habitants:', error);
       }
     );
+  }
+
+  viewCommunesByRegion(region: string): void {
+    this.router.navigate(['/sidebar/communes', region]);  // Redirige vers la page avec la région dans l'URL
   }
 }

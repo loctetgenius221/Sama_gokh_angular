@@ -60,14 +60,16 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let region of regions">
-                            <td>{{ region }}</td>
-                            <td class="text-end">
-                                <span class="material-symbols-outlined">
-                                    eye_tracking
-                                </span>
-                            </td>
+                          <td>{{ region }}</td>
+                          <td class="text-end">
+                            <button (click)="viewCommunesByRegion(region)" class="btn btn-icon">
+                                <span class="material-symbols-outlined">eye_tracking</span>
+                              </button>
+                              
+                          </td>                          
                         </tr>
-                    </tbody>
+                      </tbody>
+                      
                 </table>                
             </div>
             

@@ -6,6 +6,7 @@ import { LoginComponent } from './Components/Auth/login/login.component';
 import { RegisterComponent } from './Components/Auth/register/register.component';
 import { FoumulaireComponent } from './Components/Administration/foumulaire/foumulaire.component';
 import { UtilisateursComponent } from './Components/Administration/utilisateurs/utilisateurs.component';
+import { CommunesByRegionComponent } from './Components/Administration/communes-by-region/communes-by-region.component';
 
 export const routes: Routes = [
 { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -19,7 +20,8 @@ children: [
 { path: 'communes', component: CommuneComponent },
 { path: 'utilisateurs/:communeId', component: UtilisateursComponent },
 { path: 'commune/add', component: FoumulaireComponent },
-  { path: 'commune/edit/:id', component: FoumulaireComponent },
+{ path: 'commune/edit/:id', component: FoumulaireComponent },
+{ path: 'communes/:region', component:CommunesByRegionComponent  },
 { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ]
 }

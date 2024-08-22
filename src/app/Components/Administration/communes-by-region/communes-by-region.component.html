@@ -1,0 +1,21 @@
+<div class="container my-4">
+    <button type="button" class="btn btn-secondary mt-4" (click)="goBack()">RETOUR</button>
+    <h2>Communes de la région : {{ region }}</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Département</th>
+          <th>Région</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commune of communes">
+          <td>{{ commune.nom_commune }}</td>
+          <td>{{ commune.departement }}</td>
+          <td>{{ commune.region }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

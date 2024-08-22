@@ -26,6 +26,12 @@ export class CommunesService {
     );
   }
   
+  getCommunesByRegion(region: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/region/${region}`, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
 
   getCommuneById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(

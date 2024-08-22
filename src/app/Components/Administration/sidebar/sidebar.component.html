@@ -48,17 +48,11 @@
 <nav [ngClass]="{'expanded': !isCollapsed, 'collapsed': isCollapsed}" class="navbar navbar-light p-3">
 <div class="container-fluid">
 <span class="navbar-brand mb-0 h1">Bienvenue dans <strong style="color: #2C6B59;">SAMA GOKH</strong></span>
-<form class="d-flex align-items-center ms-auto position-relative">
-<div class="position-relative flex-grow-1">
-<input class="form-control pe-5 ps-5" type="search" placeholder="Recherche" aria-label="Search">
-<span class="position-absolute top-50 start-0 translate-middle-y ms-2">
-<i class="material-symbols-outlined" style="margin-top: 10px; color: #4A4A4A;">search</i>
-</span>
-</div>
-<span class="ms-3">
-<i class="material-symbols-outlined" style="color: #2C6B59;">notifications_unread</i>
-</span>
-</form>
+  <div>
+    <span class="ms-3">
+      <i class="material-symbols-outlined" style="color: #2C6B59;">notifications_unread</i>
+      </span>
+  </div>
 </div>
 </nav>
 <!-- Contenu principal -->
