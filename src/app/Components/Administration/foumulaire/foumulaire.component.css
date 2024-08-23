@@ -57,3 +57,8 @@ label{
     width: 250px;
     border: none;
 }
+.btn-primary:disabled {
+    background-color: #4A4A4A; /* Couleur verte pour le bouton désactivé */
+    border-color: #4A4A4A;
+    cursor: not-allowed;
+}

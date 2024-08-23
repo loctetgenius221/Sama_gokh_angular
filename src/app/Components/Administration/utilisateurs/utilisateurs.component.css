@@ -2,6 +2,10 @@ thead th {
     background-color: #2C6B59;
     color: white;
     padding: 10px;
+    text-align: center;
+}
+tbody td{
+    text-align: center;
 }
 .table-striped tbody tr:nth-of-type(2n+1){
     background-color: #F4E3D2;
@@ -21,4 +25,13 @@ thead th:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
+.btn-secondary{
+    background-color: transparent;
+    color: #2C6B59;
+    width: 250px;
+}
+.btn-secondary:hover{
+    background-color: transparent;
+    color: #2C6B59;
+    width: 250px;
+}

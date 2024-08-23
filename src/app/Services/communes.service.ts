@@ -1,49 +1,71 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunesService {
-
   private apiUrl = 'http://127.0.0.1:8000/api/municipalites'; 
 
   constructor(private http: HttpClient) { }
 
-  getAllCommunes() {
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('auth_token');
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+  
+
+  getAllCommunes(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la requête:', error); // Déboguer l'erreur
+        return this.handleError(error);
+      })
+    );
+  }
+  
+  getCommunesByRegion(region: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/region/${region}`, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+
+  getCommuneById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  getCommuneById(id: number) {
-    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+  addCommune(commune: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, commune, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  addCommune(commune: any) {
-    return this.http.post(this.apiUrl, commune).pipe(
+  updateCommune(id: number, commune: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, commune, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
+  
 
-  updateCommune(id: number, commune: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, commune).pipe(
+  deleteCommune(id: number): Observable<any> {
+    console.log(`Envoi de la requête de suppression pour l'ID : ${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
-
-  deleteCommune(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
-  }
+  
 
   private handleError(error: HttpErrorResponse) {
-    console.error('Une erreur s\'est produite:', error);
+    console.error('Une erreur s\'est produite:', error.message); // Ajoutez cette ligne pour plus d'infos
+    if (error.error && error.error.errors) {
+      console.error('Erreurs de validation:', error.error.errors);
+    }
     return throwError(() => new Error('Une erreur s\'est produite, veuillez réessayer plus tard.'));
   }
+  
 }
