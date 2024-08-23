@@ -1,0 +1,88 @@
+.container {
+    max-width: 1200px;
+    padding-left: 4%;
+    font-family: Montserrat, sans-serif;
+    
+  }
+  
+  .card-stat {
+    padding: 30px;
+    border-radius: 50px 0 50px 0;
+    border:1px solid #4A4A4A;
+    width: 240px;
+    height: 100px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .stat1,
+  .stat3{
+    background-color: #2C6B59;
+  }
+  .stat2{
+    background-color: #4A4A4A;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-projet1 {
+    background-color: #2C6B59;
+    padding: 26px;
+    border-radius: 50px 0 50px 0;
+    border:1px solid #4A4A4A;
+    position: relative;
+    width: 400px;
+    height: 200px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+   
+  }
+
+  .card-projet2 {
+    background-color: #4A4A4A;
+    padding: 26px;
+    border-radius: 0 50px 0 50px;
+    border:1px solid #4A4A4A;
+    position: relative;
+    width: 400px;
+    height: 176px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+   
+  }
+  
+  .card-projet p {
+    margin: 0;
+  }
+  
+  .iconify {
+    position: absolute;
+    bottom: 10px;
+    right: 10%;
+    font-size: 25px;
+    color: #ffffff;
+  }
+  .h3_1{
+    color: #4A4A4A;
+    font-weight:bold;
+    font-size: 30px;
+    padding:30px;
+    text-align: center;
+
+  }
+  
+  .h3_2{
+    color: #4A4A4A;
+    font-weight:bold;
+    font-size: 30px;
+    padding:30px;
+    margin-right: 10%;
+
+  }
+  

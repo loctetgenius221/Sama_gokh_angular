@@ -1,0 +1,161 @@
+.layout {
+    display: flex;
+    height: 100vh;
+  }
+.sidebar {
+    background-color: #2C6B59; /* Ajuster la couleur de fond */
+    width: 250px; /* Ajuster la largeur */
+    height: 100vh;
+    display: flex; /* Utilisation de Flexbox */
+    flex-direction: column; /* Les éléments sont disposés en colonne */
+    padding: 20px;
+    position: fixed;
+  }
+  
+  .logo {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .logo img {
+    max-width: 100%; /* S'adapte à la largeur de son conteneur */
+    height: auto; /* Maintient le ratio d'aspect de l'image */
+    max-height: 80px; /* Limite la hauteur maximale du logo */
+}
+  
+  .menu-links {
+    list-style-type: none;
+    padding: 0;
+    flex-grow: 1; /* Permet au menu de prendre tout l'espace disponible */
+    margin-top: 20px;
+
+}
+  
+  .menu-links li {
+    margin: 10px -10px 28px;
+  }
+  .menu-links li:last-child {
+    margin-bottom: 0; /* Supprime l'espace après le dernier lien */
+  }
+  
+  .menu-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-family: Montserrat,sans-serif;
+    padding: 10px; /* Ajoute un peu de padding pour l'effet du rectangle */
+    border-radius: 5px; /* Arrondit légèrement les coins du rectangle */
+  }
+  .menu-links li a:hover, /* Style au survol */
+.menu-links li a.active { /* Style du lien actif (lorsqu'il est cliqué) */
+  background-color: white; /* Fond blanc */
+  color: #2C6B59; /* Couleur du texte et de l'icône identique à celle de la sidebar */
+}
+
+.menu-links li a:hover .iconify, 
+.menu-links li a.active .iconify { /* Changer la couleur de l'icône au survol et lorsqu'il est actif */
+  color: #2C6B59;
+}
+  
+  .menu-links li a .iconify {
+    margin-right:10px;
+    font-size: 28px; /* Taille de l'icône */
+  }
+  .logout{
+    margin: 0 -10ps 12%;
+  }
+  .logout a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-family: Montserrat,sans-serif;
+    padding: 10px; /* Ajoute un peu de padding pour l'effet du rectangle */
+    border-radius: 5px; /* Arrondit légèrement les coins du rectangle */
+  }
+  
+  .logout a .iconify {
+    margin-right: 10px;
+    font-size: 28px; /* Taille de l'icône */
+  }
+  .logout a:hover,
+  .logout a.avtive{
+    background-color: white; /* Fond blanc au survol */
+    color: #2C6B59; /* Couleur du texte et de l'icône identique à celle de la sidebar */
+  }
+  
+  .logout a:hover .iconify, 
+  .logout a.active .iconify {
+    color: #2C6B59; /* Changer la couleur de l'icône au survol */
+  }
+
+/*---------------------------------------*/
+  .main-content {
+    flex: 1;
+    margin-left: 250px; /* Correspond à la largeur de la sidebar */
+    display: flex;
+    flex-direction: column;
+   
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .left-section h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #4A4A4A;
+  }
+  
+  .left-section p {
+    margin: 0;
+    color: #4A4A4A;
+    font-size: 24px;
+    font-weight:500 ;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #F4E3D2;
+    padding: 8px 12px;
+    border-radius: 20px;
+    margin: 0 20px;
+  }
+  
+  .search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding-left: 8px;
+    font-size: 14px;
+    color: #4A4A4A;
+  }
+  
+  .search-bar .iconify {
+    font-size: 20px;
+    color: #4A4A4A;
+  }
+  
+  .right-section .iconify {
+    font-size: 24px;
+    color: #2C6B59;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+  
+  
+  
