@@ -8,11 +8,12 @@ import { UtilisateursComponent } from '../utilisateurs/utilisateurs.component';
 import { FoumulaireComponent } from '../foumulaire/foumulaire.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CommunesByRegionComponent } from '../communes-by-region/communes-by-region.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, DashboardComponent, CommuneComponent, UtilisateursComponent, FoumulaireComponent, RouterLink,RouterOutlet,RouterModule],
+  imports: [CommonModule, DashboardComponent, CommuneComponent, UtilisateursComponent, FoumulaireComponent, RouterLink,RouterOutlet,RouterModule,CommunesByRegionComponent],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })

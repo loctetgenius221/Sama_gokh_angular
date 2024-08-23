@@ -1,10 +1,7 @@
 <div class="container mt-5">
     <h2 class="text-center">Liste des utilisateurs de la commune: {{ communeName }}</h2>
   
-    <!-- Bouton de retour -->
-    <button (click)="retour()" class="btn btn-secondary mb-3">
-      Retour
-    </button>
+   
   
     <!-- Affichage du message si la liste des habitants est vide -->
     <div *ngIf="habitants.length === 0" class="alert alert-info mt-4 text-center">
@@ -28,5 +25,9 @@
         </tr>
       </tbody>
     </table>
+     <!-- Bouton de retour -->
+     <button (click)="retour()" class="btn btn-secondary mt-4">
+      Retour
+    </button>
   </div>
   

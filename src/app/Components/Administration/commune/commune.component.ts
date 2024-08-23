@@ -4,6 +4,7 @@ import { CommunesService } from '../../../Services/communes.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-commune',
@@ -20,7 +21,7 @@ export class CommuneComponent implements OnInit {
   totalCommunes: number = 0;
 
   currentPage: number = 1;
-  itemsPerPage: number = 10; // Ajustez cette valeur en fonction du nombre de communes par page souhaité
+  itemsPerPage: number = 5; // Ajustez cette valeur en fonction du nombre de communes par page souhaité
   paginatedCommunes: any[] = [];
   totalPages: number = 0;
 
@@ -49,22 +50,50 @@ export class CommuneComponent implements OnInit {
   }
 
 
-  deleteCommune(id: number): void {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette commune ?')) {
+  
+deleteCommune(id: number): void {
+  Swal.fire({
+    title: 'Êtes-vous sûr ?',
+    text: "Vous ne pourrez pas revenir en arrière !",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Oui, supprimer !',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
       this.communesService.deleteCommune(id).subscribe(
         () => {
           this.communes = this.communes.filter(commune => commune.id !== id);
           this.filteredCommunes = this.filteredCommunes.filter(commune => commune.id !== id);
           this.totalCommunes = this.communes.length;
-          alert('Commune supprimée avec succès');
+          
+          // Afficher une alerte de succès avec SweetAlert2
+          Swal.fire({
+            title: 'Supprimée !',
+            text: 'La commune a été supprimée avec succès.',
+            icon: 'success',
+            timer: 3000, // Afficher pendant 3 secondes
+            showConfirmButton: false
+          });
         },
         (error) => {
           console.error('Erreur lors de la suppression de la commune:', error);
-          alert('Erreur lors de la suppression de la commune');
+          
+          // Afficher une alerte d'erreur avec SweetAlert2
+          Swal.fire({
+            title: 'Erreur !',
+            text: 'Erreur lors de la suppression de la commune.',
+            icon: 'error',
+            timer: 3000, // Afficher pendant 3 secondes
+            showConfirmButton: false
+          });
         }
       );
     }
-  }
+  });
+}
 
   navigateToAddCommune(): void {
     this.router.navigate(['/sidebar/commune/add']);

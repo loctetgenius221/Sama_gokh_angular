@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { CommunesService } from '../../../Services/communes.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-foumulaire',
@@ -16,6 +17,13 @@ export class FoumulaireComponent implements OnInit {
   communeForm: FormGroup;
   isEditMode = false;
   communeId: number | null = null;
+
+  // Liste des régions
+  regions: string[] = [
+    'Dakar', 'Thiès', 'Saint-Louis', 'Kaolack', 'Ziguinchor', 
+    'Louga', 'Fatick', 'Matam', 'Tambacounda', 'Kolda', 
+    'Kédougou', 'Sédhiou','Diourbel','Kaffrine'
+  ];
 
   constructor(
     private communesService: CommunesService,
@@ -39,7 +47,6 @@ export class FoumulaireComponent implements OnInit {
         this.communeId = +params['id'];
         this.loadCommune(this.communeId);
 
-        // Rendre le champ 'password' optionnel en mode édition
         this.communeForm.get('password')?.clearValidators();
         this.communeForm.get('password')?.updateValueAndValidity();
       }
@@ -51,12 +58,10 @@ export class FoumulaireComponent implements OnInit {
       this.communeForm.patchValue({
         nom_commune: commune.nom_commune,
         email: commune.email,
-        password: '', // Réinitialiser le mot de passe pour éviter d'afficher des informations sensibles
+        password: '',
         departement: commune.departement,
         region: commune.region
       });
-
-      // Recharger les validations pour garantir le fonctionnement correct du formulaire
       this.communeForm.updateValueAndValidity();
     });
   }
@@ -64,7 +69,6 @@ export class FoumulaireComponent implements OnInit {
   onSubmit(): void {
     if (this.communeForm.valid) {
       const communeData = { ...this.communeForm.value };
-      // Exclure le mot de passe s'il est vide
       if (!communeData.password) {
         delete communeData.password;
       }
@@ -72,26 +76,55 @@ export class FoumulaireComponent implements OnInit {
       if (this.isEditMode && this.communeId !== null) {
         this.communesService.updateCommune(this.communeId, communeData).subscribe(
           response => {
-            console.log('Commune modifiée avec succès:', response);
-            this.router.navigate(['/sidebar/communes']);
+            Swal.fire({
+              icon: 'success',
+              title: 'Succès',
+              text: 'Commune modifiée avec succès!',
+              timer: 1000, // Alerte disparaît après 1 seconde
+              timerProgressBar: true
+            }).then(() => this.router.navigate(['/sidebar/communes']));
           },
           error => {
-            console.error('Erreur lors de la modification de la commune:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Erreur',
+              text: 'Erreur lors de la modification de la commune',
+              timer: 1000, // Alerte disparaît après 1 seconde
+              timerProgressBar: true
+            });
           }
         );
       } else {
         this.communesService.addCommune(communeData).subscribe(
           response => {
-            console.log('Commune ajoutée avec succès:', response);
-            this.communeForm.reset();
+            Swal.fire({
+              icon: 'success',
+              title: 'Succès',
+              text: 'Commune ajoutée avec succès!',
+              timer: 1000, // Alerte disparaît après 1 seconde
+              timerProgressBar: true
+            }).then(() =>  this.router.navigate(['/sidebar/communes']));
+              // this.communeForm.reset());
           },
           error => {
-            console.error('Erreur lors de l\'ajout de la commune:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Erreur',
+              text: 'Erreur lors de l\'ajout de la commune',
+              timer: 1000, // Alerte disparaît après 1 seconde
+              timerProgressBar: true
+            });
           }
         );
       }
     } else {
-      console.log('Formulaire invalide:', this.communeForm.errors);
+      Swal.fire({
+        icon: 'warning',
+        title: 'Attention',
+        text: 'Formulaire invalide',
+        timer: 1000, // Alerte disparaît après 1 seconde
+        timerProgressBar: true
+      });
     }
   }
 
