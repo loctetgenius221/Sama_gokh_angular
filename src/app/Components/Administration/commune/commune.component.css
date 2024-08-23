@@ -11,7 +11,27 @@
 thead th{
     background-color: #2C6B59;
     color: white;
+    text-align: center;
+}
+thead th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+tbody td{
+    text-align: center;
+}
+
+thead th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.table-striped tbody tr:nth-of-type(2n+1){
+    background-color: #F4E3D2;
     border-radius: 10px;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1) > * {
+background-color: #F4E3D2;
+
 }
 .btn-edit{
     color: #2C6B59;
@@ -31,3 +51,4 @@ thead th{
     font-size: 20px;
     vertical-align: middle;
 }
+

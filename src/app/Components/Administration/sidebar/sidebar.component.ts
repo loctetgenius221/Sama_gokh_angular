@@ -1,6 +1,6 @@
 // sidebar.component.ts
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../Services/auth/auth.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommuneComponent } from '../commune/commune.component';
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, DashboardComponent, CommuneComponent, UtilisateursComponent, FoumulaireComponent, RouterLink,RouterOutlet],
+  imports: [CommonModule, DashboardComponent, CommuneComponent, UtilisateursComponent, FoumulaireComponent, RouterLink,RouterOutlet,RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })

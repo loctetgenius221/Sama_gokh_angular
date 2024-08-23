@@ -19,6 +19,11 @@ export class CommuneComponent implements OnInit {
   filterValue: string = '';     // Valeur de filtrage saisie
   totalCommunes: number = 0;
 
+  currentPage: number = 1;
+  itemsPerPage: number = 10; // Ajustez cette valeur en fonction du nombre de communes par page souhaité
+  paginatedCommunes: any[] = [];
+  totalPages: number = 0;
+
   constructor(private communesService: CommunesService, private router: Router) {}
 
   ngOnInit(): void {
@@ -28,15 +33,21 @@ export class CommuneComponent implements OnInit {
   loadCommunes(): void {
     this.communesService.getAllCommunes().subscribe(
       (data) => {
+        console.log('Communes Data:', data);
         this.communes = data;
         this.filteredCommunes = data;
         this.totalCommunes = data.length;
+
+           // Configurer la pagination
+           this.totalPages = Math.ceil(this.communes.length / this.itemsPerPage);
+           this.updatePaginatedCommunes();
       },
       (error) => {
         console.error('Erreur lors du chargement des communes:', error);
       }
     );
   }
+
 
   deleteCommune(id: number): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer cette commune ?')) {
@@ -87,5 +98,34 @@ export class CommuneComponent implements OnInit {
       case 'departement': return 'Entrez le département';
       default: return '';
     }
+  }
+
+  updatePaginatedCommunes(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedCommunes = this.communes.slice(startIndex, endIndex);
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePaginatedCommunes();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updatePaginatedCommunes();
+    }
+  }
+
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedCommunes();
+  }
+
+  getPages(): number[] {
+    return Array(this.totalPages).fill(0).map((x, i) => i + 1);
   }
 }

@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
 body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
     height: 100vh;
-    font-family: Montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
 }
@@ -69,6 +68,15 @@ body {
 
 #sidebar.collapsed ul li a span {
     display: none;
+}
+
+.active-link {
+    background-color: white;
+    color: #2C6B59;
+    
+}
+.active-link i,.active-link span {
+    color: #2C6B59; 
 }
 
 .navbar {

@@ -1,8 +1,8 @@
 <div class="container my-4 mt-5">
   <!-- Bouton Ajouter en haut -->
-  <div class="mb-4">
+  <div class="mb-4 " style="float: right;">
     <button type="button" class="btn btn-custom" (click)="navigateToAddCommune()">Ajouter une commune</button>
-  </div>
+  </div> <br><br>
 
   <!-- Toolbar avec filtrage sur la même ligne -->
   <div class="d-flex mb-4">
@@ -29,17 +29,17 @@
   </div>
 
   <!-- Table -->
-  <table class="table table-striped">
+  <table class="table table-striped w-100">
     <thead>
       <tr>
-        <th>Nom</th>
-        <th>Département</th>
-        <th>Région</th>
-        <th>Actions</th>
+        <th class="w-25">Nom</th>
+        <th class="w-25">Département</th>
+        <th class="w-25">Région</th>
+        <th class="w-25">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let commune of filteredCommunes">
+      <tr *ngFor="let commune of paginatedCommunes">
         <td>{{ commune.nom_commune }}</td>
         <td>{{ commune.departement }}</td>
         <td>{{ commune.region }}</td>
@@ -60,4 +60,31 @@
       <!-- Ajoutez d'autres lignes ici -->
     </tbody>
   </table>
+  
+  <!-- Pagination controls -->
+  <div class="pagination-controls d-flex justify-content-end mt-3">
+    <!-- Left Arrow -->
+    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-icon">
+      <span class="material-symbols-outlined">
+        arrow_back_ios
+      </span>
+    </button>
+  
+    <!-- Page Numbers -->
+    <ng-container *ngFor="let page of getPages(); let i = index">
+      <button (click)="goToPage(page)"
+              [ngStyle]="{'border-color': currentPage === page ? '#2C6B59' : '#6c757d', 'color': currentPage === page ? '#2C6B59' : '#6c757d'}"
+              class="btn mx-1">
+        {{ page }}
+      </button>
+    </ng-container>
+  
+    <!-- Right Arrow -->
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-icon">
+      <span class="material-symbols-outlined">
+        arrow_forward_ios
+      </span>
+    </button>
+  </div>
+  
 </div>
