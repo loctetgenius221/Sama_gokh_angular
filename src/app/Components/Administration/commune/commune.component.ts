@@ -39,9 +39,9 @@ export class CommuneComponent implements OnInit {
         this.filteredCommunes = data;
         this.totalCommunes = data.length;
 
-           // Configurer la pagination
-           this.totalPages = Math.ceil(this.communes.length / this.itemsPerPage);
-           this.updatePaginatedCommunes();
+        // Configurer la pagination
+        this.totalPages = Math.ceil(this.communes.length / this.itemsPerPage);
+        this.updatePaginatedCommunes();
       },
       (error) => {
         console.error('Erreur lors du chargement des communes:', error);
@@ -49,51 +49,49 @@ export class CommuneComponent implements OnInit {
     );
   }
 
-
-  
-deleteCommune(id: number): void {
-  Swal.fire({
-    title: 'Êtes-vous sûr ?',
-    text: "Vous ne pourrez pas revenir en arrière !",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Oui, supprimer !',
-    cancelButtonText: 'Annuler'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.communesService.deleteCommune(id).subscribe(
-        () => {
-          this.communes = this.communes.filter(commune => commune.id !== id);
-          this.filteredCommunes = this.filteredCommunes.filter(commune => commune.id !== id);
-          this.totalCommunes = this.communes.length;
-          
-          // Afficher une alerte de succès avec SweetAlert2
-          Swal.fire({
-            title: 'Supprimée !',
-            text: 'La commune a été supprimée avec succès.',
-            icon: 'success',
-            timer: 3000, // Afficher pendant 3 secondes
-            showConfirmButton: false
-          });
-        },
-        (error) => {
-          console.error('Erreur lors de la suppression de la commune:', error);
-          
-          // Afficher une alerte d'erreur avec SweetAlert2
-          Swal.fire({
-            title: 'Erreur !',
-            text: 'Erreur lors de la suppression de la commune.',
-            icon: 'error',
-            timer: 3000, // Afficher pendant 3 secondes
-            showConfirmButton: false
-          });
-        }
-      );
-    }
-  });
-}
+  deleteCommune(id: number): void {
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "Vous ne pourrez pas revenir en arrière !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.communesService.deleteCommune(id).subscribe(
+          () => {
+            this.communes = this.communes.filter(commune => commune.id !== id);
+            this.filteredCommunes = this.filteredCommunes.filter(commune => commune.id !== id);
+            this.totalCommunes = this.communes.length;
+            
+            // Afficher une alerte de succès avec SweetAlert2
+            Swal.fire({
+              title: 'Supprimée !',
+              text: 'La commune a été supprimée avec succès.',
+              icon: 'success',
+              timer: 3000, // Afficher pendant 3 secondes
+              showConfirmButton: false
+            });
+          },
+          (error) => {
+            console.error('Erreur lors de la suppression de la commune:', error);
+            
+            // Afficher une alerte d'erreur avec SweetAlert2
+            Swal.fire({
+              title: 'Erreur !',
+              text: 'Erreur lors de la suppression de la commune.',
+              icon: 'error',
+              timer: 3000, // Afficher pendant 3 secondes
+              showConfirmButton: false
+            });
+          }
+        );
+      }
+    });
+  }
 
   navigateToAddCommune(): void {
     this.router.navigate(['/sidebar/commune/add']);
@@ -111,13 +109,15 @@ deleteCommune(id: number): void {
   applyFilters(): void {
     if (!this.selectedFilter || !this.filterValue) {
       this.filteredCommunes = this.communes;
-      return;
+    } else {
+      this.filteredCommunes = this.communes.filter(commune => {
+        const value = commune[this.selectedFilter]?.toLowerCase();
+        return value ? value.includes(this.filterValue.toLowerCase()) : false;
+      });
     }
 
-    this.filteredCommunes = this.communes.filter(commune => {
-      const value = commune[this.selectedFilter]?.toLowerCase();
-      return value ? value.includes(this.filterValue.toLowerCase()) : false;
-    });
+    // Mettre à jour la pagination après filtrage
+    this.updatePaginatedCommunes();
   }
 
   getPlaceholder(): string {
@@ -132,7 +132,7 @@ deleteCommune(id: number): void {
   updatePaginatedCommunes(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedCommunes = this.communes.slice(startIndex, endIndex);
+    this.paginatedCommunes = this.filteredCommunes.slice(startIndex, endIndex);
   }
 
   previousPage(): void {
