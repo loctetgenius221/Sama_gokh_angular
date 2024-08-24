@@ -58,7 +58,7 @@ case 1:
 this.router.navigate(['/sidebar/dashboard']);
 break;
 case 2:
-this.router.navigate(['/someOtherPathForRole2']); // Assurez-vous que ce chemin est correct
+this.router.navigate(['/sidebar1/dashboard']); 
 break;
 case 3:
 this.router.navigate(['/someOtherPathForRole3']); // Assurez-vous que ce chemin est correct

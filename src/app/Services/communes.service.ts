@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CommunesService {
-  private apiUrl = 'http://127.0.0.1:8000/api/municipalites'; 
+  private apiUrl = 'http://127.0.0.1:8000/api'; // Mise à jour du préfixe de l'URL
 
   constructor(private http: HttpClient) { }
 
@@ -15,10 +15,9 @@ export class CommunesService {
     const token = localStorage.getItem('auth_token');
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-  
 
   getAllCommunes(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/municipalites`).pipe(
       catchError(error => {
         console.error('Erreur lors de la requête:', error); // Déboguer l'erreur
         return this.handleError(error);
@@ -26,39 +25,43 @@ export class CommunesService {
     );
   }
   
-  getCommunesByRegion(region: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/region/${region}`, { headers: this.getHeaders() }).pipe(
+  // Méthode pour récupérer les informations de la municipalité connectée
+  getMunicipaliteConnectee(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/municipalite/connectee`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
-  
+
+  getCommunesByRegion(region: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/municipalites/region/${region}`, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   getCommuneById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
+    return this.http.get<any>(`${this.apiUrl}/municipalites/${id}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   addCommune(commune: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, commune, { headers: this.getHeaders() }).pipe(
+    return this.http.post<any>(`${this.apiUrl}/municipalites`, commune, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   updateCommune(id: number, commune: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, commune, { headers: this.getHeaders() }).pipe(
+    return this.http.put<any>(`${this.apiUrl}/municipalites/${id}`, commune, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
-  
 
   deleteCommune(id: number): Observable<any> {
     console.log(`Envoi de la requête de suppression pour l'ID : ${id}`);
-    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
+    return this.http.delete<any>(`${this.apiUrl}/municipalites/${id}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
-  
 
   private handleError(error: HttpErrorResponse) {
     console.error('Une erreur s\'est produite:', error.message); // Ajoutez cette ligne pour plus d'infos
@@ -67,5 +70,4 @@ export class CommunesService {
     }
     return throwError(() => new Error('Une erreur s\'est produite, veuillez réessayer plus tard.'));
   }
-  
 }
