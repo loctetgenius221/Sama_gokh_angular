@@ -12,15 +12,20 @@
     font-size: 30px;
     padding-bottom: 15px;
   }
-  
-  .form-label {
-    font-weight:400;
-    font-size: 18px;
+
+label{
+    margin-right: 10px;
+    font-weight: 200;
+    font-size: 16px;
     color: #2C6B59;
-  }
-  .form-control {
-    border: 1px solid #2C6B59;
-  }
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0.5px solid #2C6B59;
+}
+  
   
   .btn_submit {
     background-color: #2C6B59;
@@ -50,4 +55,8 @@
     margin-top: 30px;
   }
   
-  
+  .foot{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
