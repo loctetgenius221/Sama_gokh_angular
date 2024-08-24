@@ -16,14 +16,15 @@ export class ProjetsService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  getAllProjets(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/projets`).pipe(
+  getAllProjets(): Observable<{ data: any[] }> {
+    return this.http.get<{ data: any[] }>(`${this.apiUrl}/projets`, { headers: this.getHeaders() }).pipe(
       catchError(error => {
-        console.error('Erreur lors de la requête:', error); 
+        console.error('Erreur lors de la requête:', error);
         return this.handleError(error);
       })
     );
   }
+  
 
   getProjetById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/projets/${id}`, { headers: this.getHeaders() }).pipe(

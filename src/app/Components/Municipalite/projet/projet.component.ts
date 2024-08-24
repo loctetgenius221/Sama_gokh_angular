@@ -1,27 +1,58 @@
-import { Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Importez CommonModule ici
+import { CommonModule } from '@angular/common';
+import { ProjetsService } from '../../../Services/projets.service'; // Assurez-vous que le chemin est correct
+
 @Component({
   selector: 'app-projet',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './projet.component.html',
-  styleUrl: './projet.component.css'
+  styleUrls: ['./projet.component.css']
 })
-export class ProjetComponent {
-  projets = [
-    { id: 1, nom: 'Confection des tenues scolaires', votes: 5000, statut: 'Proposé' },
-    { id: 2, nom: 'Construction d\'écoles', votes: 3000, statut: 'En cours' },
-    // Autres projets...
-  ];
-  constructor(private router: Router) {}
+export class ProjetComponent implements OnInit {
+  projets: any[] = []; // Propriété pour stocker la liste des projets
+
+  constructor(
+    private router: Router,
+    private projetsService: ProjetsService // Injecter le service ici
+  ) {}
+
+  ngOnInit(): void {
+    this.getProjets(); // Appeler la méthode pour récupérer les projets au chargement du composant
+  }
+  getProjets(): void {
+    this.projetsService.getAllProjets().subscribe({
+      next: (response) => {
+        // response.data est le tableau contenant les projets
+        this.projets = response.data;
+      },
+      error: (error: any) => {
+        console.error('Erreur lors de la récupération des projets:', error);
+      }
+    });
+  }
+  
 
   voirDetails(id: number): void {
-    this.router.navigate(['/projet/detail/projet',id]);
+    this.router.navigate(['/sidebar1/projet/detail/projet', id]);
   }
 
   modifierProjet(id: number): void {
-    this.router.navigate(['/projet/modifier', id]);
+    this.router.navigate(['/sidebar1/projet/modifier', id]);
   }
 
+  supprimerProjet(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
+      this.projetsService.deleteProjet(id).subscribe({
+        next: () => {
+          // Supprimer le projet de la liste sans recharger la page
+          this.projets = this.projets.filter(projet => projet.id !== id);
+        },
+        error: (error: any) => { // Typage explicite de l'erreur
+          console.error('Erreur lors de la suppression du projet:', error);
+        }
+      });
+    }
+  }
 }

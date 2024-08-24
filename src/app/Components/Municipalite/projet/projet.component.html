@@ -1,41 +1,37 @@
 <div class="project-container">
-    <div cclass="mb-4 " style="float: right;">
-      <button routerLink="/sidebar1/projet/ajouter" type="button" class="btn btn-custom">Ajouter un Projet</button>
-    </div>
-    
-  
-    <h2 class="project-title">Liste des projets</h2>
-  
-    <table class="project-table">
-      <thead>
-        <tr>
-          <th>Nom du projet</th>
-          <th>Nombre de vote</th>
-          <th>Statut</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let projet of projets">
-          <td>{{ projet.nom }}</td>
-          <td>{{ projet.votes | number }}</td>
-          <td>{{ projet.statut }}</td>
-          <td>
-            <a [routerLink]="['/projet/detail/projet', projet.id]" class="icon-link">
-            <span class="iconify" data-icon="mdi:eye"></span>
-            </a>
-            <a [routerLink]="['/projet/modifier', projet.id]" class="icon-link">
-            <span class="iconify" data-icon="mdi:pencil" ></span>
-            </a>
-            <a class="icon-link">
-            <span class="iconify" data-icon="mdi:delete"></span>
-            </a>
-          </td>
-        </tr>
-        <!-- Répéter pour les autres lignes -->
-      </tbody>
-    </table>
-    <router-outlet></router-outlet>
+  <div class="mb-4" style="float: right;">
+    <button routerLink="/sidebar1/projet/ajouter" type="button" class="btn btn-custom">Ajouter un Projet</button>
   </div>
-  
-  
+
+  <h2 class="project-title">Liste des projets</h2>
+
+  <table class="project-table">
+    <thead>
+      <tr>
+        <th>Nom du projet</th>
+        <th>Budget</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let projet of projets">
+        <td>{{ projet.nom }}</td>
+        <td>{{ projet.budget }}</td>
+        <td>{{ projet.statut }}</td>
+        <td>
+          <a [routerLink]="['/projet/detail/projet', projet.id]" class="icon-link">
+            <span class="iconify" data-icon="mdi:eye"></span>
+          </a>
+          <a [routerLink]="['/projet/modifier', projet.id]" class="icon-link">
+            <span class="iconify" data-icon="mdi:pencil"></span>
+          </a>
+          <a class="icon-link" (click)="supprimerProjet(projet.id)">
+            <span class="iconify" data-icon="mdi:delete"></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>
+</div>

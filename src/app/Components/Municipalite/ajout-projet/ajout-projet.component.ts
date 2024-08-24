@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProjetsService } from '../../../Services/projets.service'; // Assurez-vous que le chemin est correct
+import { ProjetsService } from '../../../Services/projets.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -24,8 +24,8 @@ export class AjoutProjetComponent {
       budget: ['', Validators.required],
       dateDebut: ['', Validators.required],
       dateFin: ['', Validators.required],
-      statut: ['', Validators.required],
-      photo: [null], // Pour les fichiers, le laisser null au début
+      statut: ['en-attente', Validators.required], // Valeur par défaut 'en-attente'
+      photo: [null],
       description: ['', Validators.required]
     });
   }
@@ -51,7 +51,7 @@ export class AjoutProjetComponent {
       this.projetsService.addProjet(formData).subscribe({
         next: (response) => {
           console.log('Projet ajouté avec succès:', response);
-          this.router.navigate(['/sidebar1/projet']); // Rediriger après ajout
+          this.router.navigate(['/sidebar1/projet']);
         },
         error: (error) => {
           console.error('Erreur lors de l\'ajout du projet:', error);
@@ -60,7 +60,6 @@ export class AjoutProjetComponent {
     }
   }
 
-  // Méthode pour gérer la sélection de fichiers
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];

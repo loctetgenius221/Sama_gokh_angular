@@ -26,7 +26,11 @@
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="statut" class="form-label">Statut</label>
-        <input type="text" id="statut" class="form-control" formControlName="statut" placeholder="Statut">
+        <select id="statut" class="form-control" formControlName="statut">
+          <option value="en-attente">En attente</option>
+          <option value="en cours">En cours</option>
+          <option value="terminé">Terminé</option>
+        </select>
       </div>
       <div class="col-md-6">
         <label for="photo" class="form-label">Photo</label>
