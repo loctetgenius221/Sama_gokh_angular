@@ -40,7 +40,7 @@ export class DetailProjetComponent implements OnInit {
           ...data,
           date_debut: this.formatDate(data.date_debut),
           date_fin: this.formatDate(data.date_fin),
-          photo: `http://localhost/storage/photos/${data.photo}`  // Ajoutez le chemin correct ici
+          photo: data.photo ? `http://127.0.0.1:8000/storage/photos/${data.photo}` : null
         };
       },
       (error) => {
@@ -48,6 +48,7 @@ export class DetailProjetComponent implements OnInit {
       }
     );
   }
+  
   
 
   getCommentaires(projetId: number): void {

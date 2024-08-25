@@ -63,6 +63,14 @@ export class CommunesService {
     );
   }
 
+
+  // Dans app/services/communes.service.ts
+getHabitantsConnecte(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/municipalite/habitants`, { headers: this.getHeaders() }).pipe(
+    catchError(this.handleError)
+  );
+}
+
   private handleError(error: HttpErrorResponse) {
     console.error('Une erreur s\'est produite:', error.message); // Ajoutez cette ligne pour plus d'infos
     if (error.error && error.error.errors) {

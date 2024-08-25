@@ -66,59 +66,57 @@ loadProjet(): void {
 }
 
 
-  onFileChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.imageFile = file;
-    }
-  }
 
-  onSubmit(): void {
-    if (this.projetForm.valid) {
-      const formData = new FormData();
-      Object.keys(this.projetForm.value).forEach(key => {
-        formData.append(key, this.projetForm.value[key]);
-      });
-      if (this.imageFile) {
-        formData.append('photo', this.imageFile, this.imageFile.name);
-      }
-  
-      const projet = {
-        ...this.projetForm.value, // Les valeurs du formulaire
-        id: this.projetId // Ajout de l'identifiant du projet
-      };
-  
-      this.projetsService.updateProjet(projet).subscribe(
-        () => {
-          // Afficher SweetAlert de succès
-          Swal.fire({
-            icon: 'success',
-            title: 'Projet modifié',
-            text: 'Le projet a été modifié avec succès!',
-            showConfirmButton: false,
-            timer: 2000 // L'alerte disparaît après 2 secondes
-          });
-  
-          // Naviguer vers une autre page après un petit délai pour que l'utilisateur puisse voir l'alerte
-          setTimeout(() => {
-            this.router.navigate(['/sidebar1/projet']);
-          }, 2000);
-        },
-        (error: HttpErrorResponse) => {
-          console.error('Erreur lors de la modification du projet:', error.message);
-  
-          // Afficher SweetAlert d'erreur
-          Swal.fire({
-            icon: 'error',
-            title: 'Erreur',
-            text: 'Une erreur s\'est produite lors de la modification du projet.',
-            showConfirmButton: false,
-            timer: 3000 // L'alerte disparaît après 3 secondes
-          });
-        }
-      );
-    }
+onFileChange(event: any): void {
+  const file = event.target.files[0];
+  if (file) {
+    console.log('Fichier sélectionné :', file.name);
+    this.imageFile = file;
   }
-  
+}
+
+
+onSubmit(): void {
+  if (this.projetForm.valid) {
+    const formData = new FormData();
+    Object.keys(this.projetForm.value).forEach(key => {
+      formData.append(key, this.projetForm.value[key]);
+    });
+    if (this.imageFile) {
+      formData.append('photo', this.imageFile, this.imageFile.name);
+    }
+
+    const projet = {
+      ...this.projetForm.value,
+      id: this.projetId
+    };
+
+    this.projetsService.updateProjet(projet).subscribe(
+      () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Projet modifié',
+          text: 'Le projet a été modifié avec succès!',
+          showConfirmButton: false,
+          timer: 2000
+        });
+        setTimeout(() => {
+          this.router.navigate(['/sidebar1/projet']);
+        }, 2000);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Erreur lors de la modification du projet:', error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: 'Une erreur s\'est produite lors de la modification du projet.',
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }
+    );
+  }
+}
+
   
 }
