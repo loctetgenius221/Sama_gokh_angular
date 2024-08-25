@@ -65,26 +65,16 @@
 
             <!-- Commentaire 1 -->
             <!-- Commentaire 1 -->
-            <div class="comment">
+            <div *ngFor="let commentaire of commentaires" class="comment">
                 <div class="profile">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil">
-                    <div class="name">Jean Dupont</div>
+                  <img src="https://via.placeholder.com/50" alt="Photo de profil">
+                  <div class="name">{{ commentaire.habitant.prenom }}</div> <!-- Remplacez par la propriété correcte pour le nom de l'utilisateur -->
                 </div>
                 <div class="comment-content">
-                    <p>C'est un projet très intéressant !</p>
+                  <p>{{ commentaire.contenu }}</p> <!-- Assurez-vous que 'contenu' est bien la propriété contenant le texte du commentaire -->
                 </div>
-            </div>
-
-            <!-- Commentaire 2 -->
-            <div class="comment">
-                <div class="profile">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil">
-                    <div class="name">Marie Curie</div>
-                </div>
-                <div class="comment-content">
-                    <p>J'ai hâte de voir les résultats.</p>
-                </div>
-            </div>
+              </div>
+            
 
            
         </div>
