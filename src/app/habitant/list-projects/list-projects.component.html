@@ -1,9 +1,11 @@
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="container">
-    <a class="navbar-brand" routerLink="/">Portail des Habitants</a>
-    <ul class="navbar-nav">
-      <li class="nav-item">
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/img/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      Portail des Habitants
+    </a>
+    <ul class="navbar-nav d-flex flex-row">
+      <li class="nav-item me-3">
         <a class="nav-link" routerLink="/home">Accueil</a>
       </li>
       <li class="nav-item">
@@ -13,12 +15,18 @@
   </div>
 </nav>
 
-<div class="banner">
-  <button class="submit-project-btn">Soumettre Projet</button>
+
+<div class="jumbotron text-center custom-banner py-5">
+  <div class="container">
+    <h1 class="display-4">Bienvenue au Portail des Habitants</h1>
+    <p class="lead">Participez activement au développement de votre commune.</p>
+    <a class="btn custom-btn btn-lg mt-4" href="#" role="button">Soumettre Projet</a>
+  </div>
 </div>
 
+
 <section class="projects-list">
-  <h2>Liste des Projets</h2>
+  <h2 class="title-left">Liste des Projets</h2>
   <div class="underline"></div>
 
   <!-- Filter Section -->
@@ -85,3 +93,37 @@
     </div>
   </div>
 </section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-about">
+      <h4>À Propos</h4>
+      <p>Le Portail des Habitants est une plateforme dédiée à la participation citoyenne et à la soumission de projets pour améliorer notre commune.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Liens Utiles</h4>
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Projets</a></li>
+        <li><a href="#">Soumettre un Projet</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>Email: contact&#64;portailhabitants.com</p>
+      <p>Téléphone: +123 456 789</p>
+    </div>
+    <div class="footer-social">
+      <h4>Suivez-nous</h4>
+      <a href="#" class="social-icon"><img src="facebook-icon.png" alt="Facebook"></a>
+      <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="#" class="social-icon"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Portail des Habitants. Tous droits réservés.</p>
+  </div>
+</footer>
+
