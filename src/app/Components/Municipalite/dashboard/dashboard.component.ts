@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeFR from '@angular/common/locales/fr';
-
+import { ProjetsService } from '../../../Services/projets.service';
 import { CommunesService } from '../../../Services/communes.service';
 
 registerLocaleData(localeFR, 'fr');
@@ -17,8 +17,10 @@ registerLocaleData(localeFR, 'fr');
 export class DashboardComponent implements OnInit {
   departement: string = '';
   region: string = '';
+  projets: any[] = [];  // Stocke tous les projets
+  derniersProjets: any[] = [];  // Stocke les 2 derniers projets
 
-  constructor(private communesService: CommunesService,private router: Router) { }
+  constructor(private communesService: CommunesService,private projetsService: ProjetsService,private router: Router) { }
 
   ngOnInit(): void {
     this.communesService.getMunicipaliteConnectee().subscribe(
@@ -30,12 +32,23 @@ export class DashboardComponent implements OnInit {
         console.error('Erreur lors de la récupération des données de la municipalité :', error);
       }
     );
+    this.projetsService.getAllProjets().subscribe(
+      (response) => {
+        this.projets = response.data;
+        // Tri des projets par date de création ou autre critère
+        this.derniersProjets = this.projets
+          .sort((a, b) => new Date(b.date_debut).getTime() - new Date(a.date_debut).getTime())
+          .slice(0, 2);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des projets :', error);
+      }
+    );
   }
   
-  projets = [
-    { id: 1, nom: 'Confection des tenues scolaires', date_debut: '2024/07/01', date_fin:'2024/10/01', budget:1000000 },
-    { id: 2, nom: 'Construction d\'écoles', date_debut: '2024/08/01', date_fin:'2024/11/01', budget:1500000 },
-  ];
+
+
+
 
   projets_habitants = [
     {id:1, nom: 'Ville Verte et Connecté',proprietaire: 'Moussa Sagna',profession:'Etudiant'},
@@ -50,5 +63,5 @@ export class DashboardComponent implements OnInit {
   }
 
   
-
 }
+

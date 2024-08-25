@@ -35,7 +35,7 @@ export class AjoutProjetComponent {
   onSubmit() {
     if (this.projetForm.valid) {
       const formData = new FormData();
-  
+      
       // Ajout des données du formulaire au FormData
       formData.append('nom', this.projetForm.get('nom')?.value);
       formData.append('budget', this.projetForm.get('budget')?.value);
@@ -45,9 +45,10 @@ export class AjoutProjetComponent {
       formData.append('description', this.projetForm.get('description')?.value);
       formData.append('etat', 'approuvé'); // Etat par défaut
   
-      const fileInput = this.projetForm.get('photo')?.value;
-      if (fileInput) {
-        formData.append('photo', fileInput);
+      // Ajout du fichier photo s'il existe
+      const file = this.projetForm.get('photo')?.value;
+      if (file) {
+        formData.append('photo', file, file.name);
       }
   
       this.projetsService.addProjet(formData).subscribe({
@@ -93,4 +94,5 @@ export class AjoutProjetComponent {
       });
     }
   }
+  
 }
