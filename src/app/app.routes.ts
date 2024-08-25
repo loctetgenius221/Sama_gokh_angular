@@ -15,9 +15,9 @@ import { ProjetComponent } from './Components/Municipalite/projet/projet.compone
 import { HabitantComponent } from './Components/Municipalite/habitant/habitant.component';
 import { AjoutProjetComponent } from './Components/Municipalite/ajout-projet/ajout-projet.component';
 import { DetailProjetComponent } from './Components/Municipalite/detail-projet/detail-projet.component';
-import { ModifierProjetComponent } from './Components/Municipalite/modifier-projet/modifier-projet.component';
 import { DetailHabitantComponent } from './Components/Municipalite/detail-habitant/detail-habitant.component';
 import { DetailProjetHabitantComponent } from './Components/Municipalite/detail-projet-habitant/detail-projet-habitant.component';
+import { ModificationProjetComponent } from './Components/Municipalite/modification-projet/modification-projet.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -48,7 +48,7 @@ export const routes: Routes = [
       { path: 'projet', component: ProjetComponent },
       { path: 'projet/ajouter', component: AjoutProjetComponent },
       { path: 'projet/detail/projet/:id', component: DetailProjetComponent },
-      { path: 'projet/modifier/:id', component: ModifierProjetComponent },
+      { path: 'projet/modifier/:id', component: ModificationProjetComponent },
       { path: 'habitant', component: HabitantComponent },
       { path: 'habitant/detail/habitant/:id', component: DetailHabitantComponent },
       { path: 'habitant/detail/projet/:id', component: DetailProjetHabitantComponent },

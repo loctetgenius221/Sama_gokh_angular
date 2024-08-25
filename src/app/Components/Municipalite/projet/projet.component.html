@@ -20,10 +20,10 @@
         <td>{{ projet.budget }}</td>
         <td>{{ projet.statut }}</td>
         <td>
-          <a [routerLink]="['/projet/detail/projet', projet.id]" class="icon-link">
+          <a [routerLink]="['/sidebar1/projet/detail/projet', projet.id]" class="icon-link">
             <span class="iconify" data-icon="mdi:eye"></span>
           </a>
-          <a [routerLink]="['/projet/modifier', projet.id]" class="icon-link">
+          <a [routerLink]="['/sidebar1/projet/modifier', projet.id]" class="icon-link">
             <span class="iconify" data-icon="mdi:pencil"></span>
           </a>
           <a class="icon-link" (click)="supprimerProjet(projet.id)">

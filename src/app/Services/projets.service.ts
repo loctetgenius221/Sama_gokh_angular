@@ -32,17 +32,20 @@ export class ProjetsService {
     );
   }
 
-  addProjet(Projet: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/projets`, Projet, { headers: this.getHeaders() }).pipe(
+  addProjet(projet: FormData): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/projets`, projet, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  updateProjet(id: number, Projet: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/projets/${id}`, Projet, { headers: this.getHeaders() }).pipe(
+  updateProjet(projet: any): Observable<any> {
+    const projetId = projet.id; // Suppose que l'objet projet a un champ id
+    return this.http.put<any>(`${this.apiUrl}/projets/${projetId}`, projet, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
+  
+
 
   deleteProjet(id: number): Observable<any> {
     console.log(`Envoi de la requête de suppression pour l'ID : ${id}`);
@@ -52,10 +55,11 @@ export class ProjetsService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.error('Une erreur s\'est produite:', error.message); // Ajoutez cette ligne pour plus d'infos
-    if (error.error && error.error.errors) {
-      console.error('Erreurs de validation:', error.error.errors);
+    if (error.error instanceof ErrorEvent) {
+      console.error('Erreur côté client:', error.error.message);
+    } else {
+      console.error(`Erreur côté serveur: ${error.status}, ` + `Message: ${error.error}`);
     }
-    return throwError(() => new Error('Une erreur s\'est produite, veuillez réessayer plus tard.'));
+    return throwError('Quelque chose s\'est mal passé; veuillez réessayer plus tard.');
   }
 }

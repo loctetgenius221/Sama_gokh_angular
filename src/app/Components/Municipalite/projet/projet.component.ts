@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProjetsService } from '../../../Services/projets.service'; // Assurez-vous que le chemin est correct
 
 @Component({
   selector: 'app-projet',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,RouterLink],
   templateUrl: './projet.component.html',
   styleUrls: ['./projet.component.css']
 })
@@ -34,14 +34,7 @@ export class ProjetComponent implements OnInit {
   }
   
 
-  voirDetails(id: number): void {
-    this.router.navigate(['/sidebar1/projet/detail/projet', id]);
-  }
-
-  modifierProjet(id: number): void {
-    this.router.navigate(['/sidebar1/projet/modifier', id]);
-  }
-
+ 
   supprimerProjet(id: number): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
       this.projetsService.deleteProjet(id).subscribe({
