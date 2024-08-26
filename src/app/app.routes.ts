@@ -22,29 +22,14 @@ import { DetailHabitantComponent } from './Components/Municipalite/detail-habita
 import { DetailProjetHabitantComponent } from './Components/Municipalite/detail-projet-habitant/detail-projet-habitant.component';
 import { DashboardComponent as MuniDashboardComponent } from './Components/Municipalite/dashboard/dashboard.component';
 import { DashboardComponent as AdminDashboardComponent } from './Components/Administration/dashboard/dashboard.component';
-// import { SidebarComponent } from './Components/Administration/sidebar/sidebar.component';
-// 
-// import { CommuneComponent } from './Components/Administration/commune/commune.component';
-// import { LoginComponent } from './Components/Auth/login/login.component';
-// import { RegisterComponent } from './Components/Auth/register/register.component';
-// import { FoumulaireComponent } from './Components/Administration/foumulaire/foumulaire.component';
-// import { UtilisateursComponent } from './Components/Administration/utilisateurs/utilisateurs.component';
-// import { CommunesByRegionComponent } from './Components/Administration/communes-by-region/communes-by-region.component';
+import { PortailComponent } from './Components/portail/portail.component';
 
-// import { SidebarMuniComponent } from './Components/Municipalite/sidebar-muni/sidebar-muni.component';
-// 
-// import { ProjetComponent } from './Components/Municipalite/projet/projet.component';
-// import { HabitantComponent } from './Components/Municipalite/habitant/habitant.component';
-// import { AjoutProjetComponent } from './Components/Municipalite/ajout-projet/ajout-projet.component';
-// import { DetailProjetComponent } from './Components/Municipalite/detail-projet/detail-projet.component';
-// import { DetailHabitantComponent } from './Components/Municipalite/detail-habitant/detail-habitant.component';
-// import { DetailProjetHabitantComponent } from './Components/Municipalite/detail-projet-habitant/detail-projet-habitant.component';
-// import { ModificationProjetComponent } from './Components/Municipalite/modification-projet/modification-projet.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: '', component: PortailComponent },
 
   // Administration Routes
   {
@@ -86,4 +71,6 @@ export const routes: Routes = [
   { path: "project/:id",component: ViewProjectComponent},
   { path: 'list-projects', component: ListProjectsComponent }
 ];
+
+
 
