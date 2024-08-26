@@ -567,7 +567,7 @@ main .cta .btn {
     text-transform: uppercase;
   }
   #statistiques .pattern-renaissance {
-    top: 41%;
+    top: 45%;
     right: -20%;
     z-index: 2;
   }
@@ -586,8 +586,20 @@ main .bande-blanche {
   z-index: 10;
 }
 
+/* Footer */
+
 footer {
   background: #4a4a4a;
   width: 100%;
   height: 150px;
+  margin-top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0px;
+}
+
+footer .navbar .nav-link {
+  color: #fff;
+  text-align: center;
 }
