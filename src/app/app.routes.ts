@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { HabitantHomeComponent } from './habitant/home/home.component';
-import { ProfileComponent } from './habitant/profile/profile.component';
-import { AddProjectComponent } from './habitant/add-project/add-project.component';
-import { EditProjectComponent } from './habitant/edit-project/edit-project.component';
-import { ViewProjectComponent } from './habitant/view-project/view-project.component';
-import { ListProjectsComponent } from './habitant/list-projects/list-projects.component';
+// import { HabitantHomeComponent } from './habitant/home/home.component';
+// import { ProfileComponent } from './habitant/profile/profile.component';
+// import { AddProjectComponent } from './habitant/add-project/add-project.component';
+// import { EditProjectComponent } from './habitant/edit-project/edit-project.component';
+// import { ViewProjectComponent } from './habitant/view-project/view-project.component';
+// import { ListProjectsComponent } from './habitant/list-projects/list-projects.component';
 import { LoginComponent } from './Components/Auth/login/login.component';
 import { RegisterComponent } from './Components/Auth/register/register.component';
 import { SidebarComponent } from './Components/Administration/sidebar/sidebar.component';
@@ -65,13 +65,13 @@ export const routes: Routes = [
     ]
   },
 
-  // Habitant Routes
-  { path: "home", component: HabitantHomeComponent },
-  { path: "profile", component: ProfileComponent },
-  { path: 'add-project', component: AddProjectComponent },
-  { path: 'edit-project/:id', component: EditProjectComponent },
-  { path: "project/:id",component: ViewProjectComponent},
-  { path: 'list-projects', component: ListProjectsComponent }
+  // // Habitant Routes
+  // { path: "home", component: HabitantHomeComponent },
+  // { path: "profile", component: ProfileComponent },
+  // { path: 'add-project', component: AddProjectComponent },
+  // { path: 'edit-project/:id', component: EditProjectComponent },
+  // { path: "project/:id",component: ViewProjectComponent},
+  // { path: 'list-projects', component: ListProjectsComponent }
 ];
 
 
