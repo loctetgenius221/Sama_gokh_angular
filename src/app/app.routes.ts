@@ -10,8 +10,8 @@ export const routes: Routes = [
   { path: "home", component: HabitantHomeComponent },
   { path: "profile", component: ProfileComponent },
   { path: 'add-project', component: AddProjectComponent },
-  { path: 'edit-project/:id', component: EditProjectComponent },
-  { path: "project/:id",component: ViewProjectComponent},
+  { path: 'edit-project', component: EditProjectComponent },
+  { path: "project",component: ViewProjectComponent},
   { path: 'list-projects', component: ListProjectsComponent }
 
 ];

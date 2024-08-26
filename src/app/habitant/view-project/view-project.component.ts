@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../project.service';
+import { HeaderComponent } from "../../header/header.component";
+import { FooterComponent } from "../../footer/footer.component";
 
 @Component({
   selector: 'app-view-project',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './view-project.component.html',
   styleUrls: ['./view-project.component.css']
 })
