@@ -44,17 +44,18 @@ export class AuthService {
   }
 
   getUserDetails(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/user`, { headers: this.createAuthorizationHeader() }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          return this.refreshToken().pipe(
-            switchMap(() => this.getUserDetails())
-          );
-        }
-        return throwError(() => error);
-      })
+    return this.http.get(`${this.apiUrl}/profile`, { headers: this.createAuthorizationHeader() }).pipe(
+        catchError((error: HttpErrorResponse) => {
+            if (error.status === 401) {
+                return this.refreshToken().pipe(
+                    switchMap(() => this.getUserDetails())
+                );
+            }
+            return throwError(() => error);
+        })
     );
-  }
+}
+
 
   refreshToken(): Observable<string> {
     const token = this.getToken();

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="back-arrow">
-    <i routerLink="/habitant" class="fa-solid fa-arrow-left"></i>
+    <i routerLink="/sidebar1/habitant" class="fa-solid fa-arrow-left"></i>
   </div>
     <div class="row">
       <!-- Liste des projets -->
@@ -39,6 +39,7 @@
               <div class="card-info1">
                 <span>{{ habitant.age }} ans</span>
               </div>
+
             </div>
             <div class="info-item">
               <h5 class="item2">Sexe</h5>
@@ -55,9 +56,9 @@
           </div>
   
           <div class="contact-info">
-            <p><strong>Email:</strong> <span>{{ habitant.email }} </span> </p>
+            <p><strong>Email:</strong> <span>{{ habitant.user.email }}</span></p>
             <p><strong>Adresse:</strong> <span>{{ habitant.adresse }}</span> </p>
-            <p><strong>NIN:</strong>  <span>{{ habitant.nin }}</span> </p>
+            <p><strong>Numero d'identite:</strong>  <span>{{ habitant.numero_identite }}</span> </p>
           </div>
         </div>
       </div>

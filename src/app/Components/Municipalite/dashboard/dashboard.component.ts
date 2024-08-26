@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import localeFR from '@angular/common/locales/fr'
+import localeFR from '@angular/common/locales/fr';
+import { ProjetsService } from '../../../Services/projets.service';
+import { CommunesService } from '../../../Services/communes.service';
 
 registerLocaleData(localeFR, 'fr');
 
@@ -10,26 +12,65 @@ registerLocaleData(localeFR, 'fr');
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  projets = [
-    { id: 1, nom: 'Confection des tenues scolaires', date_debut: '2024/07/01', date_fin:'2024/10/01', budget:1000000 },
-    { id: 2, nom: 'Construction d\'écoles', date_debut: '2024/08/01', date_fin:'2024/11/01', budget:1500000 },
-  ];
+export class DashboardComponent implements OnInit {
+  departement: string = '';
+  region: string = '';
+  projets: any[] = [];  // Stocke tous les projets
+  derniersProjets: any[] = [];  // Stocke les 2 derniers projets
+  nombreHabitants: number = 0;  // Stocke le nombre d'habitants
+
+  constructor(
+    private communesService: CommunesService,
+    private projetsService: ProjetsService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    // Récupérer les informations de la municipalité connectée
+    this.communesService.getMunicipaliteConnectee().subscribe(
+      (data) => {
+        this.departement = data.departement;
+        this.region = data.region;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des données de la municipalité :', error);
+      }
+    );
+
+    // Récupérer la liste des habitants et calculer leur nombre
+    this.communesService.getHabitantsConnecte().subscribe(
+      (habitants) => {
+        this.nombreHabitants = habitants.length; // Calculer le nombre d'habitants
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des habitants :', error);
+      }
+    );
+
+    // Récupérer les projets
+    this.projetsService.getAllProjets().subscribe(
+      (response) => {
+        this.projets = response.data;
+        this.derniersProjets = this.projets
+          .sort((a, b) => new Date(b.date_debut).getTime() - new Date(a.date_debut).getTime())
+          .slice(0, 2);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des projets :', error);
+      }
+    );
+  }
 
   projets_habitants = [
     {id:1, nom: 'Ville Verte et Connecté',proprietaire: 'Moussa Sagna',profession:'Etudiant'},
     {id:2, nom: 'Ecole de Santé',proprietaire: 'Aissatou Diop',profession:'Infirmier'}
   ];
 
-  constructor(private router: Router) {}
 
   voirDetails(id: number): void {
-    this.router.navigate(['/projet/detail/projet',id]);
-    this.router.navigate(['/habitant/detail/projet',id]);
+    this.router.navigate(['/projet/detail/projet', id]);
+    this.router.navigate(['/habitant/detail/projet', id]);
   }
-
-  
-
 }

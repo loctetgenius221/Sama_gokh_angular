@@ -4,22 +4,16 @@
     font-family: Montserrat, sans-serif;
   }
   
-  .header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .filter-btn,
-  .add-project-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-  }
+ 
+  .btn-custom{
+    background-color: #2C6B59;
+    color: white;
+}
+
+.btn-custom:hover{
+    background-color: #2C6B59;
+    color: white;
+}
   
   .filter-btn {
     background-color: #ffffff;
@@ -84,4 +78,19 @@
     font-size: 20px;
   }
   
+  .filter-width {
+    width: 100%; /* Assure que chaque élément utilise toute la largeur disponible dans son conteneur */
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center;
+
+  }
+  select{
+    width: 90%;
+  }
+ input{
+   width: 70%;
+ }
   

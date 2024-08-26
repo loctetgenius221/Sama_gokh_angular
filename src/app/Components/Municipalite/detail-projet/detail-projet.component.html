@@ -15,48 +15,50 @@
     <div class="container">
         <!-- Flèche de retour -->
         <div class="back-arrow">
-            <i routerLink="/projet" class="fa-solid fa-arrow-left" style="color: #2C6B59; font-size: 30px;"></i>
+            <i routerLink="/sidebar1/projet" class="fa-solid fa-arrow-left" style="color: #2C6B59; font-size: 30px;"></i>
         </div>
 
         <!-- Section contenu -->
         <div class="content">
-            <!-- Div gauche avec les titres et valeurs -->
-            <div class="left-section">
-                <div class="titre">
-                    <h6>Projet: </h6> <span> Nom du projet</span>
-                </div>
-                <div class="titre">
-                    <h6>Statut: </h6> <span>En cours</span>
-                </div>
-                <div class="titre">
-                    <h6>Date de début: </h6> <span>01/01/2024</span>
-                </div>
-                <div class="titre">
-                    <h6>Date de fin: </h6> <span>31/12/2024</span>
-                </div>
-                <div class="titre">
-                    <h6>Budget: </h6> <span>500 000 Cfa</span>
-                </div>
-                <div class="titre">
-                    <h6>Description: </h6> <span>Ce projet vise à...</span>
-                </div>
+           <!-- Div gauche avec les titres et valeurs -->
+           <div class="left-section">
+            <div class="titre">
+                <h6>Projet: </h6> <span>{{ projet.nom }}</span>
             </div>
+            <div class="titre">
+                <h6>Statut: </h6> <span>{{ projet.statut }}</span>
+            </div>
+            <div class="titre">
+                <h6>Date de début: </h6> <span>{{ projet.date_debut }}</span>
+            </div>
+            <div class="titre">
+                <h6>Date de fin: </h6> <span>{{ projet.date_fin }}</span>
+            </div>
+            <div class="titre">
+                <h6>Budget: </h6> <span>{{ projet.budget | currency: 'F CFA':'symbol':'1.2-2':'fr' }}</span>
+            </div>
+            <div class="titre">
+                <h6>Description: </h6> <span>{{ projet.description }}</span>
+            </div>
+        </div>
 
             <!-- Div droite avec l'image et les icônes -->
-            <div class="right-section">
-                <img src="https://via.placeholder.com/300x200" alt="Image du projet">
-                <div class="icons">
-                    <div class="icon-container">
-                        <i class="fa-solid fa-thumbs-up" style="color: #2C6B59; font-size: 30px;"></i>
-                        <div class="icon-number">123</div>
-                    </div>
-                    <div class="icon-container">
-                        <i class="fa-solid fa-thumbs-down" style="color: #DB1614; font-size: 30px;"></i>
-                        <div class="icon-number">45</div>
-                    </div>
-                </div>
-
-            </div>
+            <!-- detail-projet.component.html -->
+<div class="right-section">
+    <!-- Utiliser la propriété 'image_url' pour afficher l'image du projet -->
+    <img [src]="projet.photo || 'https://via.placeholder.com/300x200'" alt="Image du projet">
+    <div class="icons">
+      <div class="icon-container">
+        <i class="fa-solid fa-thumbs-up" style="color: #2C6B59; font-size: 30px;"></i>
+        <div class="icon-number">123</div>
+      </div>
+      <div class="icon-container">
+        <i class="fa-solid fa-thumbs-down" style="color: #DB1614; font-size: 30px;"></i>
+        <div class="icon-number">45</div>
+      </div>
+    </div>
+  </div>
+  
         </div>
 
         <!-- Section des commentaires -->
@@ -65,26 +67,16 @@
 
             <!-- Commentaire 1 -->
             <!-- Commentaire 1 -->
-            <div class="comment">
+            <div *ngFor="let commentaire of commentaires" class="comment">
                 <div class="profile">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil">
-                    <div class="name">Jean Dupont</div>
+                  <img src="https://via.placeholder.com/50" alt="Photo de profil">
+                  <div class="name">{{ commentaire.habitant.prenom }} </div> <!-- Remplacez par la propriété correcte pour le nom de l'utilisateur -->
                 </div>
                 <div class="comment-content">
-                    <p>C'est un projet très intéressant !</p>
+                  <p>{{ commentaire.contenu }}</p> <!-- Assurez-vous que 'contenu' est bien la propriété contenant le texte du commentaire -->
                 </div>
-            </div>
-
-            <!-- Commentaire 2 -->
-            <div class="comment">
-                <div class="profile">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil">
-                    <div class="name">Marie Curie</div>
-                </div>
-                <div class="comment-content">
-                    <p>J'ai hâte de voir les résultats.</p>
-                </div>
-            </div>
+              </div>
+            
 
            
         </div>
