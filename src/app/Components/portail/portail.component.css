@@ -60,6 +60,28 @@ main .hero-banner .connexion {
 }
 
 /* Responsive Design */
+@media (max-width: 1280px) {
+  main .hero-banner .btn {
+    padding: 14px 28px;
+  }
+  main .hero-banner img {
+    width: 350px;
+    height: 100px;
+  }
+  .col-logo {
+    display: flex;
+    justify-content: center;
+  }
+  main .hero-banner .inscription {
+    margin-right: 5px;
+  }
+
+  main .hero-banner .card-title {
+    border-left: 9px solid #2c6b59;
+    line-height: 40px;
+    font-size: 26px;
+  }
+}
 /* Styles pour les petits écrans (jusqu'à 768px) */
 @media (max-width: 768px) {
   main .hero-banner .col-logo {
@@ -117,10 +139,13 @@ main #apropos .nos-mission-txt h1 {
   font-size: 32px;
   letter-spacing: 5px;
   transform: rotate(180deg);
+  color: #2c6b59;
+  font-weight: bold;
 }
 
 main #apropos .nos-mission-txt .col-txt {
   padding-right: 55px;
+  line-height: 15px;
 }
 
 main #apropos .nos-mission-txt h2 {
@@ -130,11 +155,12 @@ main #apropos .nos-mission-txt h2 {
 }
 
 main #apropos .nos-mission-txt hr {
-  width: 5px;
-  height: 110px;
-  background: #2c6b59;
+  width: 7px;
+  height: 130px;
+  background: #f4e3d2;
   opacity: 1;
-  margin-left: -10%;
+  margin-left: -20%;
+  border: none;
 }
 
 main #apropos .apropos-title {
@@ -193,8 +219,21 @@ main #apropos .col-right .card {
 }
 
 /* Responsive Design */
+@media (max-width: 1280px) {
+  main #apropos .baobab {
+    width: 90rem;
+    right: -50%;
+    bottom: -30%;
+  }
+}
 /* Styles pour les petits écrans (jusqu'à 768px) */
 @media (max-width: 768px) {
+  main #apropos .baobab {
+    display: none;
+  }
+  main .cta .baobab2 {
+    display: none;
+  }
   main #apropos .apropos-content {
     display: flex;
     flex-direction: column;
@@ -207,11 +246,6 @@ main #apropos .col-right .card {
   }
 
   main #apropos .nos-mission-txt hr {
-    /* width: 5px;
-    height: 110px;
-    background: #2c6b59;
-    opacity: 1;
-    margin-left: -10%; */
     display: none;
   }
   main #apropos .nos-mission-txt .col-txt {
@@ -436,6 +470,25 @@ main .cta .btn {
   background: #2c6b59;
 }
 
+main .cta .button-content img {
+  position: absolute;
+  top: -50%;
+  opacity: .2;
+  z-index: -1;
+}
+
+@media (max-width: 1280px) {
+  main .cta .button-content img {
+    top: -40%;
+  }
+  main .cta .baobab2 {
+    width: 90rem;
+    bottom: 0;
+    left: -30%;
+  }
+}
+
+
 /* Statistiques */
 #statistiques {
   position: relative;
@@ -510,13 +563,57 @@ main .cta .btn {
 
 #statistiques .pattern-renaissance {
   position: absolute;
-  top: -40%;
-  right: -5%;
-  width: 820px;
+  top: -50%;
+  right: 0%;
+  width: 920px;
   z-index: 2;
 }
 
+@media (max-width: 1280px) {
+  #statistiques .pattern-renaissance {
+    position: absolute;
+    top: -40%;
+    right: -5%;
+    width: 820px;
+    z-index: 2;
+  }
+  #statistiques .bg-green .bande-beige {
+    width: 90vw;
+    background: #f4e3d2;
+    color: #4a4a4a;
+    margin-left: -400px;
+    padding-left: 440px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  #statistiques .bg-green .h3-title h3 {
+    font-size: 30px;
+  }
+  #statistiques .bg-green .stat-title {
+    font-size: 50px;
+  }
+  #statistiques .bande-beige .col {
+    max-width: 250px;
+  }
+
+  #statistiques .bande-beige .col h1 {
+    font-size: 28px;
+  }
+
+  #statistiques .bande-beige .col p {
+    font-size: 20px;
+  }
+  #statistiques .bg-green .h3-title hr {
+    margin-left: 60px;
+  }
+
+}
+
 @media (max-width: 768px) {
+  #statistiques {
+    overflow: hidden;
+    margin-bottom: 45px;
+  }
   .row-stat-content {
     display: flex;
     flex-direction: column;
@@ -571,6 +668,9 @@ main .cta .btn {
     right: -20%;
     z-index: 2;
   }
+  main .bande-blanche {
+    display: none;
+  }
 }
 
 /* bande-blanche */
@@ -589,14 +689,16 @@ main .bande-blanche {
 /* Footer */
 
 footer {
+  position: relative;
+  z-index: 10;
   background: #4a4a4a;
   width: 100%;
-  height: 150px;
   margin-top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 0px;
+  padding: 50px;
+  overflow: hidden;
 }
 
 footer .navbar .nav-link {
