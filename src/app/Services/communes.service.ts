@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CommunesService {
-  private apiUrl = 'http://127.0.0.1:8000/api'; // Mise à jour du préfixe de l'URL
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) { }
 
@@ -19,13 +19,12 @@ export class CommunesService {
   getAllCommunes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/municipalites`).pipe(
       catchError(error => {
-        console.error('Erreur lors de la requête:', error); // Déboguer l'erreur
+        console.error('Erreur lors de la requête:', error);
         return this.handleError(error);
       })
     );
   }
-  
-  // Méthode pour récupérer les informations de la municipalité connectée
+
   getMunicipaliteConnectee(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/municipalite/connectee`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
@@ -63,16 +62,14 @@ export class CommunesService {
     );
   }
 
-
-  // Dans app/services/communes.service.ts
-getHabitantsConnecte(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/municipalite/habitants`, { headers: this.getHeaders() }).pipe(
-    catchError(this.handleError)
-  );
-}
+  getHabitantsConnecte(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/municipalite/habitants`, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
-    console.error('Une erreur s\'est produite:', error.message); // Ajoutez cette ligne pour plus d'infos
+    console.error('Une erreur s\'est produite:', error.message);
     if (error.error && error.error.errors) {
       console.error('Erreurs de validation:', error.error.errors);
     }

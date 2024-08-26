@@ -3,16 +3,20 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProjetsService } from '../../../Services/projets.service'; // Assurez-vous que le chemin est correct
 import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-projet',
   standalone: true,
-  imports: [CommonModule, RouterModule,RouterLink],
+  imports: [CommonModule, RouterModule, RouterLink, FormsModule],
   templateUrl: './projet.component.html',
   styleUrls: ['./projet.component.css']
 })
 export class ProjetComponent implements OnInit {
   projets: any[] = []; // Propriété pour stocker la liste des projets
+  filteredProjets: any[] = []; // Propriété pour stocker les projets filtrés
+  selectedFilter: string = ''; // Critère de filtrage sélectionné
+  filterValue: string = ''; // Valeur de filtrage saisie
 
   constructor(
     private router: Router,
@@ -22,20 +26,43 @@ export class ProjetComponent implements OnInit {
   ngOnInit(): void {
     this.getProjets(); // Appeler la méthode pour récupérer les projets au chargement du composant
   }
+
   getProjets(): void {
     this.projetsService.getAllProjets().subscribe({
       next: (response) => {
-        // response.data est le tableau contenant les projets
         this.projets = response.data;
+        this.filteredProjets = response.data; // Initialiser les projets filtrés
       },
       error: (error: any) => {
         console.error('Erreur lors de la récupération des projets:', error);
       }
     });
   }
-  
 
- 
+  onFilterChange(): void {
+    this.filterValue = ''; // Réinitialisez la valeur du filtre lorsque le critère change
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    if (!this.selectedFilter || !this.filterValue) {
+      this.filteredProjets = this.projets;
+    } else {
+      this.filteredProjets = this.projets.filter(projet => {
+        const value = projet[this.selectedFilter]?.toLowerCase();
+        return value ? value.includes(this.filterValue.toLowerCase()) : false;
+      });
+    }
+  }
+
+  getPlaceholder(): string {
+    switch (this.selectedFilter) {
+      case 'nom': return 'Entrez le nom du projet';
+      // Ajoutez d'autres placeholders si nécessaire
+      default: return '';
+    }
+  }
+
   supprimerProjet(id: number): void {
     Swal.fire({
       title: 'Êtes-vous sûr?',
@@ -50,10 +77,9 @@ export class ProjetComponent implements OnInit {
       if (result.isConfirmed) {
         this.projetsService.deleteProjet(id).subscribe({
           next: () => {
-            // Supprimer le projet de la liste sans recharger la page
             this.projets = this.projets.filter(projet => projet.id !== id);
+            this.filteredProjets = this.filteredProjets.filter(projet => projet.id !== id);
             
-            // Afficher SweetAlert de succès
             Swal.fire({
               icon: 'success',
               title: 'Supprimé!',
@@ -64,8 +90,7 @@ export class ProjetComponent implements OnInit {
           },
           error: (error: any) => {
             console.error('Erreur lors de la suppression du projet:', error);
-  
-            // Afficher SweetAlert d'erreur
+            
             Swal.fire({
               icon: 'error',
               title: 'Erreur',
@@ -78,5 +103,4 @@ export class ProjetComponent implements OnInit {
       }
     });
   }
-  
 }

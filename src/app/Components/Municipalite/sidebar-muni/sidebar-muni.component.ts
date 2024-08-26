@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router'; 
 import { CommunesService } from '../../../Services/communes.service';
+import { AuthService } from '../../../Services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-muni',
@@ -12,7 +14,7 @@ import { CommunesService } from '../../../Services/communes.service';
 export class SidebarMuniComponent implements OnInit {
   nomCommune: string | undefined; // Variable pour stocker le nom de la commune
 
-  constructor(private communesService: CommunesService) {}
+  constructor(private communesService: CommunesService,private authService: AuthService,private router: Router) {}
 
   ngOnInit(): void {
     // Appel au service pour récupérer les informations de la municipalité connectée
@@ -22,6 +24,21 @@ export class SidebarMuniComponent implements OnInit {
       },
       (error) => {
         console.error('Erreur lors de la récupération des données de la municipalité', error);
+      }
+    );
+  }
+
+  logout(event: Event) {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
+    this.authService.logout().subscribe(
+      () => {
+        // Effacer les données de session après une déconnexion réussie
+        this.authService.clearSession();
+        // Rediriger vers la page de connexion
+        this.router.navigate(['/login']);
+      },
+      error => {
+        console.error('Erreur lors de la déconnexion:', error);
       }
     );
   }

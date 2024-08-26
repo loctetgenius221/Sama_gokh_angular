@@ -5,6 +5,18 @@
 
   <h2 class="project-title">Liste des projets</h2>
 
+  <!-- Filtrage des projets -->
+  <div class="d-flex mb-3 ">
+    <div class="flex-grow-1">
+      <select id="filterCriteria" class="form-select" [(ngModel)]="selectedFilter" (change)="onFilterChange()">
+        <option value="">Choisir un critère</option>
+        <option value="nom">Nom du projet</option>
+      </select>
+    </div>
+    <input type="text" [(ngModel)]="filterValue" [placeholder]="getPlaceholder()" (input)="applyFilters()" class="form-control  ">
+  </div>
+  
+
   <table class="project-table">
     <thead>
       <tr>
@@ -15,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let projet of projets">
+      <tr *ngFor="let projet of filteredProjets">
         <td>{{ projet.nom }}</td>
         <td>{{ projet.budget }}</td>
         <td>{{ projet.statut }}</td>

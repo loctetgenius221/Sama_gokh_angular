@@ -78,4 +78,19 @@
     font-size: 20px;
   }
   
- 
+  .filter-width {
+    width: 100%; /* Assure que chaque élément utilise toute la largeur disponible dans son conteneur */
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center;
+
+  }
+  select{
+    width: 90%;
+  }
+ input{
+   width: 70%;
+ }
+  

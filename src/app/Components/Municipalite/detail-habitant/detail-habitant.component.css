@@ -67,14 +67,14 @@
     margin: 10px 0 15px 36%;
   }
   .name{
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     margin: 8px 0 10px 0;
-    color: #4A4A4A;
+    color: #2C6B59;
     text-align: center;
   }
   .job{
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
     color: #4A4A4A;
@@ -86,7 +86,7 @@
   }
   
   .info-item h5 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #4A4A4A;
   }
@@ -104,7 +104,8 @@
   .info-item span {
     font-size: 18px;
     color: #ffffff;
-    font-weight:900;
+    font-weight:700;
+    text-align: center;
   }
   .card-info1,
   .card-info2,
@@ -113,19 +114,12 @@
     height: 50px;
     background-color: #2C6B59;
     border-radius: 5px;
-    justify-content: center; /* Centre le texte horizontalement */
-    align-items: center; /* Centre le texte verticalement */
-  }
-  .card-info1{
-    padding: 10px 30%; 
-  }
-  .card-info2{
-    padding: 10px 25%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .card-info3{
-    padding: 10px 14%; 
-  }
   
   .contact-info p {
     margin: 10px 0 15px;
@@ -136,7 +130,7 @@
   .contact-info strong {
     text-decoration: underline;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     
   }
 
