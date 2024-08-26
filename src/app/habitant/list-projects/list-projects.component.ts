@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProjectService } from '../../project.service';
+import { HeaderComponent } from "../../header/header.component";
+import { FooterComponent } from "../../footer/footer.component";
 
 @Component({
   selector: 'app-list-projects',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HeaderComponent, FooterComponent],
   templateUrl: './list-projects.component.html',
   styleUrls: ['./list-projects.component.css']
 })
