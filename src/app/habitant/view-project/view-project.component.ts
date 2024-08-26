@@ -10,7 +10,7 @@ import { FooterComponent } from "../../footer/footer.component";
   standalone: true,
   imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './view-project.component.html',
-  styleUrls: ['./view-project.component.css']
+ 
 })
 export class ViewProjectComponent implements OnInit {
   project: any;

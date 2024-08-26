@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjetsService } from '../../Services/projets.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { HabitantProfileService } from '../../Services/habitant-profile.service';
-import { HeaderComponent } from "../../header/header.component";
-import { FooterComponent } from "../../footer/footer.component";
+import { HeaderComponent } from '../../header/header.component';
+import { FooterComponent } from '../../footer/footer.component';
 
 
 @Component({
@@ -14,17 +14,24 @@ import { FooterComponent } from "../../footer/footer.component";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class  HabitantHomeComponent implements OnInit  {
-  constructor(private habitantProfileService: HabitantProfileService) {
-    console.log('home component initialized');
+export class HabitantHomeComponent implements OnInit {
+  projets: any[] = [];
+  municipaliteId: number = 5; // Remplace par l'ID de la municipalité de l'habitant connecté
 
-}
+  constructor(private projetsService: ProjetsService) {}
 
-ngOnInit(): void {
-  console.log('home component initialized');
-  this.habitantProfileService.getProfile().subscribe(data => {
-    console.log('Profile Data:', data);
-  });
-}
+  ngOnInit(): void {
+    this.loadProjets();
+  }
 
+  loadProjets(): void {
+    this.projetsService.getProjetsByMunicipalite(this.municipaliteId).subscribe(
+      response => {
+        this.projets = response.data;
+      },
+      error => {
+        console.error('Erreur lors du chargement des projets:', error);
+      }
+    );
+  }
 }

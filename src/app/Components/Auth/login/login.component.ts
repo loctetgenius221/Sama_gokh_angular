@@ -61,7 +61,7 @@ case 2:
 this.router.navigate(['/sidebar1/dashboard']); 
 break;
 case 3:
-this.router.navigate(['/someOtherPathForRole3']); // Assurez-vous que ce chemin est correct
+this.router.navigate(['/home']); // Assurez-vous que ce chemin est correct
 break;
 default:
 console.error('Rôle inconnu');

@@ -36,66 +36,20 @@
 </div>
 
 
-<!-- Projects List Section -->
 <div class="projects-list">
   <h2>Liste des Projets</h2>
   <hr class="underline">
-  <div class="project-cards">
+  <div *ngFor="let projet of projets" class="project-cards">
     <div class="project-image-container">
-      <img src="assets/img/Rectangle_24.png" alt="Project Image" class="project-image">
+     <img [src]="projet.photo || 'https://via.placeholder.com/300x200'" alt="Image du projet" class="project-image">
     </div>
     <div class="project-card">
       <div class="project-content">
-        <h3>Rénovation du Parc Central</h3>
-        <p>Le projet de rénovation du parc central vise à revitaliser et moderniser l'un des espaces verts les plus emblématiques de la commune. Ce projet est conçu pour améliorer la qualité de vie des habitants en offrant un espace de détente, de loisirs et de convivialité au cœur de la ville...</p>
+        <h3>{{ projet.titre }}</h3>
+        <p>{{ projet.description }}</p>
         <button class="details-btn">Voir Détail</button>
       </div>
     </div>
-    <!-- Ajouter d'autres cartes de projet ici -->
-
-  </div>
-  <div class="project-cards">
-    <div class="project-image-container">
-      <img src="assets/img/soutien_scolaire.jpg">
-    </div>
-    <div class="project-card">
-      <div class="project-content">
-        <h3>Programme de soutien scolaire</h3>
-        <p>Le programme de soutien scolaire est une initiative communautaire conçue pour améliorer les performances académiques des élèves de la commune et renforcer leur motivation et engagement envers leurs études ...</p>
-        <button class="details-btn">Voir Détail</button>
-      </div>
-    </div>
-    <!-- Ajouter d'autres cartes de projet ici -->
-
-  </div>
-  <div class="project-cards">
-    <div class="project-image-container">
-      <img src="https://i.pinimg.com/564x/98/38/ef/9838ef34efd1688ec39aa4fe1804b2b5.jpg
-      " alt="Project Image" class="project-image">
-    </div>
-    <div class="project-card">
-      <div class="project-content">
-        <h3>Clinique mobile de santé</h3>
-        <p>Le projet de clinique mobile de santé est une initiative novatrice visant à offrir des services de santé de qualité aux populations rurales et éloignées, qui n'ont pas facilement accès aux établissements de santé traditionnels ...</p>
-        <button class="details-btn">Voir Détail</button>
-      </div>
-    </div>
-    <!-- Ajouter d'autres cartes de projet ici -->
-
-  </div>
-  <div class="project-cards">
-    <div class="project-image-container">
-      <img src="assets/img/construction.jpg" alt="Project Image" class="project-image">
-    </div>
-    <div class="project-card">
-      <div class="project-content">
-        <h3></h3>
-        <p>Le projet de clinique mobile de santé est une initiative novatrice visant à offrir des services de santé de qualité aux populations rurales et éloignées, qui n'ont pas facilement accès aux établissements de santé traditionnels ...</p>
-        <button class="details-btn">Voir Détail</button>
-      </div>
-    </div>
-    <!-- Ajouter d'autres cartes de projet ici -->
-
   </div>
 </div>
 

@@ -24,6 +24,15 @@ export class ProjetsService {
       })
     );
   }
+  getProjetsByMunicipalite(municipaliteId: number): Observable<{ data: any[] }> {
+    return this.http.get<{ data: any[] }>(`${this.apiUrl}/projets/municipalite/${municipaliteId}`, { headers: this.getHeaders() }).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la requête:', error);
+        return this.handleError(error);
+      })
+    );
+  }
+  
   
 
   getProjetById(id: number): Observable<any> {
