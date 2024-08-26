@@ -1,21 +1,66 @@
 
 
+/* Navbar */
+.navbar {
+  background-color: #2C6B59; /* Couleur de fond de la barre de navigation */
+  padding: 10px 20px; /* Espacement interne de la barre de navigation */
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #F4E3D2; /* Couleur du texte de la marque */
+  text-decoration: none; /* Supprimer la décoration du texte (comme le soulignement) */
+}
+
+.navbar-brand img {
+  margin-right: 10px; /* Espacement entre le logo et le texte */
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 20px; /* Espacement entre les éléments de navigation */
+}
+
+.nav-link {
+  color: #F4E3D2; /* Couleur des liens de navigation */
+  text-decoration: none; /* Supprimer la décoration des liens */
+  font-size: 18px;
+}
+
+.nav-link:hover {
+  text-decoration: underline; /* Souligner les liens au survol */
+}
+
 .custom-banner {
-  background-color: #2C6B59; /* Couleur de fond de la bannière */
-  color: #F4E3D2; /* Couleur du texte de la bannière */
+  background-color: #F4E3D2; /* Couleur de fond de la bannière */
+  color: #2C6B59; /* Couleur du texte de la bannière */
 }
 
 .custom-btn {
-  background-color: #F4E3D2; /* Couleur de fond du bouton */
-  color: #2C6B59; /* Couleur du texte du bouton */
+  background-color: #2C6B59; /* Couleur de fond du bouton */
+  color: #F4E3D2; /* Couleur du texte du bouton */
   border: none;
+  padding: 10px 20px; /* Padding pour un meilleur rendu */
+  cursor: pointer;
+  font-size: 16px; /* Taille du texte */
+  border-radius: 5px; /* Arrondir les coins */
+  transition: background-color 0.3s, color 0.3s; /* Transition pour l'effet de survol */
 }
 
 .custom-btn:hover {
-  background-color: #2C6B59; /* Couleur de fond du bouton au survol */
-  color: #F4E3D2; /* Couleur du texte du bouton au survol */
-  border: 1px solid #F4E3D2; /* Bordure du bouton au survol */
+  background-color: #F4E3D2; /* Couleur de fond du bouton au survol */
+  color: #2C6B59; /* Couleur du texte du bouton au survol */
+  border: 1px solid #2C6B59; /* Bordure du bouton au survol */
 }
+
+
 
 .title-left {
   text-align: left;

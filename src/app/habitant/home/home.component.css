@@ -107,6 +107,9 @@ body {
   background-color: #2C6B59;
   margin: 10px auto;
 }
+hr.underline {
+  background-color: #2C6B59;
+}
 
 .objectives .description {
   margin: 20px 0;
@@ -316,47 +319,67 @@ body {
   font-size: 14px;
   margin: 0;
 }
-/* Mobile Version */
+/* Mobile Navbar */
 @media (max-width: 768px) {
 
-  /* Navbar */
-  .navbar .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .navbar-nav {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #2C6B59;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+    }
 
-  .navbar-brand {
-    font-size: 20px;
-  }
+    .navbar-nav.show {
+      display: flex;
+    }
 
-  .navbar-nav {
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-  }
+    .nav-item {
+      margin: 10px 0;
+      text-align: center;
+    }
 
-  .nav-item {
-    margin-left: 0;
-    margin-bottom: 10px;
-  }
+    .navbar-toggler {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+    }
 
-  .nav-link {
-    font-size: 16px;
-  }
-
-  /* Home Banner */
   .home-banner {
-    height: 40vh; /* Adjusted for mobile */
+    height: 40vh; /* Réduire la hauteur de la bannière pour s'adapter à l'écran mobile */
+    display: flex;
+    font-size: 14px;
+    text-overflow: ellipsis; /* Ajoute des points de suspension à la fin du texte */
+    justify-content: center; /* Centrer le texte verticalement */
+    align-items: center;
+    text-align: center; /* Centrer le texte dans l'écran */
+    padding: 0 10px; /* Réduire le padding */
+  }
+
+  .banner-image {
+    filter: brightness(0.6); /* Ajuster la luminosité pour un meilleur contraste sur mobile */
+  }
+  .banner-text h1{
+    font-size: 14px; /* Réduire la taille du texte pour mobile */
+
   }
 
   .banner-text {
-    font-size: 14px;
-    padding: 0 20px;
+    font-size: 14px; /* Réduire la taille du texte pour mobile */
+    padding: 0 20px; /* Réduire l'espace autour du texte */
+    text-overflow: ellipsis; /* Ajoute des points de suspension à la fin du texte */
+    max-width: 100%; /* Utiliser toute la largeur disponible */
+    margin-left: 0; /* Supprimer la marge gauche */
   }
 
   .submit-project-btn {
-    font-size: 14px;
-    padding: 10px 20px;
+    font-size: 14px; /* Réduire la taille du bouton */
+    padding: 10px 20px; /* Ajuster le padding pour un meilleur confort d'utilisation sur mobile */
+    margin-top: 15px; /* Ajouter un petit espace au-dessus du bouton */
   }
 
   /* Objectives Section */
