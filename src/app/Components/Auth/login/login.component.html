@@ -1,4 +1,7 @@
 <div class="register-container">
+  <button (click)="retour()" class="btn btn-secondary mt-4">
+    Retour
+  </button>
   <img src="/assets/images/logosamagokhvert.svg" alt="Logo" class="logo-img" />
   
   <form (ngSubmit)="onLogin()" [formGroup]="loginForm" class="register-form">

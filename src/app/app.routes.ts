@@ -26,10 +26,10 @@ import { PortailComponent } from './Components/portail/portail.component';
 
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'portail' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', component: PortailComponent },
+  { path: 'portail', component: PortailComponent },
 
   // Administration Routes
   {

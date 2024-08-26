@@ -91,7 +91,7 @@
   .link-signup:hover {
     text-decoration: underline; /* Souligne le lien au survol */
   }
-  
+
   /* Styles pour les écrans de taille moyenne (tablettes) */
   @media (min-width: 481px) {
     .logo-img {
@@ -124,5 +124,16 @@
     width: 30%; /* Ajustez la largeur selon vos besoins */
     right: 0; /* Positionne l'image à droite */
   }
+  .btn-secondary{
+    background-color: transparent;
+    color: #2C6B59;
+    width: 250px;
+   
+}
+.btn-secondary:hover{
+    background-color: transparent;
+    color: #2C6B59;
+    width: 250px;
+}
   }
   

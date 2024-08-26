@@ -68,6 +68,11 @@ console.error('Rôle inconnu');
 this.router.navigate(['/login']);
 }
 }
+
+ // Méthode pour revenir en arrière
+ retour(): void {
+    this.router.navigate(['/portail']); 
+  }
 }
 
 

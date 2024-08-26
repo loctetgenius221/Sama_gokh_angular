@@ -54,13 +54,14 @@
       </div>
       <div class="row">
         <div class="col col-btn d-flex justify-content-center gap-3">
-          <a href="#" class="btn inscription"
-            ><i class="fa-solid fa-right-to-bracket"></i>Inscription</a
-          >
-          <a href="#" class="btn connexion"
-            ><i class="fa-solid fa-circle-user"></i>Connexion</a
-          >
+          <a [routerLink]="['/register']" class="btn inscription">
+            <i class="fa-solid fa-right-to-bracket"></i>Inscription
+          </a>
+          <a [routerLink]="['/login']" class="btn connexion">
+            <i class="fa-solid fa-circle-user"></i>Connexion
+          </a>
         </div>
+        
       </div>
     </div>
   </section>
@@ -234,7 +235,7 @@
     <div class="container d-flex justify-content-center">
       <div class="button-content">
         <img src="/assets/images/drapeausnpint.png" alt="">
-        <a href="" class="btn">Soumettre un projet</a>
+        <a [routerLink]="['/login']" class="btn">Soumettre un projet</a>
       </div>
     </div>
     <img class="baobab2" src="/assets/images/baobabsamagokh.svg" alt="" />
