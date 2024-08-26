@@ -10,29 +10,21 @@
 
 main .hero-banner {
   height: 90vh;
-  background: url(/assets/images/banner-hero.jpg) no-repeat center center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url(/assets/images/banner-hero.jpg) no-repeat center center/cover;
 }
 
-main .hero-banner .container,
-main .hero-banner .container .row {
+main .hero-banner .container {
   height: 100%;
 }
 
-main .hero-banner .card {
-  background: #ffffff;
-  padding: 25px;
-  max-width: 600px;
-}
-
-main .hero-banner .card img {
-  width: 350px;
+main .hero-banner img {
+  width: 450px;
   height: 100px;
-  object-fit: cover;
-  margin-left: -25px;
 }
 
 main .hero-banner .card-title {
-  color: 000;
+  color: #fff;
   border-left: 11px solid #2c6b59;
   line-height: 45px;
   font-size: 28px;
@@ -42,18 +34,16 @@ main .hero-banner .card-title {
 }
 
 main .hero-banner .card-title > span {
-  color: #2c6b59;
+  color: #f4e3d2;
   font-weight: bold;
 }
 
 main .hero-banner .btn {
   padding: 17px 32px;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 16px;
+  text-transform: uppercase;
   font-weight: bold;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   gap: 5px;
 }
 
@@ -66,7 +56,45 @@ main .hero-banner .inscription {
 main .hero-banner .connexion {
   color: #f4e3d2;
   background: #2c6b59;
-  border: 1px solid #f4e3d2;
+  border: 2px solid #f4e3d2;
+}
+
+/* Responsive Design */
+/* Styles pour les petits écrans (jusqu'à 768px) */
+@media (max-width: 768px) {
+  main .hero-banner .col-logo {
+    display: flex;
+    justify-content: center;
+  }
+  main .hero-banner img {
+    width: 280px;
+    height: 80px;
+  }
+  main .hero-banner .card-title {
+    line-height: 35px;
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  main .hero-banner .col-btn {
+    display: flex;
+    flex-direction: column;
+  }
+  main .hero-banner .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    /* padding: 17px 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+     */
+  }
+  main .hero-banner .inscription {
+    margin-right: 0;
+  }
 }
 
 main #apropos {
@@ -86,14 +114,38 @@ main #apropos .apropos-img {
 }
 
 main #apropos .nos-mission-txt h1 {
-  font-size: 26px;
+  font-size: 32px;
+  letter-spacing: 5px;
   transform: rotate(180deg);
+}
+
+main #apropos .nos-mission-txt .col-txt {
+  padding-right: 55px;
 }
 
 main #apropos .nos-mission-txt h2 {
   font-size: 20px;
   line-height: 38px;
   text-align: justify;
+}
+
+main #apropos .nos-mission-txt hr {
+  width: 5px;
+  height: 110px;
+  background: #2c6b59;
+  opacity: 1;
+  margin-left: -10%;
+}
+
+main #apropos .apropos-title {
+  position: relative;
+}
+main #apropos .apropos-title .griffe-apropos {
+  position: absolute;
+  top: -100%;
+  left: -7%;
+  z-index: -1;
+  opacity: 0.7;
 }
 
 main #apropos .apropos-title h1 {
@@ -116,6 +168,7 @@ main #apropos .col-right .card {
   color: #fff;
   padding: 25px;
   margin-left: -60px;
+  margin-top: 50px;
 }
 
 #apropos .card h3 {
@@ -139,7 +192,66 @@ main #apropos .col-right .card {
   font-weight: bold;
 }
 
-/* Comment ça ùarche */
+/* Responsive Design */
+/* Styles pour les petits écrans (jusqu'à 768px) */
+@media (max-width: 768px) {
+  main #apropos .apropos-content {
+    display: flex;
+    flex-direction: column;
+  }
+  main #apropos .nos-mission-txt h1 {
+    font-size: 28px;
+    letter-spacing: 5px;
+    transform: rotate(180deg);
+    text-align: right;
+  }
+
+  main #apropos .nos-mission-txt hr {
+    /* width: 5px;
+    height: 110px;
+    background: #2c6b59;
+    opacity: 1;
+    margin-left: -10%; */
+    display: none;
+  }
+  main #apropos .nos-mission-txt .col-txt {
+    padding-right: 25px;
+  }
+  main #apropos .nos-mission-txt h2 {
+    font-size: 20px;
+    line-height: 30px;
+    text-align: justify;
+  }
+  main #apropos .col-right {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main #apropos .col-right .card {
+    padding: 15px;
+    margin-left: 0px;
+    margin-top: 0;
+  }
+  main #apropos .apropos-title .griffe-apropos {
+    position: absolute;
+    top: -70%;
+    left: -7%;
+    z-index: -1;
+    opacity: 0.7;
+  }
+  #apropos .card h3 {
+    font-size: 20px;
+    border-left: 10px solid #f4e3d2;
+    padding-left: 15px;
+  }
+
+  #apropos .card li {
+    font-size: 17px;
+  }
+}
+
+/* Comment ça marche */
 
 main #commentçamarche .comment-title,
 main #commentçamarche2 .comment-title {
@@ -233,6 +345,71 @@ main #commentçamarche2 .col-txt p {
   text-align: justify;
 }
 
+main #commentçamarche2 .comment-title hr {
+  width: 130px;
+  height: 4px;
+  background: #f4e3d2;
+  opacity: 1;
+  margin-top: -10px;
+}
+
+@media (max-width: 768px) {
+  main #commentçamarche .bg-beige,
+  main #commentçamarche2 {
+    margin-top: 190px;
+  }
+  #commentçamarche .bg-beige .bg-beige-content {
+    display: flex;
+    flex-direction: column;
+  }
+  main #commentçamarche .bg-beige .row {
+    margin-left: 0%;
+  }
+  main #commentçamarche .bg-beige iframe,
+  main #commentçamarche2 .bg-green iframe {
+    margin-top: -160px;
+    border-radius: 10px;
+    width: 90vw;
+    height: 260px;
+    /* margin-left: 55px; */
+  }
+  #commentçamarche2 .bg-green .bg-green-content {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  main #commentçamarche2 .bg-green .row {
+    margin-right: 0%;
+  }
+  main #commentçamarche2 .bg-green iframe {
+    margin-left: -55px;
+  }
+  main #commentçamarche2 .bg-green .col-txt,
+  main #commentçamarche .bg-beige .col-txt {
+    margin-top: 0px;
+  }
+  main #commentçamarche .comment-title,
+  main #commentçamarche2 .comment-title {
+    margin-bottom: 15px;
+  }
+  main #commentçamarche .col-txt h1,
+  main #commentçamarche2 .col-txt h1 {
+    font-size: 24px;
+  }
+  main #commentçamarche2 .col-txt h1 {
+    color: #fff;
+  }
+  main #commentçamarche2 .comment-title hr {
+    width: 110px;
+    height: 2px;
+  }
+
+  main #commentçamarche .col-txt p,
+  main #commentçamarche2 .col-txt p {
+    font-size: 18px;
+    text-align: justify;
+  }
+}
+
 /* CTA */
 
 main .cta {
@@ -305,7 +482,7 @@ main .cta .btn {
 }
 
 #statistiques .bg-green .bande-beige {
-  width: 80vw;
+  width: 90vw;
   background: #f4e3d2;
   color: #4a4a4a;
   margin-left: -400px;
@@ -333,18 +510,84 @@ main .cta .btn {
 
 #statistiques .pattern-renaissance {
   position: absolute;
-  top: -45%;
-  right: 5%;
+  top: -40%;
+  right: -5%;
   width: 820px;
   z-index: 2;
 }
 
-/* Galerie */
+@media (max-width: 768px) {
+  .row-stat-content {
+    display: flex;
+    flex-direction: column;
+  }
+  #statistiques .bg-green {
+    padding: 60px 0 150px 0;
+  }
+  #statistiques .bg-green .h3-title h3 {
+    font-size: 30px;
+  }
 
-main #galerie .galerie-title h1 {
-  font-size: 26px;
+  #statistiques .bg-green .h3-title hr {
+    width: 70px;
+    margin-left: 62px;
+  }
+  #statistiques .bg-green .stat-title {
+    font-size: 40px;
+    margin-left: 1rem;
+  }
+  #statistiques .bg-green .row-txt {
+    padding: 0px 25px 0 25px;
+  }
+  #statistiques .bg-green .stat-txt {
+    margin-left: 1rem;
+  }
+  #statistiques .bg-green .bande-beige {
+    width: 100%;
+    margin-left: -50px;
+    padding-left: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    /* display: flex;
+    flex-wrap: wrap; */
+  }
+  #statistiques .bande-beige .col {
+    max-width: 160px;
+  }
+  #statistiques .bande-beige .col h1 {
+    border-left: 6px solid #4a4a4a;
+    padding-left: 10px;
+    font-size: 22px;
+  }
+
+  #statistiques .bande-beige .col p {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  #statistiques .pattern-renaissance {
+    top: 41%;
+    right: -20%;
+    z-index: 2;
+  }
 }
 
-main #galerie .galerie-content img {
-  width: 200px;
+/* bande-blanche */
+main {
+  position: relative;
+}
+main .bande-blanche {
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  z-index: 10;
+}
+
+footer {
+  background: #4a4a4a;
+  width: 100%;
+  height: 150px;
 }

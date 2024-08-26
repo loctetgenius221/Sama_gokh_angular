@@ -40,25 +40,25 @@
 <main>
   <!-- Section de présentation -->
   <section class="hero-banner mb-5">
-    <div class="container">
+    <div class="container d-flex flex-column justify-content-center gap-5">
       <div class="row">
-
-        <div class="col d-flex align-items-center justify-content-end">
-          <div class="card">
-            <img src="/assets/images/logosamagokhvert.svg" alt="" />
-            <div class="card-body">
-              <h1 class="card-title">
-                Bienvenue à <span>sama gokh</span> la plateforme qui regroupe
-                les communes et ses résidants.
-              </h1>
-              <a href="#" class="btn inscription"
-                ><i class="fa-solid fa-right-to-bracket"></i>Inscription</a
-              >
-              <a href="#" class="btn connexion"
-                ><i class="fa-solid fa-circle-user"></i>Connexion</a
-              >
-            </div>
-          </div>
+        <div class="col col-logo">
+          <img src="/assets/images/logobeige01.svg" alt="" />
+        </div>
+        <div class="col d-flex align-items-end">
+          <h1 class="card-title">
+            Bienvenue à <span>sama gokh</span> la plateforme qui regroupe tous les communes du sénégal à leurs résidants.
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-btn d-flex justify-content-center gap-3">
+          <a href="#" class="btn inscription"
+            ><i class="fa-solid fa-right-to-bracket"></i>Inscription</a
+          >
+          <a href="#" class="btn connexion"
+            ><i class="fa-solid fa-circle-user"></i>Connexion</a
+          >
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
   <!-- Section A propos -->
   <section id="apropos" class="my-5">
     <div class="container">
-      <div class="row">
+      <div class="row apropos-content">
         <div class="col">
           <div class="row">
             <img
@@ -78,9 +78,9 @@
           <div class="row nos-mission-txt mt-3">
             <div class="col-2 d-flex">
               <h1 class="" style="writing-mode: vertical-lr">NOS MISSIONS</h1>
-              <hr />
+              <hr class="align-self-end" />
             </div>
-            <div class="col">
+            <div class="col col-txt">
               <h2>
                 Chez Sama Gokh, nous croyons fermement que chaque habitant a un
                 rôle crucial à jouer dans la gestion et le développement de sa
@@ -96,10 +96,11 @@
         </div>
         <div class="col col-right">
           <div class="apropos-title">
+            <img class="griffe-apropos" src="/assets/images/griffe_de_lion.svg" alt="">
             <h1>A-propos</h1>
             <hr />
           </div>
-          <div class="card mt-5 w-100">
+          <div class="card w-100">
             <div class="card-body">
               <h3>SAMA GOKH</h3>
               <h1 class="card-title mb-3">NOS OBJECTIFS:</h1>
@@ -114,7 +115,7 @@
         </div>
       </div>
     </div>
-    <img class="baobab" src="/assets/images/baobabsamagokh.svg" alt="">
+    <img class="baobab" src="/assets/images/baobabsamagokh.svg" alt="" />
   </section>
 
   <!-- Section Comment ça marche 1 -->
@@ -125,11 +126,9 @@
     </div>
     <div class="bg-beige">
       <div class="container">
-        <div class="row">
+        <div class="row bg-beige-content">
           <div class="col">
             <iframe
-              width="560"
-              height="315"
               src="https://www.youtube.com/embed/QGWwwUaVK6k?si=qR5LV_YluMANMmyF"
               title="YouTube video player"
               frameborder="0"
@@ -161,14 +160,17 @@
   <section id="commentçamarche2" class="">
     <div class="bg-green">
       <div class="container">
-        <div class="row">
+        <div class="row bg-green-content">
           <div class="col col-txt">
             <div class="comment-title">
               <h1>Soumission de Projets</h1>
               <hr />
             </div>
             <p>
-              Les citoyens peuvent soumettre leurs idées de projets via notre plateforme. Chaque proposition est examinée et, si elle répond aux critères établis, est mise en ligne pour obtenir les avis de la communauté.
+              Les citoyens peuvent soumettre leurs idées de projets via notre
+              plateforme. Chaque proposition est examinée et, si elle répond aux
+              critères établis, est mise en ligne pour obtenir les avis de la
+              communauté.
             </p>
           </div>
           <div class="col">
@@ -211,7 +213,10 @@
               <hr />
             </div>
             <p>
-              Les projets soumis sont soumis à un processus de vote en ligne. Les habitants peuvent exprimer leur opinion sur les projets en votant pour ceux qu'ils jugent les plus pertinents et utiles pour leur commune.
+              Les projets soumis sont soumis à un processus de vote en ligne.
+              Les habitants peuvent exprimer leur opinion sur les projets en
+              votant pour ceux qu'ils jugent les plus pertinents et utiles pour
+              leur commune.
             </p>
           </div>
         </div>
@@ -224,17 +229,16 @@
     <div class="container d-flex justify-content-center">
       <div class="button-content">
         <a href="" class="btn">Soumettre un projet</a>
-
       </div>
     </div>
-    <img class="baobab2" src="/assets/images/baobabsamagokh.svg" alt="">
+    <img class="baobab2" src="/assets/images/baobabsamagokh.svg" alt="" />
   </section>
 
   <!-- Section Staistiques -->
   <section id="statistiques">
     <div class="bg-green">
       <div class="container">
-        <div class="row">
+        <div class="row row-stat-content">
           <div class="col">
             <div class="row row-txt">
               <div class="h3-title">
@@ -245,7 +249,8 @@
               <p class="stat-txt mt-2">
                 La plateforme Sama Gokh vise à renforcer la connexion entre les
                 citoyens et leur environnement en intégrant les caractéristiques
-                uniques de notre territoire dans la gestion des projets communaux.
+                uniques de notre territoire dans la gestion des projets
+                communaux.
               </p>
             </div>
             <div class="row bande-beige">
@@ -263,51 +268,40 @@
               </div>
             </div>
           </div>
-            <img class="pattern-renaissance" src="/assets/images/monument_rennaissance.png" alt="" />
+          <img
+            class="pattern-renaissance"
+            src="/assets/images/monument_rennaissance.png"
+            alt=""
+          />
         </div>
       </div>
     </div>
   </section>
+  <section class="bande-blanche"></section>
 
   <!-- Section Galerie -->
-  <section id="galerie">
-    <div class="container">
-      <div class="galerie-title">
-        <img src="" alt="" />
-        <h1>
-          Découvrez l'histoire et la richesse de nos communes à travers les
-          éléments naturels et culturels qui les composent.
-        </h1>
-      </div>
-      <div class="row galerie-content my-5">
-        <div class="col">
-          <img src="/assets/images/img1.jpg" alt="" />
-        </div>
-        <div class="col">
-          <img src="/assets/images/img1.jpg" alt="" /><img
-            src="/assets/images/img1.jpg"
-            alt=""
-          />
-        </div>
-        <div class="col">
-          <img src="/assets/images/img1.jpg" alt="" /><img
-            src="/assets/images/img1.jpg"
-            alt=""
-          />
-        </div>
-        <div class="col">
-          <img src="/assets/images/img1.jpg" alt="" />
-        </div>
-      </div>
-    </div>
-    <img src="" alt="" />
-  </section>
+
 </main>
 
 <footer>
-  <nav class="bg-light">
+  <nav class="">
     <div class="container">
-      <div class="bg-secondary py-4"></div>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#apropos">A Propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#commentçamarche">Comment ça marche</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#staistiques">Statistiques</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#galerie">Galerie</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </footer>
