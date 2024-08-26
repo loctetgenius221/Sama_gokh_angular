@@ -1,36 +1,16 @@
 <!-- Navbar -->
-<nav class="navbar">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">
-      <img src="assets/img/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-      Portail des Habitants
-    </a>
-    <ul class="navbar-nav d-flex flex-row">
-      <li class="nav-item me-3">
-        <a class="nav-link" routerLink="/home">Accueil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/list-projects">Liste projets</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/Mes projets">Mes projets</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/profile">Profile</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
+<app-header></app-header>
 
 
 <!-- Home Banner -->
 <div class="home-banner">
   <img src="assets/img/communauté.jpg" alt="Bannière" class="banner-image">
-  <div class="banner-text">
-    <h1>Une plateforme unique pour l’engagement  communautaire </h1>
-    <p>Bienvenue sur le Portail des Habitants de notre commune ! Ce portail est conçu pour renforcer la participation citoyenne et faciliter la communication entre les habitants et l'administration municipale. Notre objectif est de créer un espace interactif où chaque résident peut s'impliquer activement dans les projets et les décisions qui façonnent notre communauté.</p>
-    <button class="submit-project-btn">Soumettre Projet</button>
+  <div class="container">
+    <div class=" banner-text">
+      <h1>Une plateforme unique pour l’engagement  communautaire </h1>
+      <p>Bienvenue sur le Portail des Habitants de notre commune ! Ce portail est conçu pour renforcer la participation citoyenne et faciliter la communication entre les habitants et l'administration municipale. Notre objectif est de créer un espace interactif où chaque résident peut s'impliquer activement dans les projets et les décisions qui façonnent notre communauté.</p>
+      <button class="submit-project-btn">Soumettre Projet</button>
+    </div>
   </div>
 </div>
 
@@ -119,36 +99,4 @@
   </div>
 </div>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-about">
-      <h4>À Propos</h4>
-      <p>Le Portail des Habitants est une plateforme dédiée à la participation citoyenne et à la soumission de projets pour améliorer notre commune.</p>
-    </div>
-    <div class="footer-links">
-      <h4>Liens Utiles</h4>
-      <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Projets</a></li>
-        <li><a href="#">Soumettre un Projet</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-contact">
-      <h4>Contact</h4>
-      <p>Email: contact&#64;portailhabitants.com</p>
-      <p>Téléphone: +123 456 789</p>
-    </div>
-    <div class="footer-social">
-      <h4>Suivez-nous</h4>
-      <a href="#" class="social-icon"><img src="facebook-icon.png" alt="Facebook"></a>
-      <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
-      <a href="#" class="social-icon"><img src="instagram-icon.png" alt="Instagram"></a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2024 Portail des Habitants. Tous droits réservés.</p>
-  </div>
-</footer>
-
+<app-footer></app-footer>
