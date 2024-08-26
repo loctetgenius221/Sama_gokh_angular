@@ -27,7 +27,10 @@
               </div>
               <div class="right-section">
                 <span class="iconify" data-icon="mdi:bell"></span>
-                <span class="iconify" data-icon="mdi:cog"></span>
+                <button (click)="navigateToParametre()" class="btn">
+                    <span class="iconify" data-icon="mdi:cog"></span>
+                </button>                
+                                   
               </div>
         </div>
         <router-outlet></router-outlet>

@@ -23,6 +23,7 @@ import { DetailProjetHabitantComponent } from './Components/Municipalite/detail-
 import { DashboardComponent as MuniDashboardComponent } from './Components/Municipalite/dashboard/dashboard.component';
 import { DashboardComponent as AdminDashboardComponent } from './Components/Administration/dashboard/dashboard.component';
 import { PortailComponent } from './Components/portail/portail.component';
+import { ParametreComponent } from './Components/Municipalite/parametre/parametre.component';
 
 
 export const routes: Routes = [
@@ -59,6 +60,7 @@ export const routes: Routes = [
       { path: 'habitant', component: HabitantComponent },
       { path: 'habitant/detail/habitant/:id', component: DetailHabitantComponent },
       { path: 'habitant/detail/projet/:id', component: DetailProjetHabitantComponent },
+      {path: 'parametre', component: ParametreComponent},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

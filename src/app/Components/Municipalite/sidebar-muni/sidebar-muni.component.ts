@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router'; 
+import { RouterLink, RouterModule } from '@angular/router'; 
 import { CommunesService } from '../../../Services/communes.service';
 import { AuthService } from '../../../Services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-sidebar-muni',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule,RouterLink],
   templateUrl: './sidebar-muni.component.html',
   styleUrl: './sidebar-muni.component.css'
 })
@@ -41,5 +41,9 @@ export class SidebarMuniComponent implements OnInit {
         console.error('Erreur lors de la déconnexion:', error);
       }
     );
+  }
+
+  navigateToParametre(): void {
+    this.router.navigate(['/sidebar1/parametre']);
   }
 }
