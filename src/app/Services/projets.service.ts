@@ -47,23 +47,17 @@ export class ProjetsService {
     );
   }
 
-  // updateProjet(projet: any): Observable<any> {
-  //   const projetId = projet.id; // Suppose que l'objet projet a un champ id
-  //   return this.http.put<any>(`${this.apiUrl}/projets/${projetId}`, projet, { headers: this.getHeaders() }).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-  updateProjet(projet: any): Observable<any> {
-    const projetId = projet.id; // Assurez-vous que l'objet projet a bien un champ id
+  updateProjet(projet: FormData): Observable<any> {
+    const projetId = projet.get('id');
     if (!projetId) {
-      console.error('Project ID is missing.');
-      return throwError('ID du projet manquant');
+        console.error('Project ID is undefined');
+        return throwError('Project ID is undefined');
     }
     return this.http.put<any>(`${this.apiUrl}/projets/${projetId}`, projet, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
-  }
-  
+}
+
   getProjetsByHabitant(habitantId: number): Observable<{ data: any[] }> {
     console.log(`Envoi de la requête pour obtenir les projets de l'habitant avec l'ID : ${habitantId}`);
     return this.http.get<{ data: any[] }>(`${this.apiUrl}/projets/habitant/${habitantId}`, { headers: this.getHeaders() }).pipe(

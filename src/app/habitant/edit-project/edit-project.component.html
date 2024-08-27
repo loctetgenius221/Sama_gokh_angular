@@ -2,7 +2,7 @@
 <app-header></app-header>
 
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Formulaire d'ajout de Projet</h2>
+  <h2 class="text-center mb-4">Formulaire de modification de Projet</h2>
   <form [formGroup]="projetForm" (ngSubmit)="onSubmit()">
     <div class="row mb-3">
       <div class="col-md-6">
@@ -50,7 +50,7 @@
     </div>
   
     <div class="foot mt-4">
-      <button type="submit" class="btn btn_submit me-3" [disabled]="projetForm.invalid">Ajouter</button>
+      <button type="submit" class="btn btn_submit me-3" [disabled]="projetForm.invalid">Modifier</button>
       <button routerLink="/home" class="btn btn_cancel">Annuler</button>
     </div>
   </form>
