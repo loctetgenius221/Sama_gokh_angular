@@ -78,25 +78,22 @@ onFileChange(event: any): void {
 
 onSubmit(): void {
   if (this.projetForm.valid) {
-    const formData = new FormData();
-    Object.keys(this.projetForm.value).forEach(key => {
-      formData.append(key, this.projetForm.value[key]);
-    });
-    if (this.imageFile) {
-      formData.append('photo', this.imageFile, this.imageFile.name);
+    // Préparer les données du formulaire en tant qu'objet JSON
+    const projetData = { ...this.projetForm.value };
+    
+    // Ajouter l'ID du projet
+    if (this.projetId) {
+      projetData.id = this.projetId;
     }
 
-    const projet = {
-      ...this.projetForm.value,
-      id: this.projetId
-    };
-
-    this.projetsService.updateProjet(projet).subscribe(
-      () => {
+    // Effectuer la mise à jour des données du projet
+    this.projetsService.updateProjet(projetData).subscribe({
+      next: (response) => {
+        console.log('Projet mis à jour avec succès:', response);
         Swal.fire({
           icon: 'success',
-          title: 'Projet modifié',
-          text: 'Le projet a été modifié avec succès!',
+          title: 'Projet mis à jour',
+          text: 'Le projet a été mis à jour avec succès!',
           showConfirmButton: false,
           timer: 2000
         });
@@ -104,19 +101,18 @@ onSubmit(): void {
           this.router.navigate(['/sidebar1/projet']);
         }, 2000);
       },
-      (error: HttpErrorResponse) => {
-        console.error('Erreur lors de la modification du projet:', error.message);
+      error: (error) => {
+        console.error('Erreur lors de la mise à jour du projet:', error);
         Swal.fire({
           icon: 'error',
           title: 'Erreur',
-          text: 'Une erreur s\'est produite lors de la modification du projet.',
+          text: 'Une erreur s\'est produite lors de la mise à jour du projet.',
           showConfirmButton: false,
           timer: 3000
         });
       }
-    );
+    });
   }
 }
 
-  
 }

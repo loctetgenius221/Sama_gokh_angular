@@ -37,8 +37,8 @@ export const routes: Routes = [
   { path: "home", component: HabitantHomeComponent },
   // { path: "profile", component: ProfileComponent },
  { path: "ajout_projet", component: AddProjectComponent},
-  // { path: 'edit-project', component: EditProjectComponent },
-  { path: "project",component: ViewProjectComponent},
+   { path: 'edit-project/:id', component: AddProjectComponent },
+  { path: 'projet/:id',component: ViewProjectComponent},
   { path: 'list-projects', component: ListProjectsComponent },
 
 

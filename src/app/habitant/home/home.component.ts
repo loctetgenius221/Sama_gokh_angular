@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-habitant-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule, HeaderComponent, FooterComponent,FormsModule],
+  imports: [CommonModule, RouterModule, HttpClientModule, HeaderComponent, FooterComponent, FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -51,7 +51,7 @@ export class HabitantHomeComponent implements OnInit {
             photo: projet.photo ? baseUrl + projet.photo : 'https://via.placeholder.com/300x200'
           }));
 
-          // Application de la recherche
+          // Appliquer la recherche et la pagination après chargement des projets
           this.applySearch();
         },
         error => {
@@ -64,13 +64,13 @@ export class HabitantHomeComponent implements OnInit {
   }
 
   applySearch(): void {
+    // Filtrer les projets en fonction de la recherche
     const filteredProjets = this.projets.filter(projet =>
       projet.nom.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       projet.description.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
-  
 
-    // Configuration de la pagination
+    // Configurer la pagination
     this.totalPages = Math.ceil(filteredProjets.length / this.itemsPerPage);
     this.currentPage = 1; // Réinitialiser la page courante
     this.updatePaginatedProjets(filteredProjets);
@@ -92,9 +92,10 @@ export class HabitantHomeComponent implements OnInit {
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.applySearch(); // Appliquer la recherche après changement de page
+      this.updatePaginatedProjets(); // Met à jour les projets paginés
     }
   }
+  
 
   goToPage(page: number): void {
     this.currentPage = page;

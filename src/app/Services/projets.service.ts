@@ -47,8 +47,18 @@ export class ProjetsService {
     );
   }
 
+  // updateProjet(projet: any): Observable<any> {
+  //   const projetId = projet.id; // Suppose que l'objet projet a un champ id
+  //   return this.http.put<any>(`${this.apiUrl}/projets/${projetId}`, projet, { headers: this.getHeaders() }).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
   updateProjet(projet: any): Observable<any> {
-    const projetId = projet.id; // Suppose que l'objet projet a un champ id
+    const projetId = projet.id; // Assurez-vous que l'objet projet a bien un champ id
+    if (!projetId) {
+      console.error('Project ID is missing.');
+      return throwError('ID du projet manquant');
+    }
     return this.http.put<any>(`${this.apiUrl}/projets/${projetId}`, projet, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );

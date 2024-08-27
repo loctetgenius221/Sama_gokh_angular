@@ -59,7 +59,7 @@
       <div class="project-content">
         <h3>{{ projet.nom }}</h3>
         <p>{{ projet.description }}</p>
-        <button class="details-btn">Voir Détail</button>
+        <button class="details-btn" [routerLink]="['/projet', projet.id]">Voir Détail</button>
       </div>
     </div>
   </div>
