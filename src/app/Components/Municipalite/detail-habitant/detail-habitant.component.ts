@@ -36,6 +36,11 @@ export class DetailHabitantComponent implements OnInit {
         if (response.status) {
           this.habitant = response.data;
           this.habitant.age = this.calculateAge(this.habitant.date_naiss);
+          const photoUrl = this.habitant.photo 
+            ? `http://127.0.0.1:8000/storage/${this.habitant.photo}` 
+            : 'https://via.placeholder.com/300x200';
+          console.log('URL de la photo:', photoUrl);
+          this.habitant.photo = photoUrl;
         } else {
           console.error('Erreur: ', response.message);
         }
@@ -45,6 +50,8 @@ export class DetailHabitantComponent implements OnInit {
       }
     );
   }
+  
+  
   
   calculateAge(dateNaiss: string): number {
     const today = new Date();

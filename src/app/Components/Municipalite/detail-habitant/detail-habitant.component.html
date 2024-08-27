@@ -29,7 +29,7 @@
       <!-- Détails de l'habitant -->
       <div class="col-md-8">
         <div class="detail-card">
-          <img src="https://via.placeholder.com/300x200" alt="Photo de l'habitant">
+          <img [src]="habitant.photo ? habitant.photo : 'https://via.placeholder.com/300x200'" alt="Photo de l'habitant">
           <h4 class="name">{{ habitant.prenom }} {{ habitant.nom }}</h4>
           <p class="job">{{ habitant.profession }}</p>
   
