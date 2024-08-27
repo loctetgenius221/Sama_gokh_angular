@@ -1,91 +1,149 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+/>
 <!-- Navbar -->
 <app-header></app-header>
 
-
 <!-- Home Banner -->
 <div class="home-banner">
-  <img src="assets/img/communauté.jpg" alt="Bannière" class="banner-image">
+  <img src="assets/img/communauté.jpg" alt="Bannière" class="banner-image" />
   <div class="container">
-    <div class=" banner-text">
-      <h1>Une plateforme unique pour l’engagement  communautaire </h1>
-      <p>Bienvenue sur le Portail des Habitants de notre commune ! Ce portail est conçu pour renforcer la participation citoyenne et faciliter la communication entre les habitants et l'administration municipale. Notre objectif est de créer un espace interactif où chaque résident peut s'impliquer activement dans les projets et les décisions qui façonnent notre communauté.</p>
-      <button class="submit-project-btn" [routerLink]="['/ajout_projet']">Soumettre Projet</button>
+    <div class="banner-text">
+      <h1>Une plateforme unique pour l’engagement communautaire</h1>
+      <p>
+        Bienvenue sur le Portail des Habitants de notre commune ! Ce portail est
+        conçu pour renforcer la participation citoyenne et faciliter la
+        communication entre les habitants et l'administration municipale. Notre
+        objectif est de créer un espace interactif où chaque résident peut
+        s'impliquer activement dans les projets et les décisions qui façonnent
+        notre communauté.
+      </p>
+      <button class="submit-project-btn" [routerLink]="['/ajout_projet']">
+        Soumettre Projet
+      </button>
     </div>
   </div>
 </div>
 
 <!-- Objectives Section -->
 <div class="objectives">
-  <h2>Nos Objectifs</h2>
-  <hr class="underline">
-  <p class="description">Nous nous engageons à faciliter la participation citoyenne, encourager les propositions de projets et assurer la transparence des décisions municipales.</p>
-  <div class="cards">
-    <div class="card">
-      <h3>Faciliter la participation citoyenne</h3><br>
-      <p> Offrir aux habitants la possibilité de soumettre leurs propres idées et projets pour le bien de la communauté, renforçant ainsi le sentiment d'appartenance et de responsabilité collective.</p>
-    </div>
-    <div class="card middle-card">
-      <h3>Encourager les propositions de projets</h3><br>
-      <p> Fournir des informations claires et à jour sur les projets, les budgets, les échéanciers, et les décisions municipales, assurant ainsi une transparence totale.</p>
-    </div>
-    <div class="card">
-      <h3>Assurer la transparence des décisions municipales</h3><br>
-      <p>Permettre aux habitants de s'informer sur les projets en cours, de donner leur avis, de voter et de participer à des discussions constructives.</p>
+  <img class="baobabPattern1" src="/assets/images/baobabsamagokh.svg" alt="">
+  <div class="container">
+    <h2>Nos Objectifs</h2>
+    <hr class="underline" />
+    <p class="description">
+      Nous nous engageons à faciliter la participation citoyenne, encourager les
+      propositions de projets et assurer la transparence des décisions
+      municipales.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>Faciliter la participation citoyenne</h3>
+        <br />
+        <p>
+          Offrir aux habitants la possibilité de soumettre leurs propres idées
+          et projets pour le bien de la communauté, renforçant ainsi le
+          sentiment d'appartenance et de responsabilité collective.
+        </p>
+      </div>
+      <div class="card middle-card">
+        <h3>Encourager les propositions de projets</h3>
+        <br />
+        <p>
+          Fournir des informations claires et à jour sur les projets, les
+          budgets, les échéanciers, et les décisions municipales, assurant ainsi
+          une transparence totale.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Assurer la transparence des décisions municipales</h3>
+        <br />
+        <p>
+          Permettre aux habitants de s'informer sur les projets en cours, de
+          donner leur avis, de voter et de participer à des discussions
+          constructives.
+        </p>
+      </div>
     </div>
   </div>
-</div>
-
-
-<!-- Barre de recherche -->
-<div class="d-flex mb-3">
-  <input 
-    type="text" 
-    [(ngModel)]="searchTerm" 
-    placeholder="Rechercher un projet..." 
-    (input)="applySearch()" 
-    class="form-control">
 </div>
 
 <!-- Liste des projets -->
 <div class="projects-list">
-  <h2>Liste des Projets</h2>
-  <hr class="underline">
-  <div *ngFor="let projet of paginatedProjets" class="project-cards">
-    <div class="project-image-container">
-      <img [src]="projet.photo" alt="Image du projet" class="project-image">
-    </div>
-    <div class="project-card">
-      <div class="project-content">
-        <h3>{{ projet.nom }}</h3>
-        <p>{{ projet.description }}</p>
-        <button class="details-btn" [routerLink]="['/projet', projet.id]">Voir Détail</button>
+  <div class="container">
+    <h2>Liste des Projets</h2>
+    <hr class="underline" />
+    <!-- Barre de recherche -->
+    <div class="d-flex justify-content-start mb-4">
+      <div
+        class="input-group w-50 border"
+        style="border-radius: 0 0.375rem 0.375rem 0"
+      >
+        <span class="input-group-text bg-light border-0">
+          <i class="material-icons">Recherche</i>
+        </span>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          placeholder="Rechercher un projet..."
+          (input)="applySearch()"
+          class="form-control border-0"
+          style="border-radius: 0 0.375rem 0.375rem 0"
+        />
       </div>
     </div>
-  </div>
+    <div *ngFor="let projet of paginatedProjets" class="project-cards">
+      <div class="project-image-container">
+        <img [src]="projet.photo" alt="Image du projet" class="project-image" />
+      </div>
+      <div class="project-card">
+        <div class="project-content">
+          <h3>{{ projet.nom }}</h3>
+          <p>{{ projet.description }}</p>
+          <button class="details-btn" [routerLink]="['/projet', projet.id]">
+            Voir Détail
+          </button>
+        </div>
+      </div>
+    </div>
 
-  <!-- Pagination controls -->
-  <div class="pagination-controls d-flex justify-content-end mt-3">
-    <!-- Left Arrow -->
-    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-icon">
-      <span class="material-symbols-outlined">arrow_back_ios</span>
-    </button>
-  
-    <!-- Page Numbers -->
-    <ng-container *ngFor="let page of getPages(); let i = index">
-      <button (click)="goToPage(page)"
-              [ngStyle]="{'border-color': currentPage === page ? '#2C6B59' : '#6c757d', 'color': currentPage === page ? '#2C6B59' : '#6c757d'}"
-              class="btn mx-1">
-        {{ page }}
+    <!-- Pagination controls -->
+    <div class="pagination-controls d-flex justify-content-end mt-3">
+      <!-- Left Arrow -->
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+        class="btn btn-icon"
+      >
+        <span class="material-symbols-outlined">arrow_back_ios</span>
       </button>
-    </ng-container>
-  
-    <!-- Right Arrow -->
-    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-icon">
-      <span class="material-symbols-outlined">arrow_forward_ios</span>
-    </button>
-  </div>
-</div>
 
+      <!-- Page Numbers -->
+      <ng-container *ngFor="let page of getPages(); let i = index">
+        <button
+          (click)="goToPage(page)"
+          [ngStyle]="{
+            'border-color': currentPage === page ? '#2C6B59' : '#6c757d',
+            color: currentPage === page ? '#2C6B59' : '#6c757d'
+          }"
+          class="btn mx-1"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+
+      <!-- Right Arrow -->
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        class="btn btn-icon"
+      >
+        <span class="material-symbols-outlined">arrow_forward_ios</span>
+      </button>
+    </div>
+  </div>
+  <img class="baobabPattern2" src="/assets/images/baobabsamagokh.svg" alt="">
+</div>
 
 <app-footer></app-footer>
