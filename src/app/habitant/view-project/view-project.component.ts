@@ -5,18 +5,18 @@ import { HeaderComponent } from "../../header/header.component";
 import { FooterComponent } from "../../footer/footer.component";
 import { ProjetsService } from "../../Services/projets.service";
 import { AuthService } from '../../Services/auth/auth.service'; 
-import { CommentairesService } from '../../Services/commentaires.service'; // Importer CommentairesService
+import { CommentairesService } from '../../Services/commentaires.service';
 import localeFR from '@angular/common/locales/fr';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
-import { VotesService } from '../../Services/votes.service'; // Importer VotesService
+import { VotesService } from '../../Services/votes.service';
 
 registerLocaleData(localeFR, 'fr');
 
 @Component({
   selector: 'app-view-project',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink,FormsModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, FormsModule],
   templateUrl: './view-project.component.html',
   styleUrls: ['./view-project.component.css']
 })
@@ -24,9 +24,10 @@ export class ViewProjectComponent implements OnInit {
   project: any;
   baseUrl: string = 'http://127.0.0.1:8000/storage/photos/';
   currentUserId: number | undefined;
-  commentaire: string = ''; // Propriété pour stocker le commentaire
-  commentaires: any[] = []; // Propriété pour stocker les commentaires
-  votesPour: number = 0; // Propriété pour stocker le nombre de votes "pour"
+  commentaire: string = '';
+  commentaires: any[] = [];
+  votesPour: number = 0;
+  voted: boolean = false;
 
   constructor(
     private projetsService: ProjetsService,
@@ -40,7 +41,7 @@ export class ViewProjectComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUserDetails().subscribe(
       (userDetails) => {
-        console.log('Détails de l\'utilisateur:', userDetails); // Vérifiez que les détails de l'utilisateur sont bien reçus
+        console.log('Détails de l\'utilisateur:', userDetails);
         this.currentUserId = userDetails.data.id;
         this.loadProject();
       },
@@ -60,7 +61,7 @@ export class ViewProjectComponent implements OnInit {
             photo: data.photo ? this.baseUrl + data.photo : 'https://via.placeholder.com/300x200'
           };
           console.log('Project:', this.project);
-          this.loadVotesPour(this.project.id); // Charger les votes pour le projet
+          this.loadVotesPour(this.project.id);
           this.loadCommentaires();
         },
         (error) => {
@@ -95,8 +96,8 @@ export class ViewProjectComponent implements OnInit {
           title: 'Succès',
           text: 'Commentaire ajouté avec succès.',
         });
-        this.commentaire = ''; // Réinitialiser le champ de commentaire
-        this.loadCommentaires(); // Recharger les commentaires après ajout
+        this.commentaire = '';
+        this.loadCommentaires();
       },
       error: (error) => {
         console.error('Erreur lors de l\'ajout du commentaire:', error);
@@ -116,13 +117,6 @@ export class ViewProjectComponent implements OnInit {
           console.log('Données reçues:', response);
           const commentairesPourProjet = response.data[this.project.id] || [];
           this.commentaires = commentairesPourProjet;
-
-          this.commentaires.forEach(commentaire => {
-            console.log('Current User ID:', this.currentUserId);
-            console.log('ID Utilisateur Auteur du Commentaire:', commentaire.habitant.user_id); // Assurez-vous que cet ID correspond à l'utilisateur lié à l'habitant
-          });
-          
-          console.log('Commentaires filtrés:', this.commentaires); // Vérifiez que `habitant.id` est correct
         },
         (error) => {
           console.error('Erreur lors de la récupération des commentaires:', error);
@@ -134,10 +128,27 @@ export class ViewProjectComponent implements OnInit {
   loadVotesPour(projectId: number): void {
     this.votesService.getAllVotes().subscribe(
       (response: any) => {
-        // Accéder au tableau des votes à partir de la réponse
-        const votesParProjet = response.data || []; // Assurez-vous que `response.data` est un tableau
+        console.log('Réponse de getAllVotes:', response);
+        const votesParProjet = response.data || [];
         const projetVotes = votesParProjet.find((vote: any) => vote.projet_id === projectId);
+        console.log('Votes pour le projet:', projetVotes);
         this.votesPour = projetVotes ? projetVotes.total_votes : 0;
+  
+        // Assurez-vous que currentUserId est défini avant d'appeler getUserVote
+        if (this.currentUserId !== undefined) {
+          this.votesService.getUserVote(projectId, this.currentUserId).subscribe(
+            (userVoteResponse: any) => {
+              console.log('Réponse de getUserVote:', userVoteResponse);
+              this.voted = userVoteResponse.data ? true : false;
+            },
+            (error) => {
+              console.error('Erreur lors de la récupération du vote de l\'utilisateur:', error);
+            }
+          );
+        } else {
+          console.error('ID utilisateur non défini');
+        }
+  
         console.log('Nombre de votes pour:', this.votesPour);
       },
       (error) => {
@@ -146,8 +157,53 @@ export class ViewProjectComponent implements OnInit {
     );
   }
   
+  onVotePour(): void {
+    if (!this.currentUserId || !this.project?.id) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Impossible de voter. Veuillez réessayer.',
+      });
+      return;
+    }
   
-
+    if (this.voted) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Information',
+        text: 'Vous avez déjà voté pour ce projet.',
+      });
+      return;
+    }
+  
+    const vote = {
+      projet_id: this.project.id,
+      statut: 'pour'
+    };
+  
+    this.votesService.addVote(vote).subscribe({
+      next: (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Succès',
+          text: response.message || 'Vote ajouté avec succès.',
+        });
+        this.voted = true; // Marquer comme voté
+        this.loadVotesPour(this.project.id); // Recharger le nombre de votes pour mettre à jour l'affichage
+      },
+      error: (error) => {
+        console.error('Erreur lors de l\'ajout du vote:', error);
+        const errorMessage = error?.error?.message || 'vous avez deja voté.';
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: errorMessage,
+        });
+      }
+    });
+  }
+  
+    
   getImageUrl(photo: string): string {
     return photo ? `http://127.0.0.1:8000/storage/photos/${photo}` : 'https://via.placeholder.com/50';
   }
@@ -217,7 +273,7 @@ export class ViewProjectComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             });
-            this.loadCommentaires(); // Recharger les commentaires après suppression
+            this.loadCommentaires();
           },
           error: (error) => {
             console.error('Erreur lors de la suppression du commentaire:', error);

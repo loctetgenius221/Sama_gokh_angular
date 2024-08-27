@@ -70,18 +70,23 @@
             </div>
             <div class="row d-flex gap-3">
               <div class="approuve text-center">
-                <button>
-                  <span class="material-symbols-outlined">thumb_up</span>
-                  <span>{{ votesPour }}</span> <!-- Afficher le nombre de votes "pour" -->
-                </button>
+                <div>
+                  <i 
+                    class="vote-icon" 
+                    [ngClass]="{'voted': voted, 'not-voted': !voted}"
+                    (click)="onVotePour()">
+                    <span class="material-symbols-outlined">thumb_up</span>
+                  </i>
+                  <span class="vote-count">{{ votesPour }}</span>
+                </div>
                 
-                <h3>{{ project?.approuve_count }}</h3>
+                
+                
               </div>
               <div class="desapprouve text-center">
                 <button>
                   <span class="material-symbols-outlined">thumb_down</span>
                 </button>
-                <h3>{{ project?.desapprouve_count }}</h3>
               </div>
               <div class="col"></div>
             </div>

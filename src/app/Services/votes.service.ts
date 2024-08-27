@@ -27,7 +27,15 @@ getAllVotes(): Observable<any[]> {
 }
 
  
-
+ // Méthode pour obtenir le vote d'un utilisateur spécifique pour un projet
+ getUserVote(projectId: number, userId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/votes/user/${userId}/${projectId}`, { headers: this.getHeaders() }).pipe(
+    catchError(error => {
+      console.error('Erreur lors de la récupération du vote de l\'utilisateur:', error);
+      return this.handleError(error);
+    })
+  );
+}
 
   addVote(Vote: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/votes`, Vote, { headers: this.getHeaders() }).pipe(
