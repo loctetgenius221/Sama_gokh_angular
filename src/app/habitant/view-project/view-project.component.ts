@@ -9,6 +9,7 @@ import { CommentairesService } from '../../Services/commentaires.service'; // Im
 import localeFR from '@angular/common/locales/fr';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { VotesService } from '../../Services/votes.service'; // Importer VotesService
 
 registerLocaleData(localeFR, 'fr');
 
@@ -25,13 +26,15 @@ export class ViewProjectComponent implements OnInit {
   currentUserId: number | undefined;
   commentaire: string = ''; // Propriété pour stocker le commentaire
   commentaires: any[] = []; // Propriété pour stocker les commentaires
+  votesPour: number = 0; // Propriété pour stocker le nombre de votes "pour"
 
   constructor(
     private projetsService: ProjetsService,
     private authService: AuthService,
-    private commentairesService: CommentairesService, // Injecter CommentairesService
+    private commentairesService: CommentairesService, 
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private votesService: VotesService,
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +49,6 @@ export class ViewProjectComponent implements OnInit {
       }
     );
   }
-  
 
   loadProject(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -58,7 +60,7 @@ export class ViewProjectComponent implements OnInit {
             photo: data.photo ? this.baseUrl + data.photo : 'https://via.placeholder.com/300x200'
           };
           console.log('Project:', this.project);
-          console.log('Current User ID:', this.currentUserId);
+          this.loadVotesPour(this.project.id); // Charger les votes pour le projet
           this.loadCommentaires();
         },
         (error) => {
@@ -106,6 +108,7 @@ export class ViewProjectComponent implements OnInit {
       }
     });
   }
+
   loadCommentaires(): void {
     if (this.project && this.project.id) {
       this.commentairesService.getAllCommentaires().subscribe(
@@ -127,12 +130,28 @@ export class ViewProjectComponent implements OnInit {
       );
     }
   }
+
+  loadVotesPour(projectId: number): void {
+    this.votesService.getAllVotes().subscribe(
+      (response: any) => {
+        // Accéder au tableau des votes à partir de la réponse
+        const votesParProjet = response.data || []; // Assurez-vous que `response.data` est un tableau
+        const projetVotes = votesParProjet.find((vote: any) => vote.projet_id === projectId);
+        this.votesPour = projetVotes ? projetVotes.total_votes : 0;
+        console.log('Nombre de votes pour:', this.votesPour);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des votes pour:', error);
+      }
+    );
+  }
   
   
+
   getImageUrl(photo: string): string {
     return photo ? `http://127.0.0.1:8000/storage/photos/${photo}` : 'https://via.placeholder.com/50';
   }
-  
+
   supprimerProjet(id: number): void {
     Swal.fire({
       title: 'Êtes-vous sûr?',
@@ -214,5 +233,4 @@ export class ViewProjectComponent implements OnInit {
       }
     });
   }
-  
 }
