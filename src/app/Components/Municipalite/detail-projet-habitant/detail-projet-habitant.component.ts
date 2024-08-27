@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import localeFR from '@angular/common/locales/fr'
+import localeFR from '@angular/common/locales/fr';
+import { ProjetsService } from '../../../Services/projets.service';  // Assurez-vous que le chemin est correct
 
 registerLocaleData(localeFR, 'fr');
 
@@ -15,18 +16,12 @@ registerLocaleData(localeFR, 'fr');
 })
 export class DetailProjetHabitantComponent implements OnInit {
   projetId!: string;
-  projetDetails: any; // Utilisez un type approprié pour les détails du projet
+  project: any; // Utilisez ce nom pour correspondre avec le template
 
-  habitant = {
-    id: '1'
-  };
-
-  // Données statiques pour exemple
-  staticProjects = [
-    { id: '1', nom: 'Ville Verte et Connectée', statut: 'proposé', dateDebut: '2024-09-01', dateFin: '2024-11-01', budget: 3000000,  description: 'Description plus approfondie avec les étapes importantes, les parties prenantes, et les bénéfices attendus pour la communauté.'},
-  ];
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private projetsService: ProjetsService // Assurez-vous d'injecter le service
+  ) {}
 
   ngOnInit(): void {
     this.projetId = this.route.snapshot.paramMap.get('id')!;
@@ -34,6 +29,18 @@ export class DetailProjetHabitantComponent implements OnInit {
   }
 
   loadDetails(): void {
-    this.projetDetails = this.staticProjects.find(p => p.id === this.projetId);
+    this.projetsService.getProjetById(+this.projetId).subscribe(
+      (data: any) => {
+        this.project = {
+          ...data,
+          photo: data.photo ? 'http://127.0.0.1:8000/storage/photos/' + data.photo : 'https://via.placeholder.com/300x200'
+        };
+        console.log('Détails du projet:', this.project);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des détails du projet:', error);
+      }
+    );
   }
 }
+
