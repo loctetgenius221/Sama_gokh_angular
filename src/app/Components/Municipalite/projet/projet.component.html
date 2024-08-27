@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 <div class="project-container">
   <div class="mb-4" style="float: right;">
     <button routerLink="/sidebar1/projet/ajouter" type="button" class="btn btn-custom">Ajouter un Projet</button>
@@ -13,11 +15,10 @@
         <option value="nom">Nom du projet</option>
       </select>
     </div>
-    <input type="text" [(ngModel)]="filterValue" [placeholder]="getPlaceholder()" (input)="applyFilters()" class="form-control  ">
+    <input type="text" [(ngModel)]="filterValue" [placeholder]="getPlaceholder()" (input)="applyFilters()" class="form-control " placeholder="Entrez le mot">
   </div>
   
-
-  <table class="project-table">
+  <table class="project-table table table-striped mt-3">
     <thead>
       <tr>
         <th>Nom du projet</th>
@@ -27,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let projet of filteredProjets">
+      <tr *ngFor="let projet of paginatedFilteredProjets()">
         <td>{{ projet.nom }}</td>
         <td>{{ projet.budget }}</td>
         <td>{{ projet.statut }}</td>
@@ -45,5 +46,26 @@
       </tr>
     </tbody>
   </table>
+  
+  <!-- Pagination controls -->
+  <div class="pagination-controls d-flex justify-content-end mt-3">
+    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-icon">
+      <span class="material-symbols-outlined">arrow_back_ios</span>
+    </button>
+  
+    <ng-container *ngFor="let page of getPages(); let i = index">
+      <button (click)="goToPage(page)"
+              [ngStyle]="{'border-color': currentPage === page ? '#2C6B59' : '#6c757d', 'color': currentPage === page ? '#2C6B59' : '#6c757d'}"
+              class="btn mx-1">
+        {{ page }}
+      </button>
+    </ng-container>
+  
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-icon">
+      <span class="material-symbols-outlined">arrow_forward_ios</span>
+    </button>
+    
+  </div>
+  
   <router-outlet></router-outlet>
 </div>

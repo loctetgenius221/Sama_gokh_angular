@@ -81,4 +81,7 @@
     background-color: #cc0000;
     color:#ffffff;
   }
-  
+  .row{
+    display: flex;
+    align-items: center;
+  }

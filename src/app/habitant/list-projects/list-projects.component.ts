@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ProjectService } from '../../project.service';
 import { HeaderComponent } from "../../header/header.component";
 import { FooterComponent } from "../../footer/footer.component";
+import { ProjetsService } from "../../Services/projets.service";
 
 @Component({
   selector: 'app-list-projects',
@@ -13,19 +13,19 @@ import { FooterComponent } from "../../footer/footer.component";
   styleUrls: ['./list-projects.component.css']
 })
 export class ListProjectsComponent implements OnInit {
-  projects: any[] = [];
+  projets: any[] = [];
   loading: boolean = true;
 
-  constructor(private projectService: ProjectService) {}
+  constructor( private projetsService: ProjetsService,) {}
 
   ngOnInit(): void {
     this.loadProjects();
   }
 
   loadProjects(): void {
-    this.projectService.getAllProjects().subscribe(
-      (data) => {
-        this.projects = data;
+    this.projetsService.getAllProjets().subscribe(
+      (response: { data: any[] }) => {
+        this.projets = response.data; // Extraire le tableau de projets
         this.loading = false;
       },
       (error) => {
@@ -34,4 +34,5 @@ export class ListProjectsComponent implements OnInit {
       }
     );
   }
+  
 }

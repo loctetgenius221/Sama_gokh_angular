@@ -34,7 +34,8 @@ export class AddProjectComponent implements OnInit {
       date_fin: ['', Validators.required],
       statut: ['en-attente', Validators.required],
       photo: [null],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      etat: [null] 
     });
   }
 
