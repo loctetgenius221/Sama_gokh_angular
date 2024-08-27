@@ -1,0 +1,60 @@
+<!-- Navbar -->
+<app-header></app-header>
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Formulaire d'ajout de Projet</h2>
+    <form [formGroup]="projetForm" (ngSubmit)="onSubmit()">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" id="nom" class="form-control" formControlName="nom" placeholder="Nom">
+        </div>
+        <div class="col-md-6">
+          <label for="budget" class="form-label">Budget</label>
+          <input type="number" id="budget" class="form-control" formControlName="budget" placeholder="Budget">
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="dateDebut" class="form-label">Date de début</label>
+          <input type="date" id="dateDebut" class="form-control" formControlName="dateDebut" placeholder="Date de début">
+        </div>
+        <div class="col-md-6">
+          <label for="dateFin" class="form-label">Date de fin</label>
+          <input type="date" id="dateFin" class="form-control" formControlName="dateFin" placeholder="Date de fin">
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="statut" class="form-label">Statut</label>
+            <select id="statut" class="form-control readonly-select" formControlName="statut">
+              <option value="en-attente">En attente</option>
+              <option value="en cours">En cours</option>
+              <option value="terminé">Terminé</option>
+            </select>
+          </div>
+          
+        <div class="col-md-6">
+          <label for="photo" class="form-label">Photo</label>
+          <input type="file" id="photo" class="form-control" (change)="onFileChange($event)">
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" class="form-control" rows="3" formControlName="description" placeholder="Description du projet"></textarea>
+        </div>
+      </div>
+  
+      <div class="foot mt-4">
+        <button type="submit" class="btn btn_submit me-3" [disabled]="projetForm.invalid">Ajouter</button>
+        <button routerLink="/home"  class="btn btn_cancel">Annuler</button>
+      </div>
+    </form>
+  </div>
+  
+  <app-footer></app-footer>

@@ -23,6 +23,7 @@ import { DashboardComponent as MuniDashboardComponent } from './Components/Munic
 import { DashboardComponent as AdminDashboardComponent } from './Components/Administration/dashboard/dashboard.component';
 import { PortailComponent } from './Components/portail/portail.component';
 import { ParametreComponent } from './Components/Municipalite/parametre/parametre.component';
+import { AddProjectComponent } from './habitant/add-project/add-project.component';
 
 
 
@@ -35,7 +36,7 @@ export const routes: Routes = [
 
   { path: "home", component: HabitantHomeComponent },
   // { path: "profile", component: ProfileComponent },
-  // { path: 'add-project', component: AddProjectComponent },
+ { path: "ajout_projet", component: AddProjectComponent},
   // { path: 'edit-project', component: EditProjectComponent },
   { path: "project",component: ViewProjectComponent},
   { path: 'list-projects', component: ListProjectsComponent },
