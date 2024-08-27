@@ -94,6 +94,18 @@ button {
 
   /*  */
 
+  .projet-content{
+    position: relative;
+  }
+
+  .projet-content .baobab{
+    position: absolute;
+    top: -15%;
+    left: -5%;
+    transform: rotate(180deg);
+    opacity: .4;
+  }
+
   header .navbar .nav-link {
     font-size: 18px;
     font-weight: bold;
@@ -207,6 +219,9 @@ button {
   }
 
   @media (max-width: 768px) {
+    .projet-content .baobab{
+      display: none;
+    }
     .projet-content .row {
       flex-direction: column;
     }
