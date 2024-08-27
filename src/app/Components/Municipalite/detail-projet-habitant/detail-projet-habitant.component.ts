@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeFR from '@angular/common/locales/fr';
-import { ProjetsService } from '../../../Services/projets.service';  // Assurez-vous que le chemin est correct
+import { ProjetsService } from '../../../Services/projets.service'; 
+import { Location } from '@angular/common';
 
 registerLocaleData(localeFR, 'fr');
 
@@ -20,7 +21,8 @@ export class DetailProjetHabitantComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private projetsService: ProjetsService // Assurez-vous d'injecter le service
+    private projetsService: ProjetsService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -42,5 +44,9 @@ export class DetailProjetHabitantComponent implements OnInit {
       }
     );
   }
+  goBack(): void {
+    this.location.back();
+  }
+  
 }
 
