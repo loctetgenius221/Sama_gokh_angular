@@ -41,11 +41,11 @@
   <hr class="underline">
   <div *ngFor="let projet of projets" class="project-cards">
     <div class="project-image-container">
-     <img [src]="projet.photo || 'https://via.placeholder.com/300x200'" alt="Image du projet" class="project-image">
+      <img [src]="projet.photo" alt="Image du projet" class="project-image">
     </div>
     <div class="project-card">
       <div class="project-content">
-        <h3>{{ projet.titre }}</h3>
+        <h3>{{ projet.nom }}</h3>
         <p>{{ projet.description }}</p>
         <button class="details-btn">Voir Détail</button>
       </div>
