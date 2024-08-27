@@ -95,20 +95,31 @@
   <section>
     <div class="container my-4 d-flex flex-column">
       <!-- Section d'ajout de commentaire -->
-      <div class="input-group align-self-end">
-        <input type="text" class="form-control" placeholder="Ajouter un commentaire">
-        <button class="btn btn-outline-secondary" type="button">Envoyer</button>
-      </div>
-
+     
+<!-- Section pour ajouter des commentaires -->
+<div class="input-group align-self-end mb-3">
+  <input type="text" [(ngModel)]="commentaire" class="form-control" placeholder="Ajouter un commentaire">
+  <button class="btn btn-outline-secondary" type="button" (click)="ajouterCommentaire()">Envoyer</button>
+</div>
       <!-- Section des commentaires -->
-      <div class="comment-box d-flex">
-        <img src="" alt="Céline MENDY">
-        <div class="comment-content">
-          <div class="comment-header">Céline MENDY</div>
-          <div class="comment-text">si la municipalité réussi à le mettre en place ce projet, je penses que ces un super idée de projet</div>
-          <div class="comment-time">10h12 20 Août 2024</div>
-        </div>
+     <!-- Section pour afficher les commentaires -->
+     <div *ngFor="let commentaire of commentaires" class="comment-box d-flex">
+      <!-- Afficher la photo ou une URL par défaut -->
+      <img [src]="getImageUrl(commentaire.habitant.photo)" alt="{{ commentaire.habitant.nom }}">
+    
+      <div class="comment-content">
+        <div class="comment-header">{{ commentaire.habitant.prenom }}</div>
+        <div class="comment-text">{{ commentaire.contenu }}</div>
       </div>
+    
+      <!-- Bouton de suppression, visible uniquement pour l'auteur du commentaire -->
+<button *ngIf="currentUserId === commentaire.habitant.user_id" (click)="supprimerCommentaire(commentaire.id)" class="btn btn-danger btn-sm">
+  Supprimer
+</button>
+
+      
+    </div>
+    
     </div>
   </section>
 </main>
