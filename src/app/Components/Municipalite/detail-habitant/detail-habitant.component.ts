@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-detail-habitant',
   standalone: true,
-  imports: [RouterModule, CommonModule,RouterLink],
+  imports: [RouterModule, CommonModule, RouterLink],
   templateUrl: './detail-habitant.component.html',
   styleUrls: ['./detail-habitant.component.css']
 })
@@ -24,15 +24,15 @@ export class DetailHabitantComponent implements OnInit {
     private router: Router
   ) { }
 
- 
   ngOnInit(): void {
     this.habitantId = +this.route.snapshot.paramMap.get('id')!;
     this.getHabitantDetails();
+    this.loadProjetsByHabitant(this.habitantId); // Passage de habitantId en argument
   }
 
   getHabitantDetails() {
     this.habitantsService.getHabitantById(this.habitantId).subscribe(
-      response => {
+      (response: any) => { 
         if (response.status) {
           this.habitant = response.data;
           this.habitant.age = this.calculateAge(this.habitant.date_naiss);
@@ -45,13 +45,22 @@ export class DetailHabitantComponent implements OnInit {
           console.error('Erreur: ', response.message);
         }
       },
-      error => {
+      (error: HttpErrorResponse) => { // Ajout du type HttpErrorResponse ici
         console.error('Erreur de serveur: ', error);
       }
     );
   }
   
-  
+  loadProjetsByHabitant(habitantId: number): void {
+    this.projetsService.getProjetsByHabitant(habitantId).subscribe(
+      (response: { data: any[] }) => {
+        this.projets = response.data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des projets:', error);
+      }
+    );
+  }
   
   calculateAge(dateNaiss: string): number {
     const today = new Date();
@@ -66,8 +75,7 @@ export class DetailHabitantComponent implements OnInit {
     return age;
   }
   
-
   voirDetails(projetId: number): void {
-    this.router.navigate(['/habitant/detail/projet', projetId]);
+    this.router.navigate(['/sidebar1/habitant/detail/projet', projetId]);
   }
 }

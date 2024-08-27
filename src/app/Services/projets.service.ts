@@ -64,7 +64,18 @@ export class ProjetsService {
     );
   }
   
-
+  getProjetsByHabitant(habitantId: number): Observable<{ data: any[] }> {
+    console.log(`Envoi de la requête pour obtenir les projets de l'habitant avec l'ID : ${habitantId}`);
+    return this.http.get<{ data: any[] }>(`${this.apiUrl}/projets/habitant/${habitantId}`, { headers: this.getHeaders() }).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la requête:', error);
+        return this.handleError(error);
+      })
+    );
+  }
+  
+  
+  
 
   deleteProjet(id: number): Observable<any> {
     console.log(`Envoi de la requête de suppression pour l'ID : ${id}`);
