@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
 <app-header></app-header>
 <main>
   <section class="banner d-flex align-items-center">
@@ -6,8 +9,8 @@
       <h1>Détail du projet</h1>
     </div>
   </section>
-  
-  <section class="projet-content">
+
+  <section class="projet-content mt-5">
     <div class="container">
       <div class="row d-flex">
         <div class="col projet-txt">
@@ -22,8 +25,13 @@
                 <!-- Icône de calendrier -->
                 <span class="material-symbols-outlined">calendar_today</span>
                 <div>
-                  <h4>Date de Début : {{ project?.date_debut | date:'dd/MM/yyyy' }}</h4>
-                  <h4>Date de Fin : {{ project?.date_fin | date:'dd/MM/yyyy' }}</h4>
+                  <h4>
+                    Date de Début :
+                    {{ project?.date_debut | date : "dd/MM/yyyy" }}
+                  </h4>
+                  <h4>
+                    Date de Fin : {{ project?.date_fin | date : "dd/MM/yyyy" }}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -33,7 +41,12 @@
                 <!-- Icône de budget -->
                 <span class="material-symbols-outlined">attach_money</span>
                 <div>
-                  <h4>{{ project?.budget | currency: 'F CFA':'symbol':'1.2-2':'fr' }}</h4>
+                  <h4>
+                    {{
+                      project?.budget
+                        | currency : "F CFA" : "symbol" : "1.2-2" : "fr"
+                    }}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -50,43 +63,54 @@
           </div>
           <!-- Section des boutons Modifier, Supprimer, et Retour -->
           <div class="action-buttons d-flex gap-3">
-            <button *ngIf="isCurrentUser()" class="btn btn-edit" [routerLink]="['/edit-project', project.id]">
+            <button
+              *ngIf="isCurrentUser()"
+              class="btn btn-edit"
+              [routerLink]="['/edit-project', project.id]"
+            >
               <span class="material-symbols-outlined">edit</span> Modifier
             </button>
-            <button *ngIf="isCurrentUser()" class="btn btn-delete" (click)="supprimerProjet(project.id)">
+            <button
+              *ngIf="isCurrentUser()"
+              class="btn btn-delete"
+              (click)="supprimerProjet(project.id)"
+            >
               <span class="material-symbols-outlined">delete</span> Supprimer
             </button>
             <button class="btn btn-back" (click)="goBack()">
               <span class="material-symbols-outlined">arrow_back</span> Retour
             </button>
           </div>
-          
         </div>
         <div class="col d-flex justify-content-end">
           <div class="d-flex flex-column gap-4">
             <div>
               <!-- Photo du projet -->
-              <img class="rounded" [src]="project?.photo" alt="Photo du projet" />
+              <img
+                class="rounded"
+                [src]="project?.photo"
+                alt="Photo du projet"
+              />
             </div>
-            <div class="row d-flex gap-3">
-              <div class="approuve text-center">
-                <div>
-                  <i 
-                    class="vote-icon" 
-                    [ngClass]="{'voted': voted, 'not-voted': !voted}"
-                    (click)="onVotePour()">
+            <div class="row d-flex ms-2 gap-3">
+              <div class="col-1 text-center" >
+                <div class="approuve">
+                  <i
+                    class="vote-icon"
+                    [ngClass]="{ voted: voted, 'not-voted': !voted }"
+                    (click)="onVotePour()"
+                  >
                     <span class="material-symbols-outlined">thumb_up</span>
                   </i>
                   <span class="vote-count">{{ votesPour }}</span>
                 </div>
-                
-                
-                
               </div>
-              <div class="desapprouve text-center">
-                <button>
-                  <span class="material-symbols-outlined">thumb_down</span>
-                </button>
+              <div class="col-1 text-center">
+                <div class="desapprouve">
+                  <i>
+                    <span class="material-symbols-outlined">thumb_down</span>
+                  </i>
+                </div>
               </div>
               <div class="col"></div>
             </div>
@@ -98,35 +122,50 @@
       </div>
     </div>
   </section>
-  
+
   <section>
     <div class="container my-4 d-flex flex-column">
       <!-- Section d'ajout de commentaire -->
-     
-<!-- Section pour ajouter des commentaires -->
-<div class="input-group align-self-end mb-3">
-  <input type="text" [(ngModel)]="commentaire" class="form-control" placeholder="Ajouter un commentaire">
-  <button class="btn btn-outline-secondary" type="button" (click)="ajouterCommentaire()">Envoyer</button>
-</div>
-      <!-- Section des commentaires -->
-     <!-- Section pour afficher les commentaires -->
-     <div *ngFor="let commentaire of commentaires" class="comment-box d-flex">
-      <!-- Afficher la photo ou une URL par défaut -->
-      <img [src]="getImageUrl(commentaire.habitant.photo)" alt="{{ commentaire.habitant.nom }}">
-    
-      <div class="comment-content">
-        <div class="comment-header">{{ commentaire.habitant.prenom }}</div>
-        <div class="comment-text">{{ commentaire.contenu }}</div>
-      </div>
-    
-      <!-- Bouton de suppression, visible uniquement pour l'auteur du commentaire -->
-<button *ngIf="currentUserId === commentaire.habitant.user_id" (click)="supprimerCommentaire(commentaire.id)" class="btn btn-danger btn-sm">
-  Supprimer
-</button>
 
-      
-    </div>
-    
+      <!-- Section pour ajouter des commentaires -->
+      <div class="input-group align-self-end mb-3">
+        <input
+          type="text"
+          [(ngModel)]="commentaire"
+          class="form-control"
+          placeholder="Ajouter un commentaire"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="ajouterCommentaire()"
+        >
+          Envoyer
+        </button>
+      </div>
+      <!-- Section des commentaires -->
+      <!-- Section pour afficher les commentaires -->
+      <div *ngFor="let commentaire of commentaires" class="comment-box d-flex">
+        <!-- Afficher la photo ou une URL par défaut -->
+        <img
+          [src]="getImageUrl(commentaire.habitant.photo)"
+          alt="{{ commentaire.habitant.nom }}"
+        />
+
+        <div class="comment-content">
+          <div class="comment-header">{{ commentaire.habitant.prenom }}</div>
+          <div class="comment-text">{{ commentaire.contenu }}</div>
+        </div>
+
+        <!-- Bouton de suppression, visible uniquement pour l'auteur du commentaire -->
+        <button
+          *ngIf="currentUserId === commentaire.habitant.user_id"
+          (click)="supprimerCommentaire(commentaire.id)"
+          class="btn btn-danger btn-sm"
+        >
+          Supprimer
+        </button>
+      </div>
     </div>
   </section>
 </main>
