@@ -5,20 +5,19 @@
     <!-- Logo -->
     <a class="navbar-brand" href="#">
       <img src="assets/img/logobeige01.svg" alt="Logo" width="200" height="80">
-
     </a>
 
     <!-- Pages de navigation -->
     <div class="d-flex align-items-center">
       <a class="nav-link" href="#"  type="button"
-      class="btn btn-primary"
+      class="btn btn-custom"
       data-bs-toggle="modal"
       data-bs-target="#notificationsModal"
     >
         <i class="fa-regular fa-bell"></i>
 
       </a>
-      <a class="nav-link" href="#">Accueil</a>
+      <a class="nav-link" [routerLink]="['/home']">Accueil</a>
       <a class="nav-link" href="#">Mes Projets</a>
       <a class="nav-link" href="#">
         <img src="assets/img/profile.png" alt="Profile" width="50" height="50" class="rounded-circle">

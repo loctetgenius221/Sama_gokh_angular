@@ -27,13 +27,28 @@
               </div>
               <div class="right-section">
                 <span class="iconify" data-icon="mdi:bell"></span>
-                <button (click)="navigateToParametre()" class="btn">
+                <button (click)="openParametreModal()" class="btn">
                     <span class="iconify" data-icon="mdi:cog"></span>
-                </button>                
-                                   
+                </button>      
               </div>
         </div>
         <router-outlet></router-outlet>
     </div>
 </div>
-  
+<div class="modal fade" id="parametreModal" tabindex="-1" aria-labelledby="parametreModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="parametreModalLabel">Paramètres de la Municipalité</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenu du modal -->
+          <app-parametre></app-parametre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>

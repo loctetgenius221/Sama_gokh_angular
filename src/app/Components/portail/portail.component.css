@@ -60,6 +60,12 @@ main .hero-banner .connexion {
 }
 
 /* Responsive Design */
+@media (max-width: 1488px) {
+  main .hero-banner {
+    height: 80vh;
+  }
+}
+
 @media (max-width: 1280px) {
   main .hero-banner .btn {
     padding: 14px 28px;
@@ -123,6 +129,15 @@ main #apropos {
   position: relative;
 }
 
+main #apropos .griffe {
+  position: absolute;
+  top: -75%;
+  left: -20%;
+  z-index: -1;
+  opacity: .1;
+  width: 75rem;
+}
+
 main #apropos .baobab {
   position: absolute;
   width: 100rem;
@@ -150,7 +165,7 @@ main #apropos .nos-mission-txt .col-txt {
 
 main #apropos .nos-mission-txt h2 {
   font-size: 20px;
-  line-height: 38px;
+  line-height: 32px;
   text-align: justify;
 }
 
@@ -171,7 +186,7 @@ main #apropos .apropos-title .griffe-apropos {
   top: -100%;
   left: -7%;
   z-index: -1;
-  opacity: 0.7;
+  opacity: 0.2;
 }
 
 main #apropos .apropos-title h1 {
@@ -180,12 +195,12 @@ main #apropos .apropos-title h1 {
 }
 
 main #apropos .apropos-title hr {
-  width: 110px;
-  height: 5px;
+  width: 90px;
+  height: 2px;
   background: #2c6b59;
   opacity: 1;
   margin-top: -10px;
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 main #apropos .col-right .card {
@@ -219,15 +234,29 @@ main #apropos .col-right .card {
 }
 
 /* Responsive Design */
+@media (max-width: 1488px)  {
+  main #apropos .nos-mission-txt .col-txt {
+    line-height: 0;
+  }
+
+  main #apropos .nos-mission-txt h2 {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
 @media (max-width: 1280px) {
   main #apropos .baobab {
-    width: 90rem;
-    right: -50%;
+    width: 70rem;
+    right: -40%;
     bottom: -30%;
   }
 }
 /* Styles pour les petits écrans (jusqu'à 768px) */
 @media (max-width: 768px) {
+  main #apropos .griffe {
+    display: none;
+  }
   main #apropos .baobab {
     display: none;
   }
@@ -387,6 +416,25 @@ main #commentçamarche2 .comment-title hr {
   margin-top: -10px;
 }
 
+@media (max-width: 1488px) {
+  main #commentçamarche .bg-beige,
+  main #commentçamarche2 .bg-green {
+    min-height: 260px;
+  }
+
+  main #commentçamarche .bg-beige iframe,
+  main #commentçamarche2 .bg-green iframe {
+    margin-top: -60px;
+    border-radius: 10px;
+    width: 460px;
+    height: 260px;
+  }
+  main #commentçamarche2 .bg-green .col-txt,
+  main #commentçamarche .bg-beige .col-txt {
+    margin-top: -65px;
+  }
+}
+
 @media (max-width: 768px) {
   main #commentçamarche .bg-beige,
   main #commentçamarche2 {
@@ -473,8 +521,15 @@ main .cta .btn {
 main .cta .button-content img {
   position: absolute;
   top: -50%;
-  opacity: .2;
+  opacity: 0.2;
   z-index: -1;
+}
+
+@media (max-width: 1488px) {
+  main .cta .btn {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 1280px) {
@@ -487,7 +542,6 @@ main .cta .button-content img {
     left: -30%;
   }
 }
-
 
 /* Statistiques */
 #statistiques {
@@ -568,6 +622,31 @@ main .cta .button-content img {
   width: 920px;
   z-index: 2;
 }
+@media (max-width: 1480px) {
+  #statistiques .pattern-renaissance {
+    position: absolute;
+    top: -40%;
+    right: 0%;
+    width: 820px;
+    z-index: 2;
+  }
+  #statistiques .bg-green .bande-beige {
+    width: 90vw;
+    background: #f4e3d2;
+    color: #4a4a4a;
+    margin-left: -400px;
+    padding-left: 440px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  #statistiques .bande-beige .col01 {
+    max-width: 200px;
+  }
+  #statistiques .bg-green .h3-title hr {
+    margin-left: 60px;
+    width: 70px;
+  }
+}
 
 @media (max-width: 1280px) {
   #statistiques .pattern-renaissance {
@@ -606,13 +685,11 @@ main .cta .button-content img {
   #statistiques .bg-green .h3-title hr {
     margin-left: 60px;
   }
-
 }
 
 @media (max-width: 768px) {
   #statistiques {
     overflow: hidden;
-    margin-bottom: 45px;
   }
   .row-stat-content {
     display: flex;
@@ -673,19 +750,6 @@ main .cta .button-content img {
   }
 }
 
-/* bande-blanche */
-main {
-  position: relative;
-}
-main .bande-blanche {
-  width: 100%;
-  height: 50px;
-  background: #fff;
-  position: relative;
-  bottom: 0;
-  z-index: 10;
-}
-
 /* Footer */
 
 footer {
@@ -705,3 +769,82 @@ footer .navbar .nav-link {
   color: #fff;
   text-align: center;
 }
+
+/* Témognages */
+#temoignages {
+  position: relative;
+  z-index: 20
+}
+
+#temoignages .baobapatterntesti1 {
+  position: absolute;
+  left: -15%;
+  z-index: 0;
+  transform: rotate(180deg);
+  opacity: .5;
+}
+
+#temoignages .baobapatterntesti {
+  position: absolute;
+  right: -5%;
+  z-index: 0;
+  opacity: .5;
+}
+
+.testimonials {
+  background-color: #f9f9f9;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  color: #2C6B59;
+}
+
+.testimonial {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.testimonial img {
+  border: 3px solid #2C6B59;
+  object-fit: cover;
+}
+
+.testimonial p {
+  font-size: 1.125rem;
+  color: #6c757d;
+}
+
+.testimonial h5 {
+  font-size: 1.25rem;
+  color: #2C6B59;
+}
+
+.testimonial p.text-muted {
+  font-size: 0.875rem;
+  color: #888;
+}
+
+@media (max-width: 1280px) {
+  #temoignages .baobapatterntesti1 {
+    top: -5%;
+    left: -15%;
+    z-index: 0;
+    transform: rotate(180deg);
+  }
+  #temoignages .baobapatterntesti {
+    right: -15%;
+    bottom: -5%;
+  }
+}
+
+@media (max-width: 768px) {
+  #temoignages .baobapatterntesti1 {
+    display: none;
+  }
+
+  #temoignages .baobapatterntesti {
+    display: none;
+  }
+}
+

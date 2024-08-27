@@ -21,6 +21,10 @@
 .navbar .rounded-circle {
   border: 2px solid #F4E3D2; /* Bordure autour de l'image de profil */
 }
+
+.btn-custom{
+  color: #F4E3D2;
+}
 /* Styles de base pour les notifications */
 #notifications {
   padding: 20px;

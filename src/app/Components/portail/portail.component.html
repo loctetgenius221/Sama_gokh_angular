@@ -61,12 +61,12 @@
             <i class="fa-solid fa-circle-user"></i>Connexion
           </a>
         </div>
-        
       </div>
     </div>
   </section>
   <!-- Section A propos -->
   <section id="apropos" class="my-5">
+    <img class="griffe" src="/assets/images/griffe_de_lion.svg" alt="" />
     <div class="container">
       <div class="row apropos-content">
         <div class="col">
@@ -234,7 +234,7 @@
   <section class="cta py-5">
     <div class="container d-flex justify-content-center">
       <div class="button-content">
-        <img src="/assets/images/drapeausnpint.png" alt="">
+        <img src="/assets/images/drapeausnpint.png" alt="" />
         <a [routerLink]="['/login']" class="btn">Soumettre un projet</a>
       </div>
     </div>
@@ -261,7 +261,7 @@
               </p>
             </div>
             <div class="row bande-beige">
-              <div class="col">
+              <div class="col col01">
                 <h1>557</h1>
                 <p>communes</p>
               </div>
@@ -284,7 +284,119 @@
       </div>
     </div>
   </section>
-  <section class="bande-blanche"></section>
+
+  <!-- Témoignages -->
+  <section id="temoignages">
+    <img
+      class="baobapatterntesti1"
+      src="/assets/images/baobabsamagokh.svg"
+      alt=""
+    />
+    <img
+      class="baobapatterntesti"
+      src="/assets/images/baobabsamagokh.svg"
+      alt=""
+    />
+    <div class="testimonials py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Ce qu'ils disent de notre platforme</h2>
+        <div
+          id="carouselTestimonials"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                  <div class="testimonial p-4 text-center shadow-sm rounded">
+                    <img
+                      src="/assets/images/toast1.jpg"
+                      alt="Client"
+                      class="rounded-circle mb-4"
+                      width="100"
+                      height="100"
+                    />
+                    <p class="lead">
+                      "Cette plateforme a totalement changé la façon dont je
+                      m'implique dans ma communauté. Facile à utiliser et
+                      vraiment efficace!"
+                    </p>
+                    <h5 class="mt-4">Mouhamed Thiam</h5>
+                    <p class="text-muted">Habitant de la commune de Thiaroye</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                  <div class="testimonial p-4 text-center shadow-sm rounded">
+                    <img
+                      src="/assets/images/toast2.jpg"
+                      alt="Client"
+                      class="rounded-circle mb-4"
+                      width="100"
+                      height="100"
+                    />
+                    <p class="lead">
+                      "Un excellent moyen de suivre les projets de la commune et
+                      de donner son avis en toute simplicité."
+                    </p>
+                    <h5 class="mt-4">Marie Seck</h5>
+                    <p class="text-muted">
+                      Résidente active de la commune de Mbao
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                  <div class="testimonial p-4 text-center shadow-sm rounded">
+                    <img
+                      src="/assets/images/toast3.jpg"
+                      alt="Client"
+                      class="rounded-circle mb-4"
+                      width="100"
+                      height="100"
+                    />
+                    <p class="lead">
+                      "J'adore la transparence que cette plateforme apporte dans
+                      les décisions municipales."
+                    </p>
+                    <h5 class="mt-4">Mariame Sall</h5>
+                    <p class="text-muted">
+                      Citoyen engagé de la commune de Guédiewaye
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselTestimonials"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselTestimonials"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Section Galerie -->
 </main>
@@ -292,10 +404,7 @@
 <footer>
   <nav class="navbar navbar-expand-md navbar-light">
     <div class="container">
-      <div
-        class="justify-content-center"
-        id="navbarNav"
-      >
+      <div class="justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#apropos">A Propos</a>

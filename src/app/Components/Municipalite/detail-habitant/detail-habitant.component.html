@@ -17,7 +17,7 @@
             <tr *ngFor="let projet of projets">
               <td>{{ projet.nom }}</td>
               <td>
-                <a [routerLink]="['/habitant/detail/projet', projet.id]" class="icon-link">
+                <a [routerLink]="['/sidebar1/habitant/detail/projet', projet.id]" class="icon-link">
                 <span class="iconify" data-icon="mdi:eye" ></span>
                 </a>
               </td>
@@ -29,7 +29,7 @@
       <!-- Détails de l'habitant -->
       <div class="col-md-8">
         <div class="detail-card">
-          <img src="https://via.placeholder.com/300x200" alt="Photo de l'habitant">
+          <img [src]="habitant.photo ? habitant.photo : 'https://via.placeholder.com/300x200'" alt="Photo de l'habitant">
           <h4 class="name">{{ habitant.prenom }} {{ habitant.nom }}</h4>
           <p class="job">{{ habitant.profession }}</p>
   

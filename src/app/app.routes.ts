@@ -1,8 +1,7 @@
 import { Routes } from '@angular/router';
 import { HabitantHomeComponent } from './habitant/home/home.component';
-import { ProfileComponent } from './habitant/profile/profile.component';
-import { AddProjectComponent } from './habitant/add-project/add-project.component';
-import { EditProjectComponent } from './habitant/edit-project/edit-project.component';
+// import { ProfileComponent } f      
+// import { EditProjectComponent } from './habitant/edit-project/edit-project.component';
 import { ViewProjectComponent } from './habitant/view-project/view-project.component';
 import { ListProjectsComponent } from './habitant/list-projects/list-projects.component';
 import { LoginComponent } from './Components/Auth/login/login.component';
@@ -24,6 +23,9 @@ import { DashboardComponent as MuniDashboardComponent } from './Components/Munic
 import { DashboardComponent as AdminDashboardComponent } from './Components/Administration/dashboard/dashboard.component';
 import { PortailComponent } from './Components/portail/portail.component';
 import { ParametreComponent } from './Components/Municipalite/parametre/parametre.component';
+import { AddProjectComponent } from './habitant/add-project/add-project.component';
+import { EditProjectComponent } from './habitant/edit-project/edit-project.component';
+
 
 
 export const routes: Routes = [
@@ -34,10 +36,10 @@ export const routes: Routes = [
   { path: 'portail', component: PortailComponent },
 
   { path: "home", component: HabitantHomeComponent },
-  { path: "profile", component: ProfileComponent },
-  { path: 'add-project', component: AddProjectComponent },
-  { path: 'edit-project', component: EditProjectComponent },
-  { path: "project",component: ViewProjectComponent},
+  // { path: "profile", component: ProfileComponent },
+ { path: "ajout_projet", component: AddProjectComponent},
+   { path: 'edit-project/:id', component: EditProjectComponent },
+  { path: 'projet/:id',component: ViewProjectComponent},
   { path: 'list-projects', component: ListProjectsComponent },
 
 

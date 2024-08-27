@@ -24,6 +24,15 @@ export class ProjetsService {
       })
     );
   }
+  getProjetsByMunicipalite(municipaliteId: number): Observable<{ data: any[] }> {
+    return this.http.get<{ data: any[] }>(`${this.apiUrl}/projets/municipalite/${municipaliteId}`, { headers: this.getHeaders() }).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la requête:', error);
+        return this.handleError(error);
+      })
+    );
+  }
+  
   
 
   getProjetById(id: number): Observable<any> {
@@ -38,14 +47,29 @@ export class ProjetsService {
     );
   }
 
-  updateProjet(projet: any): Observable<any> {
-    const projetId = projet.id; // Suppose que l'objet projet a un champ id
+  updateProjet(projet: FormData): Observable<any> {
+    const projetId = projet.get('id');
+    if (!projetId) {
+        console.error('Project ID is undefined');
+        return throwError('Project ID is undefined');
+    }
     return this.http.put<any>(`${this.apiUrl}/projets/${projetId}`, projet, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
+}
+
+  getProjetsByHabitant(habitantId: number): Observable<{ data: any[] }> {
+    console.log(`Envoi de la requête pour obtenir les projets de l'habitant avec l'ID : ${habitantId}`);
+    return this.http.get<{ data: any[] }>(`${this.apiUrl}/projets/habitant/${habitantId}`, { headers: this.getHeaders() }).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la requête:', error);
+        return this.handleError(error);
+      })
+    );
   }
   
-
+  
+  
 
   deleteProjet(id: number): Observable<any> {
     console.log(`Envoi de la requête de suppression pour l'ID : ${id}`);

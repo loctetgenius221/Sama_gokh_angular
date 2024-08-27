@@ -78,45 +78,48 @@ onFileChange(event: any): void {
 
 onSubmit(): void {
   if (this.projetForm.valid) {
-    const formData = new FormData();
-    Object.keys(this.projetForm.value).forEach(key => {
-      formData.append(key, this.projetForm.value[key]);
-    });
-    if (this.imageFile) {
-      formData.append('photo', this.imageFile, this.imageFile.name);
-    }
+      const formData = new FormData();
+      
+      // Ajoutez chaque champ du formulaire à FormData
+      Object.keys(this.projetForm.controls).forEach(key => {
+          const control = this.projetForm.get(key);
+          if (control && control.value) {
+              formData.append(key, control.value);
+          }
+      });
 
-    const projet = {
-      ...this.projetForm.value,
-      id: this.projetId
-    };
-
-    this.projetsService.updateProjet(projet).subscribe(
-      () => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Projet modifié',
-          text: 'Le projet a été modifié avec succès!',
-          showConfirmButton: false,
-          timer: 2000
-        });
-        setTimeout(() => {
-          this.router.navigate(['/sidebar1/projet']);
-        }, 2000);
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Erreur lors de la modification du projet:', error.message);
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur',
-          text: 'Une erreur s\'est produite lors de la modification du projet.',
-          showConfirmButton: false,
-          timer: 3000
-        });
+      // Ajouter l'ID du projet
+      if (this.projetId) {
+          formData.append('id', this.projetId.toString());
       }
-    );
+
+      this.projetsService.updateProjet(formData).subscribe({
+          next: (response) => {
+              console.log('Projet mis à jour avec succès:', response);
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Projet mis à jour',
+                  text: 'Le projet a été mis à jour avec succès!',
+                  showConfirmButton: false,
+                  timer: 2000
+              });
+              setTimeout(() => {
+                  this.router.navigate(['/sidebar1/projet']);
+              }, 2000);
+          },
+          error: (error) => {
+              console.error('Erreur lors de la mise à jour du projet:', error);
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Erreur',
+                  text: 'Une erreur s\'est produite lors de la mise à jour du projet.',
+                  showConfirmButton: false,
+                  timer: 3000
+              });
+          }
+      });
   }
 }
 
-  
+
 }

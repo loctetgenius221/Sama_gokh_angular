@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router'; 
+import { Router, RouterModule } from '@angular/router';
+import { ParametreComponent } from '../parametre/parametre.component';
 import { CommunesService } from '../../../Services/communes.service';
 import { AuthService } from '../../../Services/auth/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-muni',
   standalone: true,
-  imports: [RouterModule,RouterLink],
+  imports: [ParametreComponent,RouterModule],
   templateUrl: './sidebar-muni.component.html',
-  styleUrl: './sidebar-muni.component.css'
+  styleUrls: ['./sidebar-muni.component.css']
 })
 export class SidebarMuniComponent implements OnInit {
-  nomCommune: string | undefined; // Variable pour stocker le nom de la commune
+  nomCommune: string | undefined;
 
-  constructor(private communesService: CommunesService,private authService: AuthService,private router: Router) {}
+  constructor(private communesService: CommunesService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Appel au service pour récupérer les informations de la municipalité connectée
     this.communesService.getMunicipaliteConnectee().subscribe(
       (data) => {
-        this.nomCommune = data.nom_commune; // Assigner le nom de la commune à la variable
+        this.nomCommune = data.nom_commune;
       },
       (error) => {
         console.error('Erreur lors de la récupération des données de la municipalité', error);
@@ -29,12 +28,10 @@ export class SidebarMuniComponent implements OnInit {
   }
 
   logout(event: Event) {
-    event.preventDefault(); // Empêche le comportement par défaut du lien
+    event.preventDefault();
     this.authService.logout().subscribe(
       () => {
-        // Effacer les données de session après une déconnexion réussie
         this.authService.clearSession();
-        // Rediriger vers la page de connexion
         this.router.navigate(['/login']);
       },
       error => {
@@ -43,7 +40,11 @@ export class SidebarMuniComponent implements OnInit {
     );
   }
 
-  navigateToParametre(): void {
-    this.router.navigate(['/sidebar1/parametre']);
+  openParametreModal() {
+    const modalElement = document.getElementById('parametreModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
   }
 }
