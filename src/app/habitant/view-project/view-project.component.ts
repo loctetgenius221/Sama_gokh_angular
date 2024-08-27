@@ -13,7 +13,7 @@ registerLocaleData(localeFR, 'fr');
 @Component({
   selector: 'app-view-project',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent,RouterLink],
+  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink],
   templateUrl: './view-project.component.html',
   styleUrls: ['./view-project.component.css']
 })
@@ -32,6 +32,7 @@ export class ViewProjectComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUserDetails().subscribe(
       (userDetails) => {
+        console.log('Détails de l\'utilisateur:', userDetails); // Debugging line
         this.currentUserId = userDetails.data.id;
         this.loadProject();
       },
@@ -40,22 +41,30 @@ export class ViewProjectComponent implements OnInit {
       }
     );
   }
+  
 
   loadProject(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.projetsService.getProjetById(+id).subscribe(
-        (data: any) => { // Utilisation de any pour data
+        (data: any) => {
           this.project = {
             ...data,
             photo: data.photo ? this.baseUrl + data.photo : 'https://via.placeholder.com/300x200'
           };
+          console.log('Project:', this.project); // Debugging line
+          console.log('Current User ID:', this.currentUserId); // Debugging line
         },
         (error) => {
           console.error('Erreur lors de la récupération du projet:', error);
         }
       );
     }
+  }
+  
+
+  isCurrentUser(): boolean {
+    return this.project && this.currentUserId === this.project.user_id;
   }
 
   supprimerProjet(id: number): void {
@@ -100,10 +109,5 @@ export class ViewProjectComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['/home']); // Remplacez '/' par la route souhaitée si nécessaire
-  }
-
-  // Vérifie si l'utilisateur connecté est le créateur du projet
-  isCurrentUser(): boolean {
-    return this.project && this.currentUserId === this.project.creator_id;
   }
 }
