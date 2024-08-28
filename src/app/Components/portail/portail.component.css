@@ -4,10 +4,6 @@
   transition: linear 0.3s ease;
 }
 
-.navbar ul a:hover {
-  border-bottom: 3px solid #2c6b59;
-}
-
 main .hero-banner {
   height: 90vh;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -846,5 +842,91 @@ footer .navbar .nav-link {
   #temoignages .baobapatterntesti {
     display: none;
   }
+}
+
+/* ****** Transitions et animations ****** */
+.btn {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+section.hero-banner {
+  animation-delay: 0s;
+}
+
+.carousel-item {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.carousel-inner .carousel-item-next.carousel-item-left,
+.carousel-inner .carousel-item-prev.carousel-item-right {
+  opacity: 0;
+}
+
+.navbar-nav .nav-link {
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #2C6B59;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #2C6B59;
+  left: 0;
+  bottom: 0;
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+img {
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+.apropos-title h1, .nos-mission-txt h2 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.apropos-title h1 {
+  animation-delay: 0.2s;
+}
+
+.nos-mission-txt h2 {
+  animation-delay: 0.4s;
 }
 
