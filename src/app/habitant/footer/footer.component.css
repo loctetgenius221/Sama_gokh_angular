@@ -68,6 +68,15 @@
   font-size: 14px;
   margin: 0;
 }
+.social-icon {
+  color: #f4e3d2;
+  font-size: 24px; /* Ajustez la taille des icônes si nécessaire */
+  margin: 0 10px; /* Espacement entre les icônes */
+  text-decoration: none;
+}
+.social-icon:hover {
+  color: #d8b7a4; /* Couleur lors du survol (optionnelle) */
+}
 @media (max-width: 768px) {
 /* Footer */
 .footer-container {

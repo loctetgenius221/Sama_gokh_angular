@@ -2,66 +2,64 @@
   <div class="back-arrow">
     <i routerLink="/sidebar1/habitant" class="fa-solid fa-arrow-left"></i>
   </div>
-    <div class="row">
-      <!-- Liste des projets -->
-      <div class="col-md-4">
-        <h3 class="title">Projets proposés</h3>
-        <table class="project-table">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let projet of projets">
-              <td>{{ projet.nom }}</td>
-              <td>
-                <a [routerLink]="['/sidebar1/habitant/detail/projet', projet.id]" class="icon-link">
-                <span class="iconify" data-icon="mdi:eye" ></span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  
-      <!-- Détails de l'habitant -->
-      <div class="col-md-8">
-        <div class="detail-card">
-          <img [src]="habitant.photo ? habitant.photo : 'https://via.placeholder.com/300x200'" alt="Photo de l'habitant">
-          <h4 class="name">{{ habitant.prenom }} {{ habitant.nom }}</h4>
-          <p class="job">{{ habitant.profession }}</p>
-  
-          <div class="info-grid">
-            <div class="info-item">
-              <h5 class="item1">Âge</h5>
-              <div class="card-info1">
-                <span>{{ habitant.age }} ans</span>
-              </div>
+  <div class="row">
+    <!-- Liste des projets -->
+    <div class="col-md-4">
+      <h3 class="title">Projets proposés</h3>
+      <table class="project-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let projet of projets">
+            <td>{{ projet.nom }}</td>
+            <td>
+              <a [routerLink]="['/sidebar1/habitant/detail/projet', projet.id]" class="icon-link">
+                <span class="iconify" data-icon="mdi:eye"></span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-            </div>
-            <div class="info-item">
-              <h5 class="item2">Sexe</h5>
-              <div class="card-info2">
-                <span>{{ habitant.sexe }}</span>
-              </div>
-            </div>
-            <div class="info-item">
-              <h5 class="item3">Téléphone</h5>
-              <div class="card-info3">
-                <span>{{ habitant.telephone }}</span>
-              </div>
+    <!-- Détails de l'habitant -->
+    <div class="col-md-8">
+      <div class="detail-card">
+        <img [src]="habitant.photo ? habitant.photo : 'https://via.placeholder.com/300x200'" alt="Photo de l'habitant">
+        <h4 class="name">{{ habitant.prenom }} {{ habitant.nom }}</h4>
+        <p class="job">{{ habitant.profession }}</p>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <h5 class="item1">Âge</h5>
+            <div class="card-info1">
+              <span>{{ habitant.age }} ans</span>
             </div>
           </div>
-  
-          <div class="contact-info">
-            <p><strong>Email:</strong> <span>{{ habitant.user.email }}</span></p>
-            <p><strong>Adresse:</strong> <span>{{ habitant.adresse }}</span> </p>
-            <p><strong>Numero d'identite:</strong>  <span>{{ habitant.numero_identite }}</span> </p>
+          <div class="info-item">
+            <h5 class="item2">Sexe</h5>
+            <div class="card-info2">
+              <span>{{ habitant.sexe }}</span>
+            </div>
           </div>
+          <div class="info-item">
+            <h5 class="item3">Téléphone</h5>
+            <div class="card-info3">
+              <span>{{ habitant.telephone }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <p><strong>Email:</strong> <span>{{ habitant.user.email }}</span></p>
+          <p><strong>Adresse:</strong> <span>{{ habitant.adresse }}</span></p>
+          <p><strong>Numero d'identite:</strong> <span>{{ habitant.numero_identite }}</span></p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -3,85 +3,91 @@
   padding: 20px;
   padding-top: 40px;
   font-family: Montserrat, sans-serif;
-  }
+}
 
-  .back-arrow{
-    color: #2C6B59; 
-    font-size: 30px;
-    cursor: pointer;
-  }
-  
-  .project-details {
-    width: 600px;
-    height: 500;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .project-details p {
-    margin: 12px 10px 25px;
-    color: #4A4A4A;
-  }
+.back-arrow {
+  color: #2C6B59; 
+  font-size: 30px;
+  cursor: pointer;
+}
 
-  .project-details strong {
-    text-decoration: underline;
-    font-weight: bold;
-    font-size: 24px;
-  }
+.project-details {
+  width: 100%; /* Ajustez pour qu'il prenne toute la largeur disponible */
+  max-width: 600px; /* Fixez une largeur maximale pour le conteneur des détails */
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: auto; /* Centrez le contenu horizontalement */
+}
 
-  .project-details span {
-    font-weight:600;
-    font-size: 20px;
-    margin-left: 4%;
-  }
-  .card-image{
-    object-fit: cover;
-    margin: 20px 0;
-  }
-  img{
-    width: 300px;
-    height: 450px;
-  }
-  
-  .actions {
-    margin-top: 50px;
-    display: flex;
-    justify-content:  center;
-    gap: 50px; 
-    margin-right: 40%;
-  }
-  
-  .approve-btn {
-    width: 160px;
-    background-color: #2C6B59;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .approve-btn:hover {
-    background-color: #004d26;
-  }
-  
-  .disapprove-btn {
-    background-color: #ffffff;
-    color: #DB1614;
-    padding: 10px 20px;
-    border: 1px solid #DB1614;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .disapprove-btn:hover {
-    background-color: #cc0000;
-    color:#ffffff;
-  }
-  .row{
-    display: flex;
-    align-items: center;
-  }
+.project-details p {
+  margin: 12px 10px 25px;
+  color: #4A4A4A;
+}
+
+.project-details strong {
+  text-decoration: underline;
+  font-size: 22px;
+}
+
+.project-details span {
+  font-size: 18px;
+  margin-left: 4%;
+}
+
+.card-image {
+  width: 100%; /* Ajustez pour qu'il prenne toute la largeur disponible */
+  max-width: 600px; /* Assurez-vous que l'image a la même largeur maximale que les détails du projet */
+  margin: 20px auto;
+}
+
+img {
+  width: 100%; /* Assurez-vous que l'image s'ajuste à la largeur du conteneur */
+  height: auto; /* Gardez les proportions de l'image */
+  object-fit: cover;
+}
+
+.actions {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 50px; 
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.approve-btn {
+  width: 160px;
+  background-color: #2C6B59;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.approve-btn:hover {
+  background-color: #004d26;
+}
+
+.disapprove-btn {
+  background-color: #ffffff;
+  color: #DB1614;
+  padding: 10px 20px;
+  border: 1px solid #DB1614;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.disapprove-btn:hover {
+  background-color: #cc0000;
+  color: #ffffff;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centre les colonnes horizontalement */
+}

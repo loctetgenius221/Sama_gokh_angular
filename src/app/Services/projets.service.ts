@@ -58,6 +58,13 @@ export class ProjetsService {
     );
 }
 
+updateEtatProjet(id: number, etat: string): Observable<any> {
+  const data = { etat };
+  return this.http.put<any>(`${this.apiUrl}/projets/${id}/etat`, data, { headers: this.getHeaders() }).pipe(
+      catchError(this.handleError)
+  );
+}
+
   getProjetsByHabitant(habitantId: number): Observable<{ data: any[] }> {
     console.log(`Envoi de la requête pour obtenir les projets de l'habitant avec l'ID : ${habitantId}`);
     return this.http.get<{ data: any[] }>(`${this.apiUrl}/projets/habitant/${habitantId}`, { headers: this.getHeaders() }).pipe(

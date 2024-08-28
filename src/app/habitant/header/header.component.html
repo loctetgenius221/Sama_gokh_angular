@@ -9,14 +9,14 @@
 
     <!-- Pages de navigation -->
     <div class="d-flex align-items-center">
-      <a class="nav-link" href="#"  type="button"
-      class="btn btn-custom"
-      data-bs-toggle="modal"
-      data-bs-target="#notificationsModal"
-    >
-        <i class="fa-regular fa-bell"></i>
+                   
+    
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#notificationsModal">
+      <i class="fa-regular fa-bell"></i>
+      <span *ngIf="notifications.length > 0" class="badge">{{ notifications.length }}</span>
+    </button>
+        
 
-      </a>
       <a class="nav-link" [routerLink]="['/home']">Accueil</a>
       <a class="nav-link" href="#">Mes Projets</a>
       <a class="nav-link" href="#">
@@ -52,39 +52,18 @@ aria-hidden="true"
       <section id="notifications">
         <div class="container">
           <h1 class="notifications-title">Mes Notifications</h1>
-          <div class="notifications-list">
-            <div class="notification-card">
-              <div class="notification-header">
-                <h2 class="notification-title">
-                  Titre de la notification 1
-                </h2>
-                <button class="delete-btn">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
+            <div class="notifications-list">
+              <div *ngFor="let notification of notifications" class="notification-card">
+                <div class="notification-header">
+                  <h2 class="notification-title">{{ notification.title }}</h2>
+                  <button class="delete-btn" (click)="deleteNotification(notification.id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+                <p class="notification-content">{{ notification.contenu }}</p>
+                <span class="notification-date">{{ notification.created_at | date: 'dd MMMM yyyy, HH:mm' }}</span>
               </div>
-              <p class="notification-content">
-                Contenu de la notification 1. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
-              <span class="notification-date">12 août 2024</span>
             </div>
-            <div class="notification-card">
-              <div class="notification-header">
-                <h2 class="notification-title">
-                  Titre de la notification 1
-                </h2>
-                <button class="delete-btn">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </div>
-              <p class="notification-content">
-                Contenu de la notification 1. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
-              <span class="notification-date">12 août 2024</span>
-            </div>
-            <!-- Ajouter plus de notifications ici -->
-          </div>
         </div>
       </section>
     </div>

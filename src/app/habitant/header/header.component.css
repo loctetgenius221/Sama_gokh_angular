@@ -123,6 +123,21 @@
   color: #95a5a6;
   text-align: right;
 }
+.btn {
+  position: relative; /* Pour positionner le badge correctement */
+}
+
+.badge {
+  position: absolute;
+  top: -2px; /* Ajuste selon tes besoins */
+  right: -10px; /* Ajuste selon tes besoins */
+  background-color: #ff0000; /* Couleur de fond du badge */
+  color: #fff; /* Couleur du texte du badge */
+  border-radius: 50%; /* Badge circulaire */
+  padding: 0.25em 0.5em; /* Taille du badge */
+  font-size: 0.75em; /* Taille du texte du badge */
+  text-align: center;
+}
 
 /* Responsive Design pour les grands écrans (1280px) */
 @media (min-width: 1280px) {
