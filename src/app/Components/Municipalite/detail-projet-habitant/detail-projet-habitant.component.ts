@@ -44,9 +44,31 @@ export class DetailProjetHabitantComponent implements OnInit {
       }
     );
   }
+
   goBack(): void {
     this.location.back();
   }
+
+  approveProject(): void {
+    if (this.project) {
+      const nouvelEtat = 'approuvé'; // Définissez l'état à mettre à jour
+  
+      this.projetsService.updateEtatProjet(+this.projetId, nouvelEtat).subscribe(
+        response => {
+          console.log('État du projet mis à jour avec succès:', response);
+          this.project.status = nouvelEtat;
+        },
+        error => {
+          console.error('Erreur lors de la mise à jour de l\'état du projet:', error);
+          if (error.status === 500) {
+            console.error('Erreur côté serveur:', error.error); // Affichez plus de détails de l'erreur côté serveur
+          } else {
+            console.error('Erreur:', error.message); // Affichez le message d'erreur
+          }
+        }
+      );
+      
+    }
+  }
   
 }
-
