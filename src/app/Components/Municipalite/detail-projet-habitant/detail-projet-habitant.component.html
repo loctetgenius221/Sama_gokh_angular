@@ -3,8 +3,8 @@
     <div class="back-arrow" (click)="goBack()">
       <i class="fa-solid fa-arrow-left"></i>
     </div>
-    
-    <div class="col-md-8">
+
+    <div class="col-md-6">
       <div class="project-details">
         <p> <strong>Projet:</strong> <span>{{ project?.nom }}</span> </p>
         <p> <strong>Statut:</strong> <span>{{ project?.statut }}</span> </p>
@@ -14,7 +14,7 @@
         <p> <strong>Description:</strong> <span>{{ project?.description }}</span> </p>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="card-image">
         <img [src]="project?.photo" alt="Image du projet">
       </div>
@@ -22,8 +22,6 @@
   </div>
 
   <div class="actions">
-   
-<button class="approve-btn" (click)="approveProject()">Approuver</button>
-    <button class="disapprove-btn">Désapprouver</button>
+    <button *ngIf="!isApproved" (click)="approveProject()" class="approve-btn">Approuver</button>
   </div>
 </div>
