@@ -264,7 +264,7 @@
 
 .badge {
   position: absolute;
-  top: -10px; /* Ajuste selon tes besoins */
+  top: -2px; /* Ajuste selon tes besoins */
   right: -10px; /* Ajuste selon tes besoins */
   background-color: #ff0000; /* Couleur de fond du badge */
   color: #fff; /* Couleur du texte du badge */

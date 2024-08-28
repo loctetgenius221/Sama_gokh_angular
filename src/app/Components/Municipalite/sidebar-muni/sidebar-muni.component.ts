@@ -46,7 +46,7 @@ export class SidebarMuniComponent implements OnInit {
   loadNotifications() {
     this.notificationsService.getAllNotifications().subscribe(
       (data) => {
-        console.log('Notifications reçues:', data); // Assure-toi que data est un tableau
+        console.log('Notifications reçues:', data); 
         this.notifications = data;
       },
       (error) => {
