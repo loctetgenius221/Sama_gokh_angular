@@ -82,7 +82,10 @@
             <div class="row d-flex like_dislike">
               <div class="col-1 text-center">
                 <div class="approuve">
-                  <i class="vote-icon" [ngClass]="{ voted: voted, 'not-voted': !voted }" (click)="onVotePour()">
+                  <i class="vote-icon" 
+                     [ngClass]="{ 'voted': voted, 'not-voted': !voted, 'disabled': voted }" 
+                     (click)="handleVote('pour')" 
+                     [class.disabled]="voted">
                     <span class="material-symbols-outlined">thumb_up</span>
                   </i>
                   <span class="vote-count">{{ votesPour }}</span>
@@ -90,14 +93,18 @@
               </div>
               <div class="col-1 text-center">
                 <div class="desapprouve">
-                  <i>
+                  <i class="vote-icon" 
+                     [ngClass]="{ 'voted': voted, 'not-voted': !voted, 'disabled': voted }" 
+                     (click)="handleVote('contre')" 
+                     [class.disabled]="voted">
                     <span class="material-symbols-outlined">thumb_down</span>
                   </i>
-                  <span class="vote-count">0</span>
+                  <span class="vote-count">{{ votesContre }}</span>
                 </div>
               </div>
               <div class="col"></div>
             </div>
+            
           </div>
         </div>
       </div>

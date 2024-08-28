@@ -25,7 +25,15 @@ getAllVotes(): Observable<any[]> {
     })
   );
 }
-
+ // Méthode pour récupérer les votes 'contre'
+ getVotesContre(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/votes/contre` , { headers: this.getHeaders() }).pipe(
+    catchError(error => {
+      console.error('Erreur lors de la requête:', error);
+      return this.handleError(error);
+    })
+  );
+}
  
  // Méthode pour obtenir le vote d'un utilisateur spécifique pour un projet
  getUserVote(projectId: number, userId: number): Observable<any> {

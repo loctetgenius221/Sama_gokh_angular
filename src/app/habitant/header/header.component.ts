@@ -2,7 +2,7 @@ import { Component, LOCALE_ID , OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
-import { NotificationsService } from '../Services/notifications.service';
+import { NotificationsService } from '../../Services/notifications.service';
 
 @Component({
   selector: 'app-header',
