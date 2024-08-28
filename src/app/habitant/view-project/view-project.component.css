@@ -14,7 +14,7 @@ button {
 
 .material-symbols-outlined {
   font-size: 2rem; /* Taille des icônes */
-  color: #2c6b59; /* Couleur des icônes */
+ /* Couleur des icônes */
 }
 
 .material-symbols-outlined:hover {
@@ -51,13 +51,13 @@ button {
 }
 
 .btn-edit {
-  color: #007bff;
-  border-color: #007bff;
+ color: #1f4c42;
+  border-color: #2c6b59;
 }
 
 .btn-edit:hover {
-  background-color: #0056b3;
-  color: #fff;
+  background-color: #2c6b59;
+  color: #f4e3d2;
 }
 
 .btn-delete {
@@ -69,7 +69,24 @@ button {
   background-color: #c82333;
   color: #fff;
 }
+.like_dislike {
+  display: flex;
+  justify-content: center; /* Centre les icônes horizontalement */
+  align-items: center; /* Centre les icônes verticalement */
+  gap: 50px; /* Espacement entre les icônes */
+  margin-left: 50px;
+}
 
+.vote-icon, .desapprouve.material-symbols-outlined {
+  font-size: 24px; /* Taille des icônes */
+  cursor: pointer; /* Changement du curseur pour indiquer la cliquabilité */
+  
+}
+
+.vote-count {
+  display: block;
+  margin-top: 5px; /* Espacement entre l'icône et le nombre de votes */
+}
 .material-symbols-outlined {
   font-size: 1.5rem; /* Ajustez la taille des icônes si nécessaire */
   margin-right: 8px;
@@ -129,8 +146,7 @@ button {
 
   main .projet-txt p {
     color: #000;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 18px;
     text-align: justify;
   }
 
@@ -149,6 +165,7 @@ button {
   }
   main .projet-txt .info-item h4 {
     font-size: 18px;
+    font-weight: 300;
   }
 
   main .approuve i ,
@@ -165,6 +182,7 @@ button {
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 15px;
+    width: 50%;
   }
 
   .comment-box img {

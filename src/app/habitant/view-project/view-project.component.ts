@@ -81,6 +81,8 @@ export class ViewProjectComponent implements OnInit {
         icon: 'warning',
         title: 'Erreur',
         text: 'Le commentaire ne peut pas être vide.',
+        showConfirmButton: false,
+        timer: 3000
       });
       return;
     }
@@ -95,6 +97,8 @@ export class ViewProjectComponent implements OnInit {
           icon: 'success',
           title: 'Succès',
           text: 'Commentaire ajouté avec succès.',
+          showConfirmButton: false,
+          timer: 3000
         });
         this.commentaire = '';
         this.loadCommentaires();
@@ -105,6 +109,8 @@ export class ViewProjectComponent implements OnInit {
           icon: 'error',
           title: 'Erreur',
           text: 'Une erreur s\'est produite lors de l\'ajout du commentaire.',
+          showConfirmButton: false,
+          timer: 3000
         });
       }
     });
@@ -115,8 +121,20 @@ export class ViewProjectComponent implements OnInit {
       this.commentairesService.getAllCommentaires().subscribe(
         (response: any) => {
           console.log('Données reçues:', response);
+  
+          // Vérifiez la structure des données reçues
           const commentairesPourProjet = response.data[this.project.id] || [];
-          this.commentaires = commentairesPourProjet;
+  
+          // Assurez-vous que les commentaires contiennent les informations de photo
+          this.commentaires = commentairesPourProjet.map((commentaire: any) => ({
+            ...commentaire,
+            habitant: {
+              ...commentaire.habitant,
+              photo: commentaire.habitant.photo 
+                ? `http://127.0.0.1:8000/storage/${commentaire.habitant.photo}` 
+                : 'https://via.placeholder.com/50' // Valeur par défaut si pas de photo// Valeur par défaut si pas de photo
+            }
+          }));
         },
         (error) => {
           console.error('Erreur lors de la récupération des commentaires:', error);
@@ -124,6 +142,8 @@ export class ViewProjectComponent implements OnInit {
       );
     }
   }
+  
+  
 
   loadVotesPour(projectId: number): void {
     this.votesService.getAllVotes().subscribe(
@@ -134,7 +154,6 @@ export class ViewProjectComponent implements OnInit {
         console.log('Votes pour le projet:', projetVotes);
         this.votesPour = projetVotes ? projetVotes.total_votes : 0;
   
-        // Assurez-vous que currentUserId est défini avant d'appeler getUserVote
         if (this.currentUserId !== undefined) {
           this.votesService.getUserVote(projectId, this.currentUserId).subscribe(
             (userVoteResponse: any) => {
@@ -163,6 +182,8 @@ export class ViewProjectComponent implements OnInit {
         icon: 'error',
         title: 'Erreur',
         text: 'Impossible de voter. Veuillez réessayer.',
+        showConfirmButton: false,
+        timer: 3000
       });
       return;
     }
@@ -172,6 +193,8 @@ export class ViewProjectComponent implements OnInit {
         icon: 'info',
         title: 'Information',
         text: 'Vous avez déjà voté pour ce projet.',
+        showConfirmButton: false,
+        timer: 3000
       });
       return;
     }
@@ -187,27 +210,27 @@ export class ViewProjectComponent implements OnInit {
           icon: 'success',
           title: 'Succès',
           text: response.message || 'Vote ajouté avec succès.',
+          showConfirmButton: false,
+          timer: 3000
         });
-        this.voted = true; // Marquer comme voté
-        this.loadVotesPour(this.project.id); // Recharger le nombre de votes pour mettre à jour l'affichage
+        this.voted = true;
+        this.loadVotesPour(this.project.id);
       },
       error: (error) => {
         console.error('Erreur lors de l\'ajout du vote:', error);
-        const errorMessage = error?.error?.message || 'vous avez deja voté.';
+        const errorMessage = error?.error?.message || 'Vous avez déjà voté.';
         Swal.fire({
           icon: 'error',
           title: 'Erreur',
           text: errorMessage,
+          showConfirmButton: false,
+          timer: 3000
         });
       }
     });
   }
-  
     
-  getImageUrl(photo: string): string {
-    return photo ? `http://127.0.0.1:8000/storage/photos/${photo}` : 'https://via.placeholder.com/50';
-  }
-
+ 
   supprimerProjet(id: number): void {
     Swal.fire({
       title: 'Êtes-vous sûr?',
